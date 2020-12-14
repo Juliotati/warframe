@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import './activities.dart';
-import './news.dart';
 
-// This is the login widget that shows when the user opens the app
 class LogIn extends StatefulWidget {
   static const route = 'login';
 
@@ -12,12 +9,28 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
+  GlobalKey _formKey = GlobalKey<FormState>();
+
   String alias;
+
+  // void logIn() {
+  //   final valid = _formKey;
+  //   if () {
+  //     return;
+  //   } else {
+  //     Navigator.pushNamed(
+  //       context,
+  //       ActivitiesScreen.route,
+  //       arguments: alias,
+  //     );
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        width: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage('images/scarletspear.jpg'),
@@ -29,82 +42,135 @@ class _LogInState extends State<LogIn> {
           mainAxisSize: MainAxisSize.max,
           children: [
             Container(
+              width: 350,
               child: Column(
                 children: [
-                  // Input field where you can enter your game name/Alias
-                  TextFormField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      filled: true,
-                      fillColor: Colors.blueGrey[700],
-                      hintText: 'ALIAS',
-                      hintStyle: TextStyle(fontSize: 20, color: Colors.grey),
+                  Form(
+                    key: _formKey,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        filled: true,
+                        fillColor: Colors.blueGrey.withOpacity(0.1),
+                        hintText: 'ALIAS',
+                        hintStyle: TextStyle(fontSize: 20, color: Colors.grey),
+                      ),
+                      style: Theme.of(context).textTheme.headline5,
+                      cursorWidth: 5,
+                      cursorColor: Colors.grey,
+                      onChanged: (value) {
+                        setState(() {
+                          alias = value;
+                        });
+                      },
+                      onSaved: (value) {
+                        if (value.characters.length <= 0) {
+                          return 'Please enter your alias name';
+                        }
+                        if (value.characters.length <= 2) {
+                          return 'Your alias is too short';
+                        } else {
+                          return null;
+                        }
+                      },
+                      keyboardType: TextInputType.text,
                     ),
-                    style: Theme.of(context).textTheme.headline5,
-                    cursorWidth: 5,
-                    cursorColor: Colors.grey,
-                    onChanged: (value) {
-                      alias = value;
-                    },
-                    keyboardType: TextInputType.emailAddress,
-                  ),
-                  FlatButton(
-                    color: Colors.white,
-                    child: Text(
-                      'LOGIN',
-                      style: GoogleFonts.roboto(fontSize: 26),
-                    ),
-                    onPressed: () => Navigator.pushNamed(
-                        context, ActivitiesScreen.route,
-                        arguments: {'alias': alias}),
                   ),
                 ],
               ),
               color: Colors.blueGrey[800],
             ),
-            Padding(
-              padding:
-                  const EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // log in with playstation 4
-                  FlatButton(
-                      child: Text('PS4'),
-                      color: Colors.lightBlue[900],
-                      onPressed: () => Navigator.pushNamed(
-                          context, NewsScreen.route,
-                          arguments: {alias})),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  // log in with your ex
-                  FlatButton(
-                      color: Colors.green[900],
-                      child: Text('XBOX ONE'),
-                      onPressed: () => Navigator.pushNamed(
-                          context, ActivitiesScreen.route,
-                          arguments: {alias})),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  // log in with the neat tendo
-                  FlatButton(
-                      color: Colors.red,
-                      child: Column(
-                        children: [
-                          Text('NINTENDO'),
-                          Text('SWITCH'),
-                        ],
-                      ),
-                      onPressed: () => Navigator.pushNamed(
-                          context, ActivitiesScreen.route,
-                          arguments: {alias})),
-                ],
-              ),
+            GamePlatformButton(
+                label: 'LOGIN', color: Colors.black, alias: alias),
+            SizedBox(height: 10),
+            CustomDivider(),
+            SizedBox(height: 10),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GamePlatformButton(
+                  label: 'PS4',
+                  color: Colors.lightBlue[800],
+                  alias: alias,
+                ),
+                GamePlatformButton(
+                  label: 'XBOX ONE',
+                  color: Colors.green[700],
+                  alias: alias,
+                ),
+                GamePlatformButton(
+                  label: 'Nitendo Switch',
+                  color: Colors.red,
+                  alias: alias,
+                ),
+              ],
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class CustomDivider extends StatelessWidget {
+  const CustomDivider({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          height: 0.5,
+          width: 118,
+          margin: EdgeInsets.symmetric(horizontal: 10),
+          color: Colors.grey[300],
+        ),
+        Text('or continue with'),
+        Container(
+          height: 0.5,
+          width: 118,
+          margin: EdgeInsets.symmetric(horizontal: 10),
+          color: Colors.grey[300],
+        ),
+      ],
+    );
+  }
+}
+
+class GamePlatformButton extends StatelessWidget {
+  const GamePlatformButton({
+    Key key,
+    @required this.label,
+    @required this.alias,
+    @required this.color,
+     this.onTap,
+  }) : super(key: key);
+
+  final String label, alias;
+  final Color color;
+  final Function onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 2),
+      width: 350,
+      decoration: BoxDecoration(border: Border.all(width: 2, color: color)),
+      child: FlatButton(
+        splashColor: color,
+        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        color: color.withOpacity(0.7),
+        textColor: Colors.white,
+        child: Text(label),
+        onPressed: () => Navigator.pushNamed(
+        context,
+        ActivitiesScreen.route,
+        arguments: alias,
+      ),
       ),
     );
   }
