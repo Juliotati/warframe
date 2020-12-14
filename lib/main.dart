@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:warframe/modals/drawer_items.dart';
 import './app_data/codex.dart';
 import './screens/codex_warframes.dart';
 import './screens/codex_warframe.dart';
@@ -12,7 +13,6 @@ import './app_data/news.dart';
 
 void main() {
   runApp(MyApp());
-  // this allows the app to hide the software buttons and the status bar
   SystemChrome.setEnabledSystemUIOverlays([]);
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -20,7 +20,6 @@ void main() {
   ]);
 }
 
-// App's Root/Main Widget
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -28,13 +27,12 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ListenableProvider<CodexWarframes>(create: (_) => CodexWarframes()),
-//        ListenableProvider<NewsCard>(create: (context) =>NewsCard()),
+        ListenableProvider<DrawerProvider>(create: (context) => DrawerProvider()),
         ListenableProvider<News>(create: (_) => News())
       ],
       child: MaterialApp(
         title: 'Warframe',
         theme: ThemeData(
-          // using google fonts in the app
           textTheme: TextTheme(
             headline3: GoogleFonts.roboto(fontSize: 24, color: Colors.black),
             headline4: GoogleFonts.roboto(fontSize: 24, color: Colors.grey),
