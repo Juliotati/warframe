@@ -12,12 +12,12 @@ class ActivitiesScreen extends StatefulWidget {
 class _ActivitiesScreenState extends State<ActivitiesScreen> {
   @override
   Widget build(BuildContext context) {
+    final alias = ModalRoute.of(context).settings.arguments as String;
     return SafeArea(
       child: Scaffold(
-//        backgroundColor: Colors.blueGrey,
         drawerEdgeDragWidth: 50,
         drawerEnableOpenDragGesture: true,
-        drawer: WarframeDrawer(),
+        drawer: WarframeDrawer(alias: alias),
         appBar: AppBar(
           title: Center(
             child: Text(
