@@ -3,12 +3,10 @@ import 'package:provider/provider.dart';
 import '../modals/codex_modals.dart';
 import '../screens/codex_warframe.dart';
 
-// This widget is used to display warframe names and image in the codex_warframe screen
-
 class CodexWarframeGridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final codexWarframe = Provider.of<Warframe>(context);
+    final codexWarframe = Provider.of<Warframe>(context); 
     void selectedWarframe(BuildContext context) {
       Navigator.of(context)
           .pushNamed(CodexWarframe.route, arguments: codexWarframe.name);
