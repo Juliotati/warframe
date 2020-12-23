@@ -13,19 +13,6 @@ class _LogInState extends State<LogIn> {
 
   String alias;
 
-  // void logIn() {
-  //   final valid = _formKey;
-  //   if () {
-  //     return;
-  //   } else {
-  //     Navigator.pushNamed(
-  //       context,
-  //       ActivitiesScreen.route,
-  //       arguments: alias,
-  //     );
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

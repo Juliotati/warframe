@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../modals/codex_modals.dart';
-import '../screens/codex_warframe.dart';
+import 'package:warframe/modals/codex_modals.dart';
+import 'package:warframe/screens/codex/warfames/warframe_profile.dart';
 
-class CodexWarframeGridItem extends StatelessWidget {
+class WarframeGridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final codexWarframe = Provider.of<Warframe>(context); 
+    final codexWarframe = Provider.of<Warframe>(context);
     void selectedWarframe(BuildContext context) {
-      Navigator.of(context)
-          .pushNamed(CodexWarframe.route, arguments: codexWarframe.name);
+      Navigator.of(context).pushNamed(
+        WarframeProfile.route,
+        arguments: codexWarframe.name,
+      );
     }
 
     return InkWell(
