@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:warframe/app_data/codex.dart';
+import 'package:warframe/service/codex.dart';
 import 'package:warframe/screens/codex/warfames/widgets/warframe_grid_item.dart';
 import 'package:warframe/utilities/scaffold.dart';
-
-
 
 class CodexScreen extends StatelessWidget {
   static const route = 'Codex_screen';
