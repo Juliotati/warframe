@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:warframe/app_data/codex.dart';
-import 'package:warframe/app_data/news.dart';
+import 'package:warframe/service/codex.dart';
+import 'package:warframe/service/news.dart';
 import 'package:warframe/modals/drawer_items.dart';
 import 'package:warframe/screens/activities.dart';
 import 'package:warframe/screens/codex/codex.dart';
@@ -13,7 +13,7 @@ import 'package:warframe/utilities/theme.dart';
 
 void main() {
   runApp(MyApp());
-  SystemChrome.setEnabledSystemUIOverlays([]);
+  // SystemChrome.setEnabledSystemUIOverlays([]);
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
