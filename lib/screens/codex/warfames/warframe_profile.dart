@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:warframe/app_data/codex.dart';
+import 'package:warframe/service/codex.dart';
 import 'package:warframe/screens/codex/warfames/widgets/abilities.dart';
 import 'package:warframe/screens/codex/warfames/widgets/attributes.dart';
 import 'package:warframe/utilities/scaffold.dart';
