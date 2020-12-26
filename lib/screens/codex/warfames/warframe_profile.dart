@@ -6,18 +6,22 @@ import 'package:warframe/screens/codex/warfames/widgets/abilities.dart' as widge
 import 'package:warframe/service/http.dart';
 import 'package:warframe/utilities/scaffold.dart';
 
-class WarframeProfile extends StatelessWidget {
+class WarframeProfile extends StatefulWidget {
   static const route = 'Warframe_Profile';
 
   @override
+  _WarframeProfileState createState() => _WarframeProfileState();
+}
+
+class _WarframeProfileState extends State<WarframeProfile> {
+  @override
   Widget build(BuildContext context) {
     final warframeName = ModalRoute.of(context).settings.arguments as String;
-    final wr = Provider.of<WarframeData>(context);
     try {
       return WarframeScaffold(
         screenName: 'Warframe',
         child: FutureBuilder<Warframe>(
-            future: wr.getWarframes(warframeName),
+            future: Provider.of<WarframeData>(context).getWarframes(warframeName),
             builder: (BuildContext context, AsyncSnapshot<Warframe> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Column(
@@ -46,15 +50,15 @@ class WarframeProfile extends StatelessWidget {
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                '${frame.name}'.toUpperCase(),
+                                frame.name.toUpperCase(),
                                 style: Theme.of(context).textTheme.headline3,
                               ),
                             ),
                             color: Colors.white,
                           ),
-                          Container(
-                            child: Image.network(frame.imageName),
-                          ),
+                          // Container(
+                          //   child: Image.network(frame.imageName),
+                          // ),
                           Divider(
                               height: 16.0, color: Colors.grey, thickness: 1),
                           Container(
@@ -81,7 +85,7 @@ class WarframeProfile extends StatelessWidget {
             }),
       );
     } catch (e) {
-     rethrow;
+      throw e;
     }
   }
 }

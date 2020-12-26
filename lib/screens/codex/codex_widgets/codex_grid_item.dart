@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:warframe/screens/codex/warfames/warframe_profile.dart';
@@ -21,9 +22,11 @@ class CodexGridItem extends StatelessWidget {
     return InkWell(
       onTap: () => selectedWarframe(context),
       child: GridTile(
-        child: Card(
-          margin: EdgeInsets.all(0),
-        ),
+        child:  Card(
+            color: Colors.black54,
+            margin: EdgeInsets.all(0),
+          ),
+
         footer: Container(
           height: 30,
           child: GridTileBar(
