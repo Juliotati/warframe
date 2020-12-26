@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:warframe/modals/codex_modals.dart';
+import 'package:warframe/modals/warframe.dart';
+
+
 
 class Abilities extends StatelessWidget {
   const Abilities({
     Key key,
-    @required this.selectedWarframe,
+    @required this.warframe,
   }) : super(key: key);
 
-  final Warframe selectedWarframe;
+  final Warframe warframe;
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +23,26 @@ class Abilities extends StatelessWidget {
       children: [
         Column(
           children: [
-            AbilityItem(abilityName: selectedWarframe.abilityOneName, ability: selectedWarframe.abilityOne,),
-            AbilityItem(abilityName: selectedWarframe.abilityTwoName, ability: selectedWarframe.abilityTwo,),
-            AbilityItem(abilityName: selectedWarframe.abilityThreeName, ability: selectedWarframe.abilityThree,),
-            AbilityItem(abilityName: selectedWarframe.abilityFourName, ability: selectedWarframe.abilityFour,),
-            AbilityItem(abilityName: selectedWarframe.passive, ability: selectedWarframe.passiveBio,),
+            AbilityItem(
+              abilityName: warframe.abilities[0].name,
+              ability: warframe.abilities[0].description,
+            ),
+            AbilityItem(
+              abilityName: warframe.abilities[1].name,
+              ability: warframe.abilities[1].description,
+            ),
+            AbilityItem(
+              abilityName: warframe.abilities[2].name,
+              ability: warframe.abilities[2].description,
+            ),
+            AbilityItem(
+              abilityName: warframe.abilities[3].name,
+              ability: warframe.abilities[3].description,
+            ),
+            AbilityItem(
+              abilityName: 'Passive',
+              ability: warframe.passiveDescription,
+            ),
           ],
         )
       ],
@@ -46,19 +63,12 @@ class AbilityItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(
-          abilityName
-              .toUpperCase(),
+      title: Text(abilityName.toUpperCase(),
           style: Theme.of(context)
               .textTheme
               .bodyText2
-              .copyWith(
-              fontWeight: FontWeight.bold)),
-      subtitle: Text(
-          ability,
-          style: Theme.of(context)
-              .textTheme
-              .bodyText2),
+              .copyWith(fontWeight: FontWeight.bold)),
+      subtitle: Text(ability, style: Theme.of(context).textTheme.bodyText2),
     );
   }
 }

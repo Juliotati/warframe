@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:warframe/modals/warframe.dart';
 
 class Warframe with ChangeNotifier {
   final String name;
@@ -9,14 +10,15 @@ class Warframe with ChangeNotifier {
   final int armor;
   final int energy;
   final double sprint;
-  final String abilityOne;
-  final String abilityOneName;
-  final String abilityTwo;
-  final String abilityTwoName;
-  final String abilityThree;
-  final String abilityThreeName;
-  final String abilityFour;
-  final String abilityFourName;
+  final List<Abilities> abilities;
+  // final String abilityOne;
+  // final String abilityOneName;
+  // final String abilityTwo;
+  // final String abilityTwoName;
+  // final String abilityThree;
+  // final String abilityThreeName;
+  // final String abilityFour;
+  // final String abilityFourName;
   final String passive;
   final String passiveBio;
   final String lore;
@@ -30,17 +32,26 @@ class Warframe with ChangeNotifier {
     @required this.armor,
     @required this.energy,
     @required this.sprint,
-    @required this.abilityOne,
-    @required this.abilityOneName,
-    @required this.abilityTwo,
-    @required this.abilityTwoName,
-    @required this.abilityThree,
-    @required this.abilityThreeName,
-    @required this.abilityFour,
-    @required this.abilityFourName,
+    @required this.abilities,
+    // @required this.abilityOne,
+    // @required this.abilityOneName,
+    // @required this.abilityTwo,
+    // @required this.abilityTwoName,
+    // @required this.abilityThree,
+    // @required this.abilityThreeName,
+    // @required this.abilityFour,
+    // @required this.abilityFourName,
     @required this.passive,
     @required this.passiveBio,
     @required this.lore,
+  });
+}
+
+class CodexCategory {
+  final String name;
+
+  const CodexCategory({
+    @required this.name,
   });
 }
 

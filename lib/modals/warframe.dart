@@ -69,6 +69,41 @@ class Warframe {
     this.wikiaUrl,
   });
 
+  // factory Warframe.fromJson(Map<String, dynamic> json) {
+  //   return Warframe(
+  //     uniqueName: json['uniqueName'],
+  //     name: json['name'],
+  //     description: json['description'],
+  //     health: json['health'],
+  //     shield: json['shield'],
+  //     armor: json['armor'],
+  //     stamina: json['stamina'],
+  //     power: json['power'],
+  //     masteryReq: json['masteryReq'],
+  //     sprintSpeed: json['sprintSpeed'],
+  //     passiveDescription: json['passiveDescription'],
+  //     exalted: json['exalted'].cast<String>(),
+  //     productCategory: json['productCategory'],
+  //     buildPrice: json['buildPrice'],
+  //     buildTime: json['buildTime'],
+  //     skipBuildTimePrice: json['skipBuildTimePrice'],
+  //     buildQuantity: json['buildQuantity'],
+  //     consumeOnBuild: json['consumeOnBuild'],
+  //     type: json['type'],
+  //     imageName: json['imageName'],
+  //     category: json['category'],
+  //     tradable: json['tradable'],
+  //     conclave: json['conclave'],
+  //     color: json['color'],
+  //     introduced: json['introduced'],
+  //     polarities: json['polarities'].cast<String>(),
+  //     sex: json['sex'],
+  //     sprint: json['sprint'],
+  //     wikiaThumbnail: json['wikiaThumbnail'],
+  //     wikiaUrl: json['wikiaUrl'],
+  //   );
+  // }
+
   Warframe.fromJson(Map<String, dynamic> json) {
     uniqueName = json['uniqueName'];
     name = json['name'];

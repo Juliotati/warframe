@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/widgets.dart';
+import 'package:warframe/screens/codex/codex_widgets/codex_grid.dart';
 import 'package:warframe/service/codex.dart';
-import 'package:warframe/screens/codex/warfames/widgets/warframe_grid_item.dart';
 import 'package:warframe/utilities/scaffold.dart';
 
 class CodexScreen extends StatelessWidget {
@@ -11,32 +11,32 @@ class CodexScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return WarframeScaffold(
       screenName: 'Codex',
-      child: CodexGrid(),
-      );
-  }
-}
-
-class CodexGrid extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final warframeData = Provider.of<CodexWarframes>(context).items;
-    return Container(
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('images/ship.jpg'), fit: BoxFit.cover)),
-      child: GridView.builder(
-          itemCount: warframeData.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 4 / 3,
-              crossAxisSpacing: 1.0,
-              mainAxisSpacing: 0.0),
-          itemBuilder: (ctx, i) {
-            return ChangeNotifierProvider.value(
-              value: warframeData[i],
-              child: WarframeGridItem(),
-            );
-          }),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: CODEX_CATEGORIES
+            .map(
+              (category) => InkWell(
+                onTap: () => Navigator.pushNamed(context, CodexGrid.route),
+                child: Container(
+                  color: Colors.white,
+                  height: 50,
+                  width: 350,
+                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.all(1),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      category.name,
+                      style: Theme.of(context).textTheme.headline5.copyWith(
+                            color: Colors.black,
+                          ),
+                    ),
+                  ),
+                ),
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 }

@@ -1,32 +1,37 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:warframe/modals/codex_modals.dart';
 import 'package:warframe/screens/codex/warfames/warframe_profile.dart';
 
-class WarframeGridItem extends StatelessWidget {
+class CodexGridItem extends StatelessWidget {
+  CodexGridItem({
+    this.name,
+  });
+
+  final String name;
+
   @override
   Widget build(BuildContext context) {
-    final codexWarframe = Provider.of<Warframe>(context);
     void selectedWarframe(BuildContext context) {
       Navigator.of(context).pushNamed(
         WarframeProfile.route,
-        arguments: codexWarframe.name,
+        arguments: name,
       );
     }
 
     return InkWell(
       onTap: () => selectedWarframe(context),
       child: GridTile(
-        child: Image.network(
-          codexWarframe.image,
-          fit: BoxFit.cover,
+        child: Card(
+          margin: EdgeInsets.all(0),
         ),
         footer: Container(
           height: 30,
           child: GridTileBar(
             title: Text(
-              '${codexWarframe.name}'.toUpperCase(),
-              style: Theme.of(context).textTheme.subtitle1,
+              name.toUpperCase(),
+              style: Theme.of(context).textTheme.subtitle1.copyWith(
+                    color: Colors.black,
+                  ),
             ),
             backgroundColor: Colors.white,
           ),

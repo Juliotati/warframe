@@ -36,7 +36,6 @@ class NewsCardItem extends StatelessWidget {
               ),
               height: 30,
               width: double.infinity,
-              color: Colors.white,
             ),
           ],
         ),
