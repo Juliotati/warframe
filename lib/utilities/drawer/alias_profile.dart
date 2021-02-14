@@ -20,11 +20,12 @@ class AliasProfile extends StatelessWidget {
           child: Image.network('$kAvatar'),
         ),
         Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Align(
-              alignment: Alignment.centerRight,
-              child: Text(alias ?? 'blazertherazer12',
-                  textAlign: TextAlign.left, style: TextStyle(fontSize: 18)),
+            Text(
+              alias ?? 'blazertherazer12',
+              textAlign: TextAlign.left,
+              style: TextStyle(fontSize: 18),
             ),
             Padding(
               padding: const EdgeInsets.only(right: 8.0),

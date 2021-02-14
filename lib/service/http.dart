@@ -17,7 +17,7 @@ class WarframeData with ChangeNotifier {
     return _listOfWarframes.map((e) => e.name).contains(element);
   }
 
-  Future<Warframe> getWarframes(String warframeName) async {
+  Future<Warframe> getWarframe(String warframeName) async {
     if (_listOfWarframes.length == CODEX_WARFRAME.length) {
       return null;
     }
@@ -64,6 +64,45 @@ class WarframeData with ChangeNotifier {
       }
     } catch (e) {
       print('UPS => $e');
+    }
+    return null;
+  }
+
+  Future<Warframe> getWarframes() async {
+    try {
+      final String url = 'https://wf.snekw.com/warframes-wiki/';
+      final response = await http.get(url);
+      final data = response.body;
+      if (response.statusCode == 200) {
+        for (final String name in CODEX_WARFRAME) {
+          final _wName = name.substring(0, 1).toUpperCase() + name.substring(1);
+          final _warframe =
+              await json.decode(data)['data']['Warframes']['$_wName'];
+          if (!isDuplicateEntry(_warframe['Name'])) {
+            _listOfWarframes.add(
+              Warframe(
+                name: _warframe['Name'],
+                health: _warframe['Health'],
+                armor: _warframe['Armor'],
+                sex: _warframe['Sex'],
+                sprint: _warframe['Sprint'],
+                shield: _warframe['Shield'],
+              ),
+            );
+            // notifyListeners();
+            print(_warframe['Name']);
+            print(_listOfWarframes.length);
+          } else if (isDuplicateEntry(_warframe['Name'])) {
+            return null;
+          } else {
+            throw Exception('Failed to load warframes');
+          }
+        }
+        notifyListeners();
+      }
+    } catch (e) {
+      print('UPS => $e');
+      rethrow;
     }
     return null;
   }

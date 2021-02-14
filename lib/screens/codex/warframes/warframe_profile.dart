@@ -17,13 +17,13 @@ class _WarframeProfileState extends State<WarframeProfile> {
   @override
   Widget build(BuildContext context) {
     final warframeName = ModalRoute.of(context).settings.arguments as String;
-    final _networkData = Provider.of<WarframeData>(context);
-    final Warframe _localWarframe = Warframe();
+    final WarframeData _networkData = Provider.of<WarframeData>(context);
+    final Warframe _localWarframe = WarframeData().byName(warframeName);
     try {
       return WarframeScaffold(
         screenName: 'Warframe',
         child: FutureBuilder<Warframe>(
-            future: _networkData.getWarframes(warframeName.toLowerCase()),
+            future: _networkData.getWarframe(warframeName),
             builder: (BuildContext context, AsyncSnapshot<Warframe> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Column(
@@ -65,7 +65,7 @@ class _WarframeProfileState extends State<WarframeProfile> {
                             color: Colors.transparent,
                             padding: EdgeInsets.symmetric(horizontal: 20),
                             child: Text(
-                              _localWarframe.description,
+                              _localWarframe.description ?? '',
                               style: Theme.of(context).textTheme.bodyText2,
                               softWrap: true,
                             ),
@@ -75,7 +75,7 @@ class _WarframeProfileState extends State<WarframeProfile> {
                           Attributes(warframe: _localWarframe),
                           Divider(
                               height: 16.0, color: Colors.grey, thickness: 1),
-                          AbilitiesTile(warframe: _localWarframe),
+                          // AbilitiesTile(warframe: _localWarframe),
                         ],
                       ),
                     ),

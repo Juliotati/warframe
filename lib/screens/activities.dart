@@ -27,7 +27,8 @@ class _ActivitiesScreenState extends State<ActivitiesScreen> {
   Widget build(BuildContext context) {
     Future<void> _refresh() async {
       await Provider.of<WarframeData>(context, listen: false)
-          .getWarframes(randomWarframe());
+          .getWarframe(randomWarframe());
+      // await Provider.of<WarframeData>(context, listen: false).getWarframes();
       setState(() {});
       return null;
     }
@@ -39,7 +40,8 @@ class _ActivitiesScreenState extends State<ActivitiesScreen> {
       child: WarframeScaffold(
         screenName: 'activities',
         child: FutureBuilder<Warframe>(
-            future: _data.getWarframes(randomWarframe()),
+            future: _data.getWarframe(randomWarframe()),
+            // future: _data.getWarframes(),
             builder: (BuildContext context, AsyncSnapshot<Warframe> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Column(
@@ -62,7 +64,6 @@ class _ActivitiesScreenState extends State<ActivitiesScreen> {
                           name: _warframe[i].name,
                           health: _warframe[i].health,
                           armor: _warframe[i].armor,
-                          stamina: _warframe[i].stamina,
                           sprintSpeed: _warframe[i].sprintSpeed,
                         );
                       }),
@@ -76,7 +77,7 @@ class _ActivitiesScreenState extends State<ActivitiesScreen> {
 
 class DummyWarframe extends StatelessWidget {
   final String imageName, name;
-  final int health, armor, stamina;
+  final int health, armor;
   final double sprintSpeed;
 
   const DummyWarframe({
@@ -85,7 +86,6 @@ class DummyWarframe extends StatelessWidget {
     this.name,
     this.health,
     this.armor,
-    this.stamina,
     this.sprintSpeed,
   }) : super(key: key);
 
@@ -101,18 +101,30 @@ class DummyWarframe extends StatelessWidget {
               height: 100,
               // child: Image.network(imageName),
             ),
-            Text('name: $name' ?? 'classified', style: TextStyle(fontSize: 18)),
-            Text('health: $health' ?? 'classified',
-                style: TextStyle(fontSize: 18)),
-            Text('armor: $armor' ?? 'classified',
-                style: TextStyle(fontSize: 18)),
-            Text('sprintSpeed: $sprintSpeed' ?? 'classified',
-                style: TextStyle(fontSize: 18)),
-            Text('stamina: $stamina' ?? 'classified',
-                style: TextStyle(fontSize: 18)),
+            DataText(label: 'Name', data: name),
+            DataText(label: 'Health', data: health),
+            DataText(label: 'Armor', data: armor),
+            DataText(label: 'SprintSpeed', data: sprintSpeed),
           ],
         ),
       ),
     );
+  }
+}
+
+class DataText extends StatelessWidget {
+  const DataText({
+    Key key,
+    @required this.label,
+    @required this.data,
+  }) : super(key: key);
+
+  final String label;
+  final dynamic data;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text('$label: $data' ?? 'classified',
+        style: TextStyle(fontSize: 18));
   }
 }
