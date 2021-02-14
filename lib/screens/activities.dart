@@ -8,9 +8,14 @@ import 'package:warframe/service/codex.dart';
 import 'package:warframe/service/http.dart';
 import 'package:warframe/utilities/scaffold.dart';
 
-class ActivitiesScreen extends StatelessWidget {
+class ActivitiesScreen extends StatefulWidget {
   static const route = 'activities_screen';
 
+  @override
+  _ActivitiesScreenState createState() => _ActivitiesScreenState();
+}
+
+class _ActivitiesScreenState extends State<ActivitiesScreen> {
   String randomWarframe() {
     final rand = Random();
     final index = rand.nextInt(CODEX_WARFRAME.length);
@@ -20,41 +25,51 @@ class ActivitiesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future<void> _refresh() async {
+      await Provider.of<WarframeData>(context, listen: false)
+          .getWarframes(randomWarframe());
+      setState(() {});
+      return null;
+    }
+
     final _warframe =
-        Provider
-            .of<WarframeData>(context, listen: false)
-            .warframes;
+        Provider.of<WarframeData>(context, listen: false).warframes;
     final _data = Provider.of<WarframeData>(context, listen: false);
-    return WarframeScaffold(
-      screenName: 'activities',
-      child: FutureBuilder<Warframe>(
-          future: _data.getWarframes(randomWarframe()),
-          builder: (BuildContext context, AsyncSnapshot<Warframe> snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircularProgressIndicator(backgroundColor: Colors.white),
-                  SizedBox(height: 5),
-                  Text('Getting warframes...'),
-                ],
-              );
-            } else {
-              print(_warframe.length);
-              return ListView.builder(
-                  itemCount: _warframe.length,
-                  itemBuilder: (BuildContext context, i) {
-                    return DummyWarframe(
-                      imageName: _warframe[i].imageName,
-                      name: _warframe[i].name,
-                      health: _warframe[i].health,
-                      armor: _warframe[i].armor,
-                      stamina: _warframe[i].stamina,
-                      sprintSpeed: _warframe[i].sprintSpeed,
-                    );
-                  });
-            }
-          }),
+    return SafeArea(
+      child: WarframeScaffold(
+        screenName: 'activities',
+        child: FutureBuilder<Warframe>(
+            future: _data.getWarframes(randomWarframe()),
+            builder: (BuildContext context, AsyncSnapshot<Warframe> snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(backgroundColor: Colors.white),
+                    SizedBox(height: 5),
+                    Text('Getting warframes...'),
+                  ],
+                );
+              } else {
+                print(_warframe.length);
+                return RefreshIndicator(
+                  onRefresh: _refresh,
+                  child: ListView.builder(
+                      itemCount: _warframe.length,
+                      itemBuilder: (BuildContext context, i) {
+                        return DummyWarframe(
+                          imageName: _warframe[i].imageName,
+                          name: _warframe[i].name,
+                          health: _warframe[i].health,
+                          armor: _warframe[i].armor,
+                          stamina: _warframe[i].stamina,
+                          sprintSpeed: _warframe[i].sprintSpeed,
+                        );
+                      }),
+                );
+              }
+            }),
+      ),
     );
   }
 }
