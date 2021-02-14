@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:warframe/modals/drawer_items.dart';
 import 'package:warframe/screens/activities.dart';
 import 'package:warframe/screens/codex/codex.dart';
 import 'package:warframe/screens/codex/codex_widgets/codex_grid.dart';
-import 'package:warframe/screens/codex/warfames/warframe_profile.dart';
-import 'package:warframe/screens/login.dart';
+import 'package:warframe/screens/codex/warframes/warframe_profile.dart';
+import 'package:warframe/screens/login/login.dart';
 import 'package:warframe/screens/news/news.dart';
 import 'package:warframe/service/http.dart';
 import 'package:warframe/service/news.dart';
+import 'package:warframe/utilities/drawer/drawer_data.dart';
 import 'package:warframe/utilities/theme.dart';
 
 void main() {

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:warframe/modals/warframe.dart';
-
-
+import 'package:warframe/modals/warframe/warframe.dart';
 
 class Attributes extends StatelessWidget {
   const Attributes({

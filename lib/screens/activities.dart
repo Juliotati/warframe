@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:warframe/modals/warframe.dart';
+import 'package:warframe/modals/warframe/warframe.dart';
 import 'package:warframe/service/codex.dart';
 import 'package:warframe/service/http.dart';
 import 'package:warframe/utilities/scaffold.dart';
@@ -11,7 +11,7 @@ import 'package:warframe/utilities/scaffold.dart';
 class ActivitiesScreen extends StatelessWidget {
   static const route = 'activities_screen';
 
-  String ran(){
+  String randomWarframe() {
     final rand = Random();
     final index = rand.nextInt(CODEX_WARFRAME.length);
     print(CODEX_WARFRAME[index]);
@@ -20,33 +20,37 @@ class ActivitiesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final wr = Provider.of<WarframeData>(context, listen: false);
+    final _warframe =
+        Provider
+            .of<WarframeData>(context, listen: false)
+            .warframes;
+    final _data = Provider.of<WarframeData>(context, listen: false);
     return WarframeScaffold(
       screenName: 'activities',
       child: FutureBuilder<Warframe>(
-          future: wr.getWarframes(ran()),
+          future: _data.getWarframes(randomWarframe()),
           builder: (BuildContext context, AsyncSnapshot<Warframe> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CircularProgressIndicator(
-                    backgroundColor: Colors.white,
-                  ),
+                  CircularProgressIndicator(backgroundColor: Colors.white),
+                  SizedBox(height: 5),
                   Text('Getting warframes...'),
                 ],
               );
             } else {
-              print(wr.warframes.length);
+              print(_warframe.length);
               return ListView.builder(
-                  itemCount: wr.warframes.length,
+                  itemCount: _warframe.length,
                   itemBuilder: (BuildContext context, i) {
                     return DummyWarframe(
-                      imageName: wr.warframes[i].imageName,
-                      name: wr.warframes[i].name,
-                      health: wr.warframes[i].health,
-                      armor: wr.warframes[i].armor,
-                      stamina: wr.warframes[i].stamina,
+                      imageName: _warframe[i].imageName,
+                      name: _warframe[i].name,
+                      health: _warframe[i].health,
+                      armor: _warframe[i].armor,
+                      stamina: _warframe[i].stamina,
+                      sprintSpeed: _warframe[i].sprintSpeed,
                     );
                   });
             }
@@ -56,11 +60,9 @@ class ActivitiesScreen extends StatelessWidget {
 }
 
 class DummyWarframe extends StatelessWidget {
-  final String imageName,name;
-  final int health;
-  final int armor;
-
-  final int stamina;
+  final String imageName, name;
+  final int health, armor, stamina;
+  final double sprintSpeed;
 
   const DummyWarframe({
     Key key,
@@ -69,6 +71,7 @@ class DummyWarframe extends StatelessWidget {
     this.health,
     this.armor,
     this.stamina,
+    this.sprintSpeed,
   }) : super(key: key);
 
   @override
@@ -87,6 +90,8 @@ class DummyWarframe extends StatelessWidget {
             Text('health: $health' ?? 'classified',
                 style: TextStyle(fontSize: 18)),
             Text('armor: $armor' ?? 'classified',
+                style: TextStyle(fontSize: 18)),
+            Text('sprintSpeed: $sprintSpeed' ?? 'classified',
                 style: TextStyle(fontSize: 18)),
             Text('stamina: $stamina' ?? 'classified',
                 style: TextStyle(fontSize: 18)),

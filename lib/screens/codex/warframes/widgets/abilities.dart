@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:warframe/modals/warframe.dart';
+import 'package:warframe/modals/warframe/warframe.dart';
 
 
-
-class Abilities extends StatelessWidget {
-  const Abilities({
+class AbilitiesTile extends StatelessWidget {
+  const AbilitiesTile({
     Key key,
     @required this.warframe,
   }) : super(key: key);

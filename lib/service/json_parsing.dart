@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:warframe/modals/warframe.dart';
+import 'package:warframe/modals/warframe/warframe.dart';
 
 List<String> parseFrames(String frame){
   final parsed = jsonDecode(frame);

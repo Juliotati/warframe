@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:warframe/modals/warframe.dart';
-import 'package:warframe/screens/codex/warfames/widgets/attributes.dart';
-import 'package:warframe/screens/codex/warfames/widgets/abilities.dart' as widget;
+import 'package:warframe/modals/warframe/warframe.dart';
+import 'package:warframe/screens/codex/warframes/widgets/attributes.dart';
+import 'package:warframe/screens/codex/warframes/widgets/abilities.dart';
 import 'package:warframe/service/http.dart';
 import 'package:warframe/utilities/scaffold.dart';
 
@@ -17,11 +17,13 @@ class _WarframeProfileState extends State<WarframeProfile> {
   @override
   Widget build(BuildContext context) {
     final warframeName = ModalRoute.of(context).settings.arguments as String;
+    final _networkData = Provider.of<WarframeData>(context);
+    final Warframe _localWarframe = Warframe();
     try {
       return WarframeScaffold(
         screenName: 'Warframe',
         child: FutureBuilder<Warframe>(
-            future: Provider.of<WarframeData>(context).getWarframes(warframeName),
+            future: _networkData.getWarframes(warframeName.toLowerCase()),
             builder: (BuildContext context, AsyncSnapshot<Warframe> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Column(
@@ -34,8 +36,6 @@ class _WarframeProfileState extends State<WarframeProfile> {
                   ],
                 );
               } else {
-                final frame = Provider.of<WarframeData>(context)
-                    .byName(warframeName);
                 return Column(
                   children: [
                     Container(
@@ -50,14 +50,14 @@ class _WarframeProfileState extends State<WarframeProfile> {
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                frame.name.toUpperCase(),
+                                _localWarframe.name ?? '',
                                 style: Theme.of(context).textTheme.headline3,
                               ),
                             ),
                             color: Colors.white,
                           ),
                           // Container(
-                          //   child: Image.network(frame.imageName),
+                          //   child: Image.network(_localWarframe.imageName),
                           // ),
                           Divider(
                               height: 16.0, color: Colors.grey, thickness: 1),
@@ -65,17 +65,17 @@ class _WarframeProfileState extends State<WarframeProfile> {
                             color: Colors.transparent,
                             padding: EdgeInsets.symmetric(horizontal: 20),
                             child: Text(
-                              frame.description,
+                              _localWarframe.description,
                               style: Theme.of(context).textTheme.bodyText2,
                               softWrap: true,
                             ),
                           ),
                           Divider(
                               height: 16.0, color: Colors.grey, thickness: 1),
-                          Attributes(warframe: frame),
+                          Attributes(warframe: _localWarframe),
                           Divider(
                               height: 16.0, color: Colors.grey, thickness: 1),
-                          widget.Abilities(warframe: frame),
+                          AbilitiesTile(warframe: _localWarframe),
                         ],
                       ),
                     ),
@@ -85,7 +85,8 @@ class _WarframeProfileState extends State<WarframeProfile> {
             }),
       );
     } catch (e) {
-      throw e;
+      print('UPS => $e');
+      return Text('BIG ERROR!');
     }
   }
 }

@@ -1,22 +1,24 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:warframe/modals/warframe.dart';
+import 'package:warframe/modals/warframe/abilities.dart';
+import 'package:warframe/modals/warframe/warframe.dart';
 import 'package:warframe/service/codex.dart';
 
 class WarframeData with ChangeNotifier {
-  List<Warframe> warframes = [];
+  List<Warframe> get warframes => _listOfWarframes;
+  List<Warframe> _listOfWarframes = [];
 
   Warframe byName(String name) {
-    return warframes.firstWhere((element) => element.name == name);
+    return _listOfWarframes.firstWhere((element) => element.name == name);
   }
 
-  bool exists(String element) {
-    return warframes.map((e) => e.name).contains(element);
+  bool isDuplicateEntry(String element) {
+    return _listOfWarframes.map((e) => e.name).contains(element);
   }
 
   Future<Warframe> getWarframes(String warframeName) async {
-    if (warframes.length == CODEX_WARFRAME.length) {
+    if (_listOfWarframes.length == CODEX_WARFRAME.length) {
       return null;
     }
     try {
@@ -30,18 +32,21 @@ class WarframeData with ChangeNotifier {
         final int armor = await json.decode(data)[0]['armor'];
         final String name = await json.decode(data)[0]['name'];
         final int health = await json.decode(data)[0]['health'];
+        // final List<Abilities> abilities =
+        //     await json.decode(data)[0]['abilities'];
         final int stamina = await json.decode(data)[0]['stamina'];
         final String imageName = await json.decode(data)[0]['imageName'];
-        final int sprintSpeed = await json.decode(data)[0]['sprintSpeed'];
+        final double sprintSpeed = await json.decode(data)[0]['sprintSpeed'];
         final String description = await json.decode(data)[0]['description'];
         final String passiveDescription =
             await json.decode(data)[0]['passiveDescription'];
-        if (!exists(name)) {
-          warframes.add(
+        if (!isDuplicateEntry(name)) {
+          _listOfWarframes.add(
             Warframe(
               name: name,
               imageName: imageName,
               description: description,
+              // abilities: abilities,
               health: health,
               armor: armor,
               stamina: stamina,
@@ -51,13 +56,15 @@ class WarframeData with ChangeNotifier {
             ),
           );
           notifyListeners();
-        } else if (exists(name)) {
+        } else if (isDuplicateEntry(name)) {
           return null;
         }
       } else {
         throw Exception('Failed to load warframes');
       }
-    } catch (e) {}
+    } catch (e) {
+      print('UPS => $e');
+    }
     return null;
   }
 }
