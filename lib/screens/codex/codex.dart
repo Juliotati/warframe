@@ -6,7 +6,7 @@ import 'package:warframe/service/codex.dart';
 import 'package:warframe/utilities/scaffold.dart';
 
 class CodexScreen extends StatelessWidget {
-  static const route = 'Codex_screen';
+  static const String route = 'Codex_screen';
 
   @override
   Widget build(BuildContext context) {
