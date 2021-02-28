@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:warframe/screens/activities.dart';
+import 'package:warframe/screens/news/news.dart';
 
 import 'widgets/login_background.dart';
 import 'widgets/login_body.dart';
 
 class LogIn extends StatefulWidget {
-  static const route = 'login';
+  static const String route = 'login';
 
   @override
   _LogInState createState() => _LogInState();
@@ -18,13 +18,13 @@ class _LogInState extends State<LogIn> {
   String alias;
 
   void login() {
-    final bool _isValid = true;
+    const bool _isValid = true;
     if (!_isValid) {
       return;
     } else {
       Navigator.pushNamed(
         context,
-        ActivitiesScreen.route,
+        NewsScreen.route,
         arguments: alias,
       );
     }
@@ -45,16 +45,16 @@ class _LogInState extends State<LogIn> {
               cursorWidth: 5,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               cursorColor: Colors.grey,
-              onChanged: (value) {
+              onChanged: (String value) {
                 setState(() {
                   alias = value;
                 });
               },
-              onSaved: (value) {
-                if (value.characters.length <= 0) {
+              onSaved: (String value) {
+                if (value.isEmpty) {
                   return 'Please enter your alias name';
                 }
-                if (value.characters.length <= 2) {
+                if (value.length <= 2) {
                   return 'Your alias is too short';
                 } else {
                   return null;
@@ -70,10 +70,10 @@ class _LogInState extends State<LogIn> {
   }
 }
 
-final loginFormDecoration = InputDecoration(
+final InputDecoration loginFormDecoration = InputDecoration(
   border: InputBorder.none,
   filled: true,
   fillColor: Colors.blueGrey.withOpacity(0.1),
   hintText: 'ALIAS',
-  hintStyle: TextStyle(fontSize: 20, color: Colors.grey),
+  hintStyle: const TextStyle(fontSize: 20, color: Colors.grey),
 );

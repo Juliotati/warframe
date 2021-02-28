@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:warframe/modals/warframe/warframe.dart';
-
+import 'package:warframe/modals/warframe.dart';
 
 class AbilitiesTile extends StatelessWidget {
   const AbilitiesTile({
@@ -15,13 +14,13 @@ class AbilitiesTile extends StatelessWidget {
     return ExpansionTile(
       title: Text('Abilities'.toUpperCase(),
           style: Theme.of(context).textTheme.headline5),
-      trailing: Icon(
+      trailing: const Icon(
         Icons.drag_handle,
         color: Colors.grey,
       ),
-      children: [
+      children: <Column>[
         Column(
-          children: [
+          children: <AbilityItem>[
             AbilityItem(
               abilityName: warframe.abilities[0].name,
               ability: warframe.abilities[0].description,
@@ -66,8 +65,8 @@ class AbilityItem extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .bodyText2
-              .copyWith(fontWeight: FontWeight.bold)),
-      subtitle: Text(ability, style: Theme.of(context).textTheme.bodyText2),
+              .copyWith(fontWeight: FontWeight.w500)),
+      subtitle: Text(ability, style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300)),
     );
   }
 }

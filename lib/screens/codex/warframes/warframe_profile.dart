@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:warframe/modals/warframe/warframe.dart';
-import 'package:warframe/screens/codex/warframes/widgets/attributes.dart';
+import 'package:warframe/modals/warframe.dart';
+import 'package:warframe/screens/activities.dart';
 import 'package:warframe/screens/codex/warframes/widgets/abilities.dart';
-import 'package:warframe/service/http.dart';
+import 'package:warframe/screens/codex/warframes/widgets/attributes.dart';
+import 'package:warframe/service/warframe_http.dart';
 import 'package:warframe/utilities/scaffold.dart';
 
 class WarframeProfile extends StatefulWidget {
-  static const route = 'Warframe_Profile';
+  static const String route = 'Warframe_Profile';
 
   @override
   _WarframeProfileState createState() => _WarframeProfileState();
@@ -16,77 +17,109 @@ class WarframeProfile extends StatefulWidget {
 class _WarframeProfileState extends State<WarframeProfile> {
   @override
   Widget build(BuildContext context) {
-    final warframeName = ModalRoute.of(context).settings.arguments as String;
-    final WarframeData _networkData = Provider.of<WarframeData>(context);
-    final Warframe _localWarframe = WarframeData().byName(warframeName);
-    try {
-      return WarframeScaffold(
-        screenName: 'Warframe',
+    final Map<String, dynamic> arg =
+        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+
+    final String _warframeName = arg['name'];
+    final int _warframeType = arg['type'];
+    final String _name = _warframeName.replaceAll('Prime', '');
+    final WarframeNetwork _network = Provider.of<WarframeNetwork>(context);
+    return WarframeScaffold(
+      screenName: 'Warframe',
+      child: SafeArea(
         child: FutureBuilder<Warframe>(
-            future: _networkData.getWarframe(warframeName),
-            builder: (BuildContext context, AsyncSnapshot<Warframe> snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CircularProgressIndicator(
-                      backgroundColor: Colors.white,
-                    ),
-                    Text('Getting warframe data...'),
-                  ],
-                );
-              } else {
-                return Column(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 8.0),
-                      color: Colors.black26.withOpacity(0.7),
-                      child: Column(
-                        children: [
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 10.0),
-                            height: 45,
-                            width: double.infinity,
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                _localWarframe.name ?? '',
-                                style: Theme.of(context).textTheme.headline3,
-                              ),
-                            ),
-                            color: Colors.white,
+          future:
+              _network.getWarframe(_name.toLowerCase().trim(), _warframeType),
+          builder: (BuildContext context, AsyncSnapshot<Warframe> snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const LoadingIndicator();
+            }
+            if (snapshot.hasError) {
+              return const WarframeError();
+            } else {
+              return WarframeInfo(
+                warframe: snapshot.data,
+              );
+            }
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class WarframeInfo extends StatelessWidget {
+  const WarframeInfo({
+    Key key,
+    this.warframe,
+  }) : super(key: key);
+
+  final Warframe warframe;
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            alignment: Alignment.topCenter,
+            margin: const EdgeInsets.symmetric(horizontal: 8.0),
+            color: Colors.black26.withOpacity(0.7),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  height: 45,
+                  width: double.infinity,
+                  color: Colors.white,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      warframe.name,
+                      style: Theme.of(context).textTheme.headline3.copyWith(
+                            color: Colors.black,
+                            fontSize: 22,
                           ),
-                          // Container(
-                          //   child: Image.network(_localWarframe.imageName),
-                          // ),
-                          Divider(
-                              height: 16.0, color: Colors.grey, thickness: 1),
-                          Container(
-                            color: Colors.transparent,
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            child: Text(
-                              _localWarframe.description ?? '',
-                              style: Theme.of(context).textTheme.bodyText2,
-                              softWrap: true,
-                            ),
-                          ),
-                          Divider(
-                              height: 16.0, color: Colors.grey, thickness: 1),
-                          Attributes(warframe: _localWarframe),
-                          Divider(
-                              height: 16.0, color: Colors.grey, thickness: 1),
-                          // AbilitiesTile(warframe: _localWarframe),
-                        ],
-                      ),
                     ),
-                  ],
-                );
-              }
-            }),
-      );
-    } catch (e) {
-      print('UPS => $e');
-      return Text('BIG ERROR!');
-    }
+                  ),
+                ),
+                SizedBox(
+                  height: 250,
+                  child: Image.network(
+                    warframe.wikiaThumbnail ?? imagePlaceholder,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+                const InfoDivider(),
+                Container(
+                  color: Colors.transparent,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    warframe.description,
+                    style: Theme.of(context).textTheme.bodyText2,
+                    softWrap: true,
+                  ),
+                ),
+                const InfoDivider(),
+                Attributes(warframe: warframe),
+                const InfoDivider(),
+                AbilitiesTile(warframe: warframe),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class InfoDivider extends StatelessWidget {
+  const InfoDivider({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Divider(height: 16.0, color: Colors.grey, thickness: 1);
   }
 }

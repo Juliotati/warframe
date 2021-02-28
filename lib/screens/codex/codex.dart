@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:warframe/modals/codex_modals.dart';
 import 'package:warframe/screens/codex/codex_widgets/codex_grid.dart';
 import 'package:warframe/service/codex.dart';
 import 'package:warframe/utilities/scaffold.dart';
@@ -15,14 +16,14 @@ class CodexScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: CODEX_CATEGORIES
             .map(
-              (category) => InkWell(
+              (CodexCategory category) => InkWell(
                 onTap: () => Navigator.pushNamed(context, CodexGrid.route),
                 child: Container(
                   color: Colors.white,
                   height: 50,
                   width: 350,
-                  padding: EdgeInsets.all(10),
-                  margin: EdgeInsets.all(1),
+                  padding: const EdgeInsets.all(10),
+                  margin: const EdgeInsets.all(1),
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(

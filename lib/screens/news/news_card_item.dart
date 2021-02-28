@@ -1,41 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:warframe/service/news.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:warframe/modals/news.dart';
 
 class NewsCardItem extends StatelessWidget {
+  const NewsCardItem({
+    this.newsItem,
+  });
+
+  final WarframeNews newsItem;
+
+  Future<void> launchWebPage() async {
+    if (await canLaunch(newsItem.link)) {
+      launch(newsItem.link);
+    }
+    return;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final newsCard = Provider.of<NewsCard>(context);
-    launchWebPage() async {
-      if (await canLaunch(newsCard.webPage)) {
-        launch(newsCard.webPage);
-      }
-    }
-
     return InkWell(
       onTap: launchWebPage,
       child: Card(
-        margin: EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+        margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
         child: Column(
-          children: [
-            Container(
+          children: <Widget>[
+            SizedBox(
               height: 195,
               width: double.infinity,
               child: Image.network(
-                newsCard.image,
+                newsItem.imageLink,
                 fit: BoxFit.cover,
               ),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6),
+              height: 30,
+              width: double.infinity,
               child: Text(
-                newsCard.title.toUpperCase(),
+                newsItem.message.toUpperCase(),
                 style: Theme.of(context).textTheme.bodyText1,
                 maxLines: 1,
               ),
-              height: 30,
-              width: double.infinity,
             ),
           ],
         ),

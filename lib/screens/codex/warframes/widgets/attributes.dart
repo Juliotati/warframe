@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:warframe/modals/warframe/warframe.dart';
+import 'package:warframe/modals/warframe.dart';
 
 class Attributes extends StatelessWidget {
   const Attributes({
@@ -13,12 +13,12 @@ class Attributes extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
+      children: <AttributeItem>[
         AttributeItem(label: 'Health', attribute: warframe.health),
         AttributeItem(label: 'Shield', attribute: warframe.shield),
         AttributeItem(label: 'Armor', attribute: warframe.armor),
         AttributeItem(label: 'Energy', attribute: warframe.power),
-        AttributeItem(label: 'Sprint', attribute: warframe.sprint),
+        AttributeItem(label: 'Sprint', attribute: warframe.sprintSpeed),
       ],
     );
   }
@@ -37,11 +37,9 @@ class AttributeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
+      children: <Widget>[
         Text(label.toUpperCase(), style: Theme.of(context).textTheme.bodyText2),
-        SizedBox(
-          height: 8,
-        ),
+        const SizedBox(height: 8),
         Text('$attribute', style: Theme.of(context).textTheme.bodyText2)
       ],
     );
