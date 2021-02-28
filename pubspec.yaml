@@ -2,7 +2,7 @@
 name: warframe
 description: Just building my favourite game mobile app
 publish_to: none
-version: 0.0.1+1
+version: 0.0.3
 
 environment:
   sdk: '>=2.7.0 <3.0.0'

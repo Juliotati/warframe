@@ -22,17 +22,17 @@ class _WarframeProfileState extends State<WarframeProfile> {
 
     final String _warframeName = arg['name'];
     final int _warframeType = arg['type'];
-    final String _name = _warframeName.replaceAll('Prime', '');
+    final String _name = _warframeName.replaceAll('Prime', '').toLowerCase().trim();
     final WarframeNetwork _network = Provider.of<WarframeNetwork>(context);
     return WarframeScaffold(
       screenName: 'Warframe',
       child: SafeArea(
         child: FutureBuilder<Warframe>(
           future:
-              _network.getWarframe(_name.toLowerCase().trim(), _warframeType),
+              _network.getWarframe(_name, _warframeType),
           builder: (BuildContext context, AsyncSnapshot<Warframe> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const LoadingIndicator();
+              return const LoadingIndicator('Fetching Warframe Data');
             }
             if (snapshot.hasError) {
               return const WarframeError();

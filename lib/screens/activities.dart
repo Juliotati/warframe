@@ -47,18 +47,16 @@ class WarframeError extends StatelessWidget {
 }
 
 class LoadingIndicator extends StatelessWidget {
-  const LoadingIndicator({
-    Key key,
-  }) : super(key: key);
-
+  const LoadingIndicator([this.label]);
+final String label;
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: const <Widget>[
-        CircularProgressIndicator(backgroundColor: Colors.white),
-        SizedBox(height: 5),
-        Text('Getting warframes...'),
+      children:  <Widget>[
+        const CircularProgressIndicator(backgroundColor: Colors.white),
+        const SizedBox(height: 5),
+        Text(label ?? 'Getting warframes...'),
       ],
     );
   }

@@ -43,6 +43,7 @@ class _CodexGridState extends State<CodexGrid> {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 5.0),
                   child: GridView.builder(
+                    itemCount: _data.length,
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 4 / 3,

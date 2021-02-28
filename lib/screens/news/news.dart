@@ -25,28 +25,30 @@ class _NewsScreenState extends State<NewsScreen> {
     final NewsNetwork news = Provider.of<NewsNetwork>(context);
     return WarframeScaffold(
       screenName: 'news',
-      child: RefreshIndicator(
-        onRefresh: _refresh,
-        child: FutureBuilder<List<WarframeNews>>(
-          future: news.getWarframeNews(),
-          builder:
-              (BuildContext context, AsyncSnapshot<List<WarframeNews>> snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const LoadingIndicator();
-            }
-            if (snapshot.hasError) {
-              return const WarframeError('NO NEWS FOUND');
-            } else {
-              return ListView.builder(
-                itemCount: snapshot.data.length,
-                itemBuilder: (BuildContext context, int i) {
-                  return NewsCardItem(
-                    newsItem: snapshot.data[i],
-                  );
-                },
-              );
-            }
-          },
+      child: SafeArea(
+        child: RefreshIndicator(
+          onRefresh: _refresh,
+          child: FutureBuilder<List<WarframeNews>>(
+            future: news.getWarframeNews(),
+            builder:
+                (BuildContext context, AsyncSnapshot<List<WarframeNews>> snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const LoadingIndicator();
+              }
+              if (snapshot.hasError) {
+                return const WarframeError('NO NEWS FOUND');
+              } else {
+                return ListView.builder(
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (BuildContext context, int i) {
+                    return NewsCardItem(
+                      newsItem: snapshot.data[i],
+                    );
+                  },
+                );
+              }
+            },
+          ),
         ),
       ),
     );
