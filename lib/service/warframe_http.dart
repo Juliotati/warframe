@@ -8,7 +8,6 @@ import 'package:warframe/modals/warframe.dart';
 class WarframeNetwork with ChangeNotifier {
   /// API for getting  a single warframe, be prime or a normal one
   Future<Warframe> getWarframe(String warframeName, int type) async {
-    // try {
     final String url =
         'https://api.warframestat.us/warframes/search/$warframeName';
     final http.Response response = await http.get(url);
@@ -28,7 +27,8 @@ class WarframeNetwork with ChangeNotifier {
           .map((ability) => Abilities(
                 name: ability['name'],
                 description: ability['description'],
-              )).toList(),
+              ))
+          .toList(),
     );
     return warframe;
   }
@@ -75,20 +75,13 @@ class WarframeNetwork with ChangeNotifier {
   }
 }
 
-Future<List<Warframe>> getWeapons() async {
-  final List<Warframe> _warframes = <Warframe>[];
-
-  const String url = 'https://wf.snekw.com/weapons-wiki/';
+Future<void> getWeapons() async {
+  const String url = 'https://api.warframestat.us/weapons/';
   final http.Response response = await http.get(url);
 
-  if (response.statusCode == 200) {
-    final dynamic _data = await jsonDecode(response.body)['data']['Warframes'];
+  final dynamic _data = await jsonDecode(response.body);
 
-    try {
-      _data?.forEach((String key, dynamic _value) {});
-    } catch (e) {
-      throw Exception('Failed to load warframes');
-    }
-  }
-  return _warframes;
+  _data?.forEach((String key, dynamic _value) {});
+
+  return;
 }

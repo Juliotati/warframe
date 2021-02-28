@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/user/Desktop/Development/Others/warframe/lib/screens/news.dart';
+import 'package:warframe/screens/news.dart';
 import 'package:warframe/widgets/login_background.dart';
 import 'package:warframe/widgets/login_body.dart';
 
@@ -49,7 +49,7 @@ class _LogInState extends State<LogIn> {
                   alias = value;
                 });
               },
-              onSaved: (String value) {
+              validator: (String value) {
                 if (value.isEmpty) {
                   return 'Please enter your alias name';
                 }
@@ -58,6 +58,9 @@ class _LogInState extends State<LogIn> {
                 } else {
                   return null;
                 }
+              },
+              onSaved: (String value) {
+                alias = value;
               },
               keyboardType: TextInputType.text,
             ),

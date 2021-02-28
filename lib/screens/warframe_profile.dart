@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:warframe/modals/warframe.dart';
-import 'package:warframe/screens/activities.dart';
-import 'file:///C:/Users/user/Desktop/Development/Others/warframe/lib/widgets/abilities.dart';
-import 'file:///C:/Users/user/Desktop/Development/Others/warframe/lib/widgets/attributes.dart';
 import 'package:warframe/service/warframe_http.dart';
+import 'package:warframe/utilities/placeholders.dart';
 import 'package:warframe/utilities/scaffold.dart';
+import 'package:warframe/widgets/abilities.dart';
+import 'package:warframe/widgets/attributes.dart';
 
 class WarframeProfile extends StatefulWidget {
   static const String route = 'Warframe_Profile';
@@ -22,14 +22,14 @@ class _WarframeProfileState extends State<WarframeProfile> {
 
     final String _warframeName = arg['name'];
     final int _warframeType = arg['type'];
-    final String _name = _warframeName.replaceAll('Prime', '').toLowerCase().trim();
+    final String _name =
+        _warframeName.replaceAll('Prime', '').toLowerCase().trim();
     final WarframeNetwork _network = Provider.of<WarframeNetwork>(context);
     return WarframeScaffold(
       screenName: 'Warframe',
       child: SafeArea(
         child: FutureBuilder<Warframe>(
-          future:
-              _network.getWarframe(_name, _warframeType),
+          future: _network.getWarframe(_name, _warframeType),
           builder: (BuildContext context, AsyncSnapshot<Warframe> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const LoadingIndicator('Fetching Warframe Data');
@@ -55,6 +55,7 @@ class WarframeInfo extends StatelessWidget {
   }) : super(key: key);
 
   final Warframe warframe;
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
