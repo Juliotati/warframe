@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class LoginBackground extends StatelessWidget {
-  LoginBackground({
+  const LoginBackground({
     this.child,
   });
 
@@ -11,7 +11,7 @@ class LoginBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage('images/scarletspear.jpg'),
           fit: BoxFit.cover,

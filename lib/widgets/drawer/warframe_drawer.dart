@@ -6,9 +6,9 @@ import 'drawer_footer.dart';
 import 'drawer_item_list.dart';
 
 class WarframeDrawer extends StatelessWidget {
-  final String alias;
-
   const WarframeDrawer({Key key, this.alias}) : super(key: key);
+
+  final String alias;
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +17,12 @@ class WarframeDrawer extends StatelessWidget {
         child: Container(
           color: Colors.black.withOpacity(0.8),
           child: Column(
-            children: [
+            children: <Widget>[
               AliasProfile(alias: alias),
-              AliasAssets(),
-              DrawerItemList(),
-              Spacer(),
-              DrawerFooter(),
+              const AliasAssets(),
+              const DrawerItemList(),
+              const Spacer(),
+              const DrawerFooter(),
             ],
           ),
         ),

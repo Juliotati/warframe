@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:warframe/modals/drawer_items.dart';
 import 'package:warframe/screens/activities.dart';
-import 'package:warframe/screens/codex/codex.dart';
-import 'package:warframe/screens/news/news.dart';
+import 'package:warframe/screens/codex.dart';
+import 'package:warframe/screens/news.dart';
 
 class DrawerProvider with ChangeNotifier {
   List<DrawerItem> drawerList(BuildContext context) {
-    return [
+    return <DrawerItem>[
       DrawerItem(
         leadingIcon: Icons.warning,
         label: 'Activities',

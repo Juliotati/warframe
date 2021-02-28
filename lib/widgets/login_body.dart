@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
-import 'console_login_button.dart';
+import 'package:warframe/widgets/console_login_button.dart';
 
 class LoginBody extends StatelessWidget {
-  LoginBody({
+  const LoginBody({
     this.form,
     this.alias,
     this.onTap,
@@ -17,9 +16,8 @@ class LoginBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        Container(
+      children: <Widget>[
+        SizedBox(
           width: 340,
           child: form,
         ),
@@ -29,10 +27,10 @@ class LoginBody extends StatelessWidget {
           alias: alias,
           onTap: onTap,
         ),
-        Text('or continue with'),
+        const Text('or continue with'),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: <ConsoleLoginButton>[
             ConsoleLoginButton(
               label: 'PS4',
               color: Colors.lightBlue[800],

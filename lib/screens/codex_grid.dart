@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:warframe/modals/warframe.dart';
 import 'package:warframe/screens/activities.dart';
-import 'package:warframe/screens/codex/codex_widgets/codex_grid_item.dart';
+import 'file:///C:/Users/user/Desktop/Development/Others/warframe/lib/widgets/codex_grid_item.dart';
 import 'package:warframe/service/warframe_http.dart';
 import 'package:warframe/utilities/scaffold.dart';
 

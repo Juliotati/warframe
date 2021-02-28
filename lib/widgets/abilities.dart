@@ -61,12 +61,20 @@ class AbilityItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(abilityName.toUpperCase(),
-          style: Theme.of(context)
-              .textTheme
-              .bodyText2
-              .copyWith(fontWeight: FontWeight.w500)),
-      subtitle: Text(ability, style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300)),
+      title: Text(
+        abilityName.toUpperCase(),
+        style: Theme.of(context)
+            .textTheme
+            .bodyText2
+            .copyWith(fontWeight: FontWeight.w500),
+      ),
+      subtitle: Text(
+        ability,
+        style: Theme.of(context)
+            .textTheme
+            .bodyText2
+            .copyWith(fontWeight: FontWeight.w300),
+      ),
     );
   }
 }

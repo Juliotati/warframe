@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:warframe/modals/news.dart';
 import 'package:warframe/screens/activities.dart';
-import 'package:warframe/screens/news/news_card_item.dart';
+import 'file:///C:/Users/user/Desktop/Development/Others/warframe/lib/widgets/news_card_item.dart';
 import 'package:warframe/service/news_http.dart';
 import 'package:warframe/utilities/scaffold.dart';
 

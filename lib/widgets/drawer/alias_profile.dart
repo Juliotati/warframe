@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../assets.dart';
+import 'package:warframe/utilities/assets.dart';
 
 class AliasProfile extends StatelessWidget {
   const AliasProfile({
@@ -14,24 +13,29 @@ class AliasProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
+      children: <Widget>[
         Container(
-          constraints: BoxConstraints(maxHeight: 120, minHeight: 110),
-          child: Image.network('$kAvatar'),
+          constraints: const BoxConstraints(maxHeight: 120, minHeight: 110),
+          child: Image.network(kAvatar),
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
+          children: <Widget>[
             Text(
               alias ?? 'blazertherazer12',
               textAlign: TextAlign.left,
-              style: TextStyle(fontSize: 18),
+              style: const TextStyle(fontSize: 18),
             ),
             Padding(
               padding: const EdgeInsets.only(right: 8.0),
               child: Column(
-                children: [
-                  Text('24', style: TextStyle(fontSize: 24)),
+                children: const <Text>[
+                  Text(
+                    '24',
+                    style: TextStyle(
+                      fontSize: 24,
+                    ),
+                  ),
                   Text(
                     'GOLD DRAGON',
                   )

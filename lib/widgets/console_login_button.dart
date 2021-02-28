@@ -16,11 +16,11 @@ class ConsoleLoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 2),
+      margin: const EdgeInsets.symmetric(vertical: 2),
       width: 350,
       decoration: BoxDecoration(
         border: Border.all(width: 2, color: color),
-        borderRadius: BorderRadius.all(
+        borderRadius: const BorderRadius.all(
           Radius.circular(0.0),
         ),
       ),
@@ -29,8 +29,8 @@ class ConsoleLoginButton extends StatelessWidget {
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         color: color.withOpacity(0.7),
         textColor: Colors.white,
-        child: Text(label),
         onPressed: onTap,
+        child: Text(label),
       ),
     );
   }

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:warframe/modals/warframe.dart';
 import 'package:warframe/screens/activities.dart';
-import 'package:warframe/screens/codex/warframes/widgets/abilities.dart';
-import 'package:warframe/screens/codex/warframes/widgets/attributes.dart';
+import 'file:///C:/Users/user/Desktop/Development/Others/warframe/lib/widgets/abilities.dart';
+import 'file:///C:/Users/user/Desktop/Development/Others/warframe/lib/widgets/attributes.dart';
 import 'package:warframe/service/warframe_http.dart';
 import 'package:warframe/utilities/scaffold.dart';
 
