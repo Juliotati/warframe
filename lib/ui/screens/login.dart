@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:warframe/screens/news.dart';
-import 'package:warframe/widgets/login_background.dart';
-import 'package:warframe/widgets/login_body.dart';
+import 'package:warframe/ui/screens/news.dart';
+import 'package:warframe/ui/widgets/login_background.dart';
+import 'package:warframe/ui/widgets/login_body.dart';
 
 class LogIn extends StatefulWidget {
   static const String route = 'login';

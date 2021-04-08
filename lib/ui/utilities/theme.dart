@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:warframe/utilities/page_transition.dart';
+import 'package:warframe/ui/utilities/page_transition.dart';
 
 final ThemeData warframeTheme = ThemeData(
   pageTransitionsTheme: PageTransitionsTheme(

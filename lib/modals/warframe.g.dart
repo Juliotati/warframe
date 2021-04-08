@@ -17,7 +17,7 @@ Warframe _$WarframeFromJson(Map<String, dynamic> json) {
     stamina: json['stamina'] as int,
     power: json['power'] as int,
     masteryReq: json['masteryReq'] as int,
-    sprintSpeed: json['sprintSpeed'] as dynamic,
+    sprintSpeed: json['sprintSpeed'],
     passiveDescription: json['passiveDescription'] as String,
     abilities: (json['abilities'] as List)
         ?.map((e) =>
@@ -28,7 +28,7 @@ Warframe _$WarframeFromJson(Map<String, dynamic> json) {
     color: json['color'] as int,
     polarities: (json['polarities'] as List)?.map((e) => e as String)?.toList(),
     sex: json['sex'] as String,
-    sprint: json['sprint'] as dynamic,
+    sprint: json['sprint'],
     wikiaThumbnail: json['wikiaThumbnail'] as String,
     wikiaUrl: json['wikiaUrl'] as String,
   );

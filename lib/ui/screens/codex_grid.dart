@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:warframe/modals/warframe.dart';
-import 'package:warframe/service/warframe_http.dart';
-import 'package:warframe/utilities/placeholders.dart';
-import 'package:warframe/utilities/scaffold.dart';
-import 'package:warframe/widgets/codex_grid_item.dart';
+import 'package:warframe/service/warframe_network.dart';
+import 'package:warframe/ui/utilities/placeholders.dart';
+import 'package:warframe/ui/utilities/scaffold.dart';
+import 'package:warframe/ui/widgets/codex_grid_item.dart';
 
 class CodexGrid extends StatefulWidget {
   static const String route = 'codex_grid';

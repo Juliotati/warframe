@@ -37,10 +37,11 @@ class AbilitiesTile extends StatelessWidget {
               abilityName: warframe.abilities[3].name,
               ability: warframe.abilities[3].description,
             ),
-            AbilityItem(
-              abilityName: 'Passive',
-              ability: warframe.passiveDescription,
-            ),
+            if (warframe.passiveDescription != null)
+              AbilityItem(
+                abilityName: 'Passive',
+                ability: warframe.passiveDescription,
+              ),
           ],
         )
       ],

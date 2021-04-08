@@ -75,13 +75,3 @@ class WarframeNetwork with ChangeNotifier {
   }
 }
 
-Future<void> getWeapons() async {
-  const String url = 'https://api.warframestat.us/weapons/';
-  final http.Response response = await http.get(url);
-
-  final dynamic _data = await jsonDecode(response.body);
-
-  _data?.forEach((String key, dynamic _value) {});
-
-  return;
-}

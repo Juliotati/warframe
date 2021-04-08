@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:warframe/modals/warframe.dart';
-import 'package:warframe/service/warframe_http.dart';
-import 'package:warframe/utilities/placeholders.dart';
-import 'package:warframe/utilities/scaffold.dart';
-import 'package:warframe/widgets/abilities.dart';
-import 'package:warframe/widgets/attributes.dart';
+import 'package:warframe/service/warframe_network.dart';
+import 'package:warframe/ui/utilities/placeholders.dart';
+import 'package:warframe/ui/utilities/scaffold.dart';
+import 'package:warframe/ui/widgets/abilities.dart';
+import 'package:warframe/ui/widgets/attributes.dart';
 
 class WarframeProfile extends StatefulWidget {
   static const String route = 'Warframe_Profile';
@@ -24,7 +24,10 @@ class _WarframeProfileState extends State<WarframeProfile> {
     final int _warframeType = arg['type'];
     final String _name =
         _warframeName.replaceAll('Prime', '').toLowerCase().trim();
-    final WarframeNetwork _network = Provider.of<WarframeNetwork>(context);
+    final WarframeNetwork _network = Provider.of<WarframeNetwork>(
+      context,
+      listen: false,
+    );
     return WarframeScaffold(
       screenName: 'Warframe',
       child: SafeArea(
@@ -87,7 +90,10 @@ class WarframeInfo extends StatelessWidget {
                 SizedBox(
                   height: 250,
                   child: Image.network(
-                    warframe.wikiaThumbnail ?? imagePlaceholder,
+                    warframe.wikiaThumbnail ?? kImagePlaceholder,
+                    errorBuilder: (BuildContext context, Object object, _) {
+                      return Image.network(kImagePlaceholder);
+                    },
                     fit: BoxFit.contain,
                   ),
                 ),
@@ -105,6 +111,7 @@ class WarframeInfo extends StatelessWidget {
                 Attributes(warframe: warframe),
                 const InfoDivider(),
                 AbilitiesTile(warframe: warframe),
+                const SizedBox(height: 30.0),
               ],
             ),
           ),

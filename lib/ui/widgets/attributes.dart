@@ -18,7 +18,10 @@ class Attributes extends StatelessWidget {
         AttributeItem(label: 'Shield', attribute: warframe.shield),
         AttributeItem(label: 'Armor', attribute: warframe.armor),
         AttributeItem(label: 'Energy', attribute: warframe.power),
-        AttributeItem(label: 'Sprint', attribute: warframe.sprintSpeed),
+        AttributeItem(
+          label: 'Sprint',
+          attribute: double.parse('${warframe.sprintSpeed}'),
+        ),
       ],
     );
   }

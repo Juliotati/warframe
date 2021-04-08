@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:warframe/widgets/console_login_button.dart';
+import 'package:warframe/ui/widgets/console_login_button.dart';
 
 class LoginBody extends StatelessWidget {
   const LoginBody({

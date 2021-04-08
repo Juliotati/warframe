@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:warframe/modals/warframe.dart';
-import 'package:warframe/utilities/placeholders.dart';
-
-import 'file:///C:/Users/user/Desktop/Development/Others/warframe/lib/screens/warframe_profile.dart';
+import 'package:warframe/ui/screens/warframe_profile.dart';
+import 'package:warframe/ui/utilities/placeholders.dart';
 
 class CodexGridItem extends StatelessWidget {
   const CodexGridItem({
@@ -45,7 +44,10 @@ class CodexGridItem extends StatelessWidget {
           color: Colors.black54,
           margin: const EdgeInsets.all(0),
           child: Image.network(
-            warframe.wikiaThumbnail ?? imagePlaceholder,
+            warframe.wikiaThumbnail ?? kImagePlaceholder,
+            errorBuilder: (BuildContext context, Object object, _) {
+              return Image.network(kImagePlaceholder);
+            },
             fit: BoxFit.contain,
           ),
         ),

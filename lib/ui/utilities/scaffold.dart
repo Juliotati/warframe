@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:warframe/widgets/drawer/warframe_drawer.dart';
+import 'package:warframe/ui/widgets/drawer/warframe_drawer.dart';
 
 class WarframeScaffold extends StatelessWidget {
   const WarframeScaffold({
     @required this.screenName,
+    this.onTap,
+    this.isLoader = false,
     this.child,
   });
 
+  final void Function() onTap;
   final Widget child;
   final String screenName;
+  final bool isLoader;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +28,10 @@ class WarframeScaffold extends StatelessWidget {
         title: Text(screenName.toUpperCase()),
         actions: <IconButton>[
           IconButton(icon: const Icon(Icons.group), onPressed: () {}),
-          IconButton(icon: const Icon(Icons.chat_bubble), onPressed: () {}),
+          IconButton(
+            icon: Icon(isLoader ? Icons.refresh : Icons.chat_bubble),
+            onPressed: onTap,
+          ),
         ],
       ),
       body: Container(

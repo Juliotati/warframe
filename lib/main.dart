@@ -2,16 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:warframe/screens/activities.dart';
-import 'package:warframe/screens/codex.dart';
-import 'package:warframe/screens/codex_grid.dart';
-import 'package:warframe/screens/warframe_profile.dart';
-import 'package:warframe/screens/login.dart';
-import 'package:warframe/screens/news.dart';
-import 'package:warframe/service/news_http.dart';
-import 'package:warframe/service/warframe_http.dart';
-import 'package:warframe/utilities/theme.dart';
-import 'package:warframe/widgets/drawer/drawer_data.dart';
+import 'package:warframe/export/warframe_ui.dart';
+import 'package:warframe/service/news_network.dart';
+import 'package:warframe/service/warframe_network.dart';
+import 'package:warframe/service/weapon_network.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,6 +22,7 @@ class MyApp extends StatelessWidget {
       providers: <ListenableProvider<dynamic>>[
         ListenableProvider<WarframeNetwork>(create: (_) => WarframeNetwork()),
         ListenableProvider<NewsNetwork>(create: (_) => NewsNetwork()),
+        ListenableProvider<WeaponNetwork>(create: (_) => WeaponNetwork()),
         ListenableProvider<DrawerProvider>(
             create: (BuildContext context) => DrawerProvider()),
       ],
