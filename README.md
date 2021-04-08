@@ -1,6 +1,6 @@
 # warframe
 
-Just designing my favourite game mobile app
+Designing my favourite games' mobile app and populating it with data from its API.
 
 ## Getting Started
 
