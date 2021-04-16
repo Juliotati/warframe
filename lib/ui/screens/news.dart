@@ -23,8 +23,8 @@ class _NewsScreenState extends State<NewsScreen>
   Future<void> _refresh() async {
     setState(() {
       news = <WarframeNews>[];
+      Provider.of<NewsNetwork>(context, listen: false).getWarframeNews();
     });
-    await Provider.of<NewsNetwork>(context, listen: false).getWarframeNews();
     return;
   }
 
@@ -98,7 +98,7 @@ class _NewsScreenState extends State<NewsScreen>
                       end: const Offset(0, 0),
                     )..animate(
                         CurvedAnimation(
-                          curve: Curves.easeInCubic,
+                          curve: Curves.ease,
                           parent: animation,
                         ),
                       );
@@ -106,7 +106,13 @@ class _NewsScreenState extends State<NewsScreen>
                       position: animation.drive(_offset),
                       child: ScaleTransition(
                         scale: animation.drive(
-                          Tween<double>(begin: 0.8, end: 1.0),
+                          Tween<double>(begin: 0.3, end: 1.0)
+                            ..animate(
+                              CurvedAnimation(
+                                curve: Curves.ease,
+                                parent: animation,
+                              ),
+                            ),
                         ),
                         child: NewsCardItem(
                           newsItem: news[i],
