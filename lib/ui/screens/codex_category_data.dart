@@ -42,46 +42,51 @@ class _CodexDataWarframesState extends State<CodexDataWarframes> {
   @override
   Widget build(BuildContext context) {
     final WarframeNetwork _network = Provider.of<WarframeNetwork>(context);
-    return RefreshIndicator(
-      onRefresh: _refresh,
-      child: FutureBuilder<List<Warframe>>(
-        future: _network.getAllWarframes(),
-        builder:
-            (BuildContext context, AsyncSnapshot<List<Warframe>> snapshot) {
-          final List<Warframe> _data = snapshot.data;
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const LoadingIndicator();
-          }
-          if (snapshot.hasError) {
-            return const WarframeError('NO WARFRAMES FOUND');
-          } else {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5.0),
-              child: GridView.builder(
-                itemCount: _data.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 4 / 3,
-                  crossAxisSpacing: 2.0,
-                ),
-                itemBuilder: (BuildContext context, int i) {
-                  int warframeType() {
-                    if (_data[i].name.contains('Prime')) {
-                      return 1;
-                    } else {
-                      return 0;
+    return WarframeScaffold(
+      screenName: 'Warframe',
+      isLoader: true,
+      onTap: _refresh,
+      child: RefreshIndicator(
+        onRefresh: _refresh,
+        child: FutureBuilder<List<Warframe>>(
+          future: _network.getAllWarframes(),
+          builder:
+              (BuildContext context, AsyncSnapshot<List<Warframe>> snapshot) {
+            final List<Warframe> _data = snapshot.data;
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const LoadingIndicator();
+            }
+            if (snapshot.hasError) {
+              return const WarframeError('NO WARFRAMES FOUND');
+            } else {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                child: GridView.builder(
+                  itemCount: _data.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 4 / 3,
+                    crossAxisSpacing: 2.0,
+                  ),
+                  itemBuilder: (BuildContext context, int i) {
+                    int warframeType() {
+                      if (_data[i].name.contains('Prime')) {
+                        return 1;
+                      } else {
+                        return 0;
+                      }
                     }
-                  }
 
-                  return CodexGridItem(
-                    warframe: _data[i],
-                    type: warframeType(),
-                  );
-                },
-              ),
-            );
-          }
-        },
+                    return CodexGridItem(
+                      warframe: _data[i],
+                      type: warframeType(),
+                    );
+                  },
+                ),
+              );
+            }
+          },
+        ),
       ),
     );
   }
