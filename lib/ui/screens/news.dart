@@ -16,21 +16,17 @@ class NewsScreen extends StatefulWidget {
 class _NewsScreenState extends State<NewsScreen>
     with SingleTickerProviderStateMixin {
   final GlobalKey<AnimatedListState> _key = GlobalKey<AnimatedListState>();
+  final ScrollController controller = ScrollController();
 
   List<WarframeNews> news = <WarframeNews>[];
 
   Future<void> _refresh() async {
-    await Provider.of<NewsNetwork>(context, listen: false).getWarframeNews();
     setState(() {
       news = <WarframeNews>[];
     });
+    await Provider.of<NewsNetwork>(context, listen: false).getWarframeNews();
     return;
   }
-
-  final Animatable<Offset> _offset = Tween<Offset>(
-    begin: const Offset(0, 1),
-    end: const Offset(0, 0),
-  );
 
   int index = 0;
   bool done = false;
@@ -41,13 +37,19 @@ class _NewsScreenState extends State<NewsScreen>
     if (done) {
       data?.forEach((WarframeNews wn) {
         _stagger = _stagger.then((_) {
-          return Future<void>.delayed(const Duration(milliseconds: 150), () {
+          return Future<void>.delayed(const Duration(milliseconds: 8), () {
             news?.add(wn);
             _key?.currentState?.insertItem(index);
           });
         });
       });
     }
+  }
+
+  @override
+  void reassemble() {
+    super.reassemble();
+    news = <WarframeNews>[];
   }
 
   @override
@@ -91,10 +93,24 @@ class _NewsScreenState extends State<NewsScreen>
                     Animation<double> animation,
                   ) {
                     index = i;
+                    final Animatable<Offset> _offset = Tween<Offset>(
+                      begin: const Offset(0, 1),
+                      end: const Offset(0, 0),
+                    )..animate(
+                        CurvedAnimation(
+                          curve: Curves.easeInCubic,
+                          parent: animation,
+                        ),
+                      );
                     return SlideTransition(
                       position: animation.drive(_offset),
-                      child: NewsCardItem(
-                        newsItem: news[i],
+                      child: ScaleTransition(
+                        scale: animation.drive(
+                          Tween<double>(begin: 0.8, end: 1.0),
+                        ),
+                        child: NewsCardItem(
+                          newsItem: news[i],
+                        ),
                       ),
                     );
                   },
