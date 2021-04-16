@@ -10,14 +10,8 @@ import 'package:warframe/ui/utilities/scaffold.dart';
 import 'package:warframe/ui/widgets/codex_grid_item.dart';
 import 'package:warframe/ui/widgets/weapon_item.dart';
 
-class CodexGrid extends StatefulWidget {
+class CodexCategoryData extends StatelessWidget {
   static const String route = 'codex_grid';
-
-  @override
-  _CodexGridState createState() => _CodexGridState();
-}
-
-class _CodexGridState extends State<CodexGrid> {
   @override
   Widget build(BuildContext context) {
     final String _category = ModalRoute.of(context).settings.arguments;
@@ -30,6 +24,7 @@ class _CodexGridState extends State<CodexGrid> {
   }
 }
 
+/// Displayed when "warframe" is chosen from codex categories
 class CodexDataWarframes extends StatefulWidget {
   const CodexDataWarframes();
 
@@ -92,6 +87,7 @@ class _CodexDataWarframesState extends State<CodexDataWarframes> {
   }
 }
 
+/// Displayed when any type of weapon is chosen from codex categories
 class CodexDataWeapons extends StatefulWidget {
   const CodexDataWeapons({Key key, this.category}) : super(key: key);
 
