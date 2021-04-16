@@ -4,10 +4,10 @@ import 'package:warframe/modals/codex_modals.dart';
 import 'package:warframe/ui/utilities/codex_categories.dart';
 import 'package:warframe/ui/utilities/scaffold.dart';
 
-import 'codex_grid.dart';
+import 'codex_category_data.dart';
 
-class CodexScreen extends StatelessWidget {
-  static const String route = 'Codex_screen';
+class CodexCategories extends StatelessWidget {
+  static const String route = 'Codex_categories';
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +23,7 @@ class CodexScreen extends StatelessWidget {
   }
 }
 
+/// A simple container that is used to display categories in the codex
 class CodexCategoryItem extends StatelessWidget {
   const CodexCategoryItem(
     this.category, {
@@ -35,7 +36,7 @@ class CodexCategoryItem extends StatelessWidget {
     return InkWell(
       onTap: () => Navigator.pushNamed(
         context,
-        CodexGrid.route,
+        CodexCategoryData.route,
         arguments: category,
       ),
       child: Container(
