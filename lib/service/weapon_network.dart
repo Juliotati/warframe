@@ -21,6 +21,10 @@ class WeaponNetwork with ChangeNotifier {
     final Iterable<PrimaryWeapon> _weapons =
         _data.map((weapon) => PrimaryWeapon.fromJson(weapon)).toList();
 
-    return _weapons;
+    final List<PrimaryWeapon> categoryWeapons = _weapons
+        .where((PrimaryWeapon element) => element.category == category)
+        .toList();
+
+    return categoryWeapons;
   }
 }
