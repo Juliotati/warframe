@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           ActivitiesScreen.route: (BuildContext context) => ActivitiesScreen(),
           CodexGrid.route: (BuildContext context) => CodexGrid(),
           WarframeProfile.route: (BuildContext context) => WarframeProfile(),
-          CodexScreen.route: (BuildContext context) => CodexScreen(),
+          CodexCategories.route: (BuildContext context) => CodexCategories(),
         },
       ),
     );
