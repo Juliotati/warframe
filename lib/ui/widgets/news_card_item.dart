@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:warframe/modals/news.dart';
 
+import 'display_card.dart';
+
 class NewsCardItem extends StatelessWidget {
   const NewsCardItem({
     this.newsItem,
@@ -18,14 +20,12 @@ class NewsCardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return DisplayCard(
       onTap: launchWebPage,
-      child: Card(
-        margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
-        child: Column(
+      child: Column(
           children: <Widget>[
             SizedBox(
-              height: 195,
+              height: 197,
               width: double.infinity,
               child: Image.network(
                 newsItem.imageLink,
@@ -35,17 +35,19 @@ class NewsCardItem extends StatelessWidget {
             Container(
               padding:
                   const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6),
-              height: 30,
+              height: 35,
               width: double.infinity,
               child: Text(
                 newsItem.message.toUpperCase(),
-                style: Theme.of(context).textTheme.bodyText1,
+                style: Theme.of(context).textTheme.bodyText1.copyWith(
+                      fontSize: 18,
+                    ),
                 maxLines: 1,
               ),
             ),
           ],
         ),
-      ),
     );
   }
 }
+
