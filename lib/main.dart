@@ -34,8 +34,7 @@ class MyApp extends StatelessWidget {
         routes: <String, Widget Function(BuildContext)>{
           NewsScreen.route: (BuildContext context) => NewsScreen(),
           LogIn.route: (BuildContext context) => LogIn(),
-          ActivitiesScreen.route: (BuildContext context) => ActivitiesScreen(),
-          CodexGrid.route: (BuildContext context) => CodexGrid(),
+          CodexCategoryData.route: (BuildContext context) => CodexCategoryData(),
           WarframeProfile.route: (BuildContext context) => WarframeProfile(),
           CodexCategories.route: (BuildContext context) => CodexCategories(),
         },
