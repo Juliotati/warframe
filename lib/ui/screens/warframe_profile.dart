@@ -17,33 +17,17 @@ class WarframeProfile extends StatefulWidget {
 class _WarframeProfileState extends State<WarframeProfile> {
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic> arg =
-        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+    final String _warframeName =
+        ModalRoute.of(context).settings.arguments as String;
 
-    final String _warframeName = arg['name'];
-    final int _warframeType = arg['type'];
-    final String _name =
-        _warframeName.replaceAll('Prime', '').toLowerCase().trim();
-    final WarframeNetwork _network = Provider.of<WarframeNetwork>(
-      context,
-      listen: false,
-    );
     return WarframeScaffold(
       screenName: 'Warframe',
       child: SafeArea(
-        child: FutureBuilder<Warframe>(
-          future: _network.getWarframe(_name, _warframeType),
-          builder: (BuildContext context, AsyncSnapshot<Warframe> snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const LoadingIndicator('Fetching Warframe Data');
-            }
-            if (snapshot.hasError) {
-              return const WarframeError();
-            } else {
-              return WarframeInfo(
-                warframe: snapshot.data,
-              );
-            }
+        child: Consumer<WarframeNetwork>(
+          builder: (BuildContext context, WarframeNetwork _network, _) {
+            return WarframeInfo(
+              warframe: _network.getWarframe(_warframeName),
+            );
           },
         ),
       ),

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:warframe/modals/warframe.dart';
 import 'package:warframe/modals/weapon_primary.dart';
 import 'package:warframe/service/warframe_network.dart';
 import 'package:warframe/service/weapon_network.dart';
@@ -25,68 +24,31 @@ class CodexCategoryData extends StatelessWidget {
 }
 
 /// Displayed when "warframe" is chosen from codex categories
-class CodexDataWarframes extends StatefulWidget {
+class CodexDataWarframes extends StatelessWidget {
   const CodexDataWarframes();
-
-  @override
-  _CodexDataWarframesState createState() => _CodexDataWarframesState();
-}
-
-class _CodexDataWarframesState extends State<CodexDataWarframes> {
-  Future<void> _refresh() async {
-    await Provider.of<WarframeNetwork>(context, listen: false).getWarframes();
-    setState(() {});
-    return;
-  }
-
   @override
   Widget build(BuildContext context) {
-    final WarframeNetwork _network = Provider.of<WarframeNetwork>(context);
     return WarframeScaffold(
       screenName: 'Warframe',
-      isLoader: true,
-      onTap: _refresh,
-      child: RefreshIndicator(
-        onRefresh: _refresh,
-        child: FutureBuilder<List<Warframe>>(
-          future: _network.getAllWarframes(),
-          builder:
-              (BuildContext context, AsyncSnapshot<List<Warframe>> snapshot) {
-            final List<Warframe> _data = snapshot.data;
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const LoadingIndicator();
-            }
-            if (snapshot.hasError) {
-              return const WarframeError('NO WARFRAMES FOUND');
-            } else {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                child: GridView.builder(
-                  itemCount: _data.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 4 / 3,
-                    crossAxisSpacing: 2.0,
-                  ),
-                  itemBuilder: (BuildContext context, int i) {
-                    int warframeType() {
-                      if (_data[i].name.contains('Prime')) {
-                        return 1;
-                      } else {
-                        return 0;
-                      }
-                    }
-
-                    return CodexGridItem(
-                      warframe: _data[i],
-                      type: warframeType(),
-                    );
-                  },
-                ),
-              );
-            }
-          },
-        ),
+      child: Consumer<WarframeNetwork>(
+        builder: (BuildContext context, WarframeNetwork _network, _) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5.0),
+            child: GridView.builder(
+              itemCount: _network.data.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 4 / 3,
+                crossAxisSpacing: 2.0,
+              ),
+              itemBuilder: (BuildContext context, int i) {
+                return CodexGridItem(
+                  warframe: _network.data[i],
+                );
+              },
+            ),
+          );
+        },
       ),
     );
   }

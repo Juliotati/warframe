@@ -26,19 +26,31 @@ class MyApp extends StatelessWidget {
         ListenableProvider<DrawerProvider>(
             create: (BuildContext context) => DrawerProvider()),
       ],
-      child: MaterialApp(
-        title: 'Warframe',
-        theme: warframeTheme,
-        debugShowCheckedModeBanner: false,
-        home: NewsScreen(),
-        routes: <String, Widget Function(BuildContext)>{
-          NewsScreen.route: (BuildContext context) => NewsScreen(),
-          LogIn.route: (BuildContext context) => LogIn(),
-          CodexCategoryData.route: (BuildContext context) => CodexCategoryData(),
-          WarframeProfile.route: (BuildContext context) => WarframeProfile(),
-          CodexCategories.route: (BuildContext context) => CodexCategories(),
-        },
-      ),
+      child: const WarframeApp(),
+    );
+  }
+}
+
+class WarframeApp extends StatelessWidget {
+  const WarframeApp({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    Provider.of<WarframeNetwork>(context, listen: false).getAllWarframes();
+    return MaterialApp(
+      title: 'Warframe',
+      theme: warframeTheme,
+      debugShowCheckedModeBanner: false,
+      home: NewsScreen(),
+      routes: <String, Widget Function(BuildContext)>{
+        NewsScreen.route: (BuildContext context) => NewsScreen(),
+        LogIn.route: (BuildContext context) => LogIn(),
+        CodexCategoryData.route: (BuildContext context) => CodexCategoryData(),
+        WarframeProfile.route: (BuildContext context) => WarframeProfile(),
+        CodexCategories.route: (BuildContext context) => CodexCategories(),
+      },
     );
   }
 }

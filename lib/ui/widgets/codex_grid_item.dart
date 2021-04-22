@@ -7,21 +7,16 @@ import 'package:warframe/ui/utilities/placeholders.dart';
 class CodexGridItem extends StatelessWidget {
   const CodexGridItem({
     this.warframe,
-    this.type,
   });
 
   final Warframe warframe;
-  final int type;
 
   @override
   Widget build(BuildContext context) {
     void selectedWarframe(BuildContext context) {
       Navigator.of(context).pushNamed(
         WarframeProfile.route,
-        arguments: <String, dynamic>{
-          'name': warframe.name,
-          'type': type,
-        },
+        arguments: warframe.name,
       );
     }
 
