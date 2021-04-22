@@ -26,6 +26,7 @@ class WarframeNetwork with ChangeNotifier {
 
     if (_warframes.isEmpty) {
       _warframes.addAll(warframesData);
+      print(_warframes.length);
     }
   }
 }

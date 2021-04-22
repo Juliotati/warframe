@@ -36,9 +36,15 @@ class WarframeApp extends StatelessWidget {
     Key key,
   }) : super(key: key);
 
+  Future<void> getDataFromAPI(BuildContext context) async {
+    await Provider.of<WarframeNetwork>(context, listen: false)
+        .getAllWarframes();
+    await Provider.of<WeaponNetwork>(context, listen: false).getWeapons();
+  }
+
   @override
   Widget build(BuildContext context) {
-    Provider.of<WarframeNetwork>(context, listen: false).getAllWarframes();
+    getDataFromAPI(context);
     return MaterialApp(
       title: 'Warframe',
       theme: warframeTheme,
