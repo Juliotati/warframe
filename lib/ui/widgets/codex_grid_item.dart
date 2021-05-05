@@ -11,15 +11,14 @@ class CodexGridItem extends StatelessWidget {
 
   final Warframe warframe;
 
-  @override
-  Widget build(BuildContext context) {
-    void selectedWarframe(BuildContext context) {
+  void selectedWarframe(BuildContext context) =>
       Navigator.of(context).pushNamed(
         WarframeProfile.route,
         arguments: warframe.name,
       );
-    }
 
+  @override
+  Widget build(BuildContext context) {
     return InkWell(
       onTap: () => selectedWarframe(context),
       child: GridTile(
