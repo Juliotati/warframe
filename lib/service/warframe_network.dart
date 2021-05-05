@@ -9,13 +9,13 @@ class WarframeNetwork with ChangeNotifier {
 
   final List<Warframe> _warframes = <Warframe>[];
 
-  /// API for getting  a single warframe, be prime or a normal one
+  /// Gets the data about the warframe provided as a parameter
   Warframe getWarframe(String warframeName) {
     return _warframes
         .firstWhere((Warframe warframe) => warframe.name == warframeName);
   }
 
-  /// [Warframe official API] Gets  all warframes, be prime or a normal one
+  /// Gets all Prime and non-prime warframes from the official warframe API
   Future<void> getAllWarframes() async {
     const String url = 'https://api.warframestat.us/warframes/';
     final http.Response response = await http.get(url);
@@ -26,7 +26,6 @@ class WarframeNetwork with ChangeNotifier {
 
     if (_warframes.isEmpty) {
       _warframes.addAll(warframesData);
-      print(_warframes.length);
     }
   }
 }
