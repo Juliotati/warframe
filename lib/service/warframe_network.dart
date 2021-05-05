@@ -9,10 +9,12 @@ class WarframeNetwork with ChangeNotifier {
 
   final List<Warframe> _warframes = <Warframe>[];
 
-  /// Gets the data about the warframe provided as a parameter
+  /// Gets the data about the warframe provided as a parameter from the local
+  ///  list of warframes previsouly populated.
   Warframe getWarframe(String warframeName) {
-    return _warframes
-        .firstWhere((Warframe warframe) => warframe.name == warframeName);
+    return _warframes.firstWhere(
+      (Warframe warframe) => warframe.name == warframeName,
+    );
   }
 
   /// Gets all Prime and non-prime warframes from the official warframe API
