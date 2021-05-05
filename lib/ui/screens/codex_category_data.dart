@@ -11,7 +11,7 @@ class CodexCategoryData extends StatelessWidget {
   static const String route = 'codex_category_data';
   @override
   Widget build(BuildContext context) {
-    final String _category = ModalRoute.of(context).settings.arguments;
+    final String _category = ModalRoute.of(context).settings.arguments as String;
     switch (_category) {
       case 'Warframe':
         return const CodexDataWarframes();

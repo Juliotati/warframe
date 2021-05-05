@@ -21,7 +21,7 @@ class WeaponCardItem extends StatelessWidget {
             height: 197,
             width: double.infinity,
             child: Image.network(
-              weapon.wikiaThumbnail ?? kImagePlaceholder,
+              '${weapon.wikiaThumbnail ?? kImagePlaceholder}',
               errorBuilder: (BuildContext context, Object object, _) {
                 return Image.network(kImagePlaceholder);
               },
@@ -33,7 +33,7 @@ class WeaponCardItem extends StatelessWidget {
             height: 35,
             width: double.infinity,
             child: Text(
-              weapon.name.toUpperCase(),
+              '${weapon.name.toUpperCase()}',
               style: Theme.of(context).textTheme.bodyText1.copyWith(
                     fontSize: 18,
                   ),

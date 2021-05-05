@@ -11,12 +11,12 @@ class DrawerListTile extends StatelessWidget {
 
   final IconData leadingIcon, trailingIcon;
   final String label;
-  final Function onTap;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
+      children: <Widget>[
         ListTile(
           leading: Icon(
             leadingIcon,
