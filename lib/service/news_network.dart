@@ -8,11 +8,13 @@ class NewsNetwork with ChangeNotifier {
   Future<List<WarframeNews>> getWarframeNews() async {
 
     const String url = 'https://api.warframestat.us/ps4/news/';
-    final http.Response response = await http.get(url);
-    final List<dynamic> _data = await jsonDecode(response.body);
-    final Iterable<WarframeNews> _news =
-        _data.map((news) => WarframeNews.fromJson(news)).toList();
 
-    return _news;
+    final http.Response response = await http.get(url);
+
+    final List<dynamic> _data = await jsonDecode(response.body) as List<dynamic>;
+
+    final Iterable<WarframeNews> _news = _data.map((news) => WarframeNews.fromJson(news)).toList();
+
+    return _news.toList();
   }
 }

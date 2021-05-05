@@ -18,24 +18,21 @@ class WeaponNetwork with ChangeNotifier {
   /// Gets weapons from the provided category from the local list of weapons
   /// previsouly populated.
   List<PrimaryWeapon> getWeapon(String category) {
-    return _weapons
-        .where((PrimaryWeapon weapon) => weapon.category == category)
-        .toList();
+    return _weapons.where((PrimaryWeapon weapon) {
+      return weapon.category == category;
+    }).toList();
   }
 
   /// Gets all Prime and non-prime weapons from the official warframe API
   Future<void> getWeapons() async {
     const String url = 'https://api.warframestat.us/weapons/';
+
     final http.Response response = await http.get(url);
 
-    final List<dynamic> _data = await json.decode(response.body);
+    final List<dynamic> _data = await json.decode(response.body) as List<dynamic>;
 
-    final Iterable<PrimaryWeapon> _weaponsData =
-        _data.map((weapon) => PrimaryWeapon.fromJson(weapon)).toList();
+    final Iterable<PrimaryWeapon> _weaponsData = _data.map((weapon) => PrimaryWeapon.fromJson(weapon)).toList();
 
-    if (_weapons.isEmpty) {
-      _weapons.addAll(_weaponsData);
-      print(_weapons.length);
-    }
+    if (_weapons.isEmpty) _weapons.addAll(_weaponsData);
   }
 }

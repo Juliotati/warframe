@@ -12,22 +12,21 @@ class WarframeNetwork with ChangeNotifier {
   /// Gets the data about the warframe provided as a parameter from the local
   ///  list of warframes previsouly populated.
   Warframe getWarframe(String warframeName) {
-    return _warframes.firstWhere(
-      (Warframe warframe) => warframe.name == warframeName,
-    );
+    return _warframes.firstWhere((Warframe warframe) {
+      return warframe.name == warframeName;
+    });
   }
 
   /// Gets all Prime and non-prime warframes from the official warframe API
   Future<void> getAllWarframes() async {
     const String url = 'https://api.warframestat.us/warframes/';
+
     final http.Response response = await http.get(url);
-    final List<dynamic> _data = await json.decode(response.body);
 
-    final Iterable<Warframe> warframesData =
-        _data.map((warframe) => Warframe.fromJson(warframe)).toList();
+    final List<dynamic> _data = await json.decode(response.body) as List<dynamic>;
 
-    if (_warframes.isEmpty) {
-      _warframes.addAll(warframesData);
-    }
+    final Iterable<Warframe> warframesData = _data.map((warframe) => Warframe.fromJson(warframe));
+
+    if (_warframes.isEmpty) _warframes.addAll(warframesData);
   }
 }
