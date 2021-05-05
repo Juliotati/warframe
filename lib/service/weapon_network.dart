@@ -15,14 +15,15 @@ class WeaponNetwork with ChangeNotifier {
 
   final List<PrimaryWeapon> _weapons = <PrimaryWeapon>[];
 
-  /// API for getting  a single weapon based on the category provided
+  /// Gets weapons from the provided category from the local list of weapons
+  /// previsouly populated.
   List<PrimaryWeapon> getWeapon(String category) {
     return _weapons
         .where((PrimaryWeapon weapon) => weapon.category == category)
         .toList();
   }
 
-  /// Gets in game weapon based on the chosen category
+  /// Gets all Prime and non-prime weapons from the official warframe API
   Future<void> getWeapons() async {
     const String url = 'https://api.warframestat.us/weapons/';
     final http.Response response = await http.get(url);
