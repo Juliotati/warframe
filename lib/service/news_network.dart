@@ -13,7 +13,7 @@ class NewsNetwork with ChangeNotifier {
 
     final List<dynamic> _data = await jsonDecode(response.body) as List<dynamic>;
 
-    final Iterable<WarframeNews> _news = _data.map((news) => WarframeNews.fromJson(news)).toList();
+    final Iterable<WarframeNews> _news = _data.map((news) => WarframeNews.fromJson(news as Map<String, dynamic>)).toList();
 
     return _news.toList();
   }

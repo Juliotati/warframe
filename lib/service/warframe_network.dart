@@ -25,7 +25,7 @@ class WarframeNetwork with ChangeNotifier {
 
     final List<dynamic> _data = await json.decode(response.body) as List<dynamic>;
 
-    final Iterable<Warframe> warframesData = _data.map((warframe) => Warframe.fromJson(warframe));
+    final Iterable<Warframe> warframesData = _data.map((warframe) => Warframe.fromJson(warframe as Map<String, dynamic>));
 
     if (_warframes.isEmpty) _warframes.addAll(warframesData);
   }

@@ -31,7 +31,7 @@ class WeaponNetwork with ChangeNotifier {
 
     final List<dynamic> _data = await json.decode(response.body) as List<dynamic>;
 
-    final Iterable<PrimaryWeapon> _weaponsData = _data.map((weapon) => PrimaryWeapon.fromJson(weapon)).toList();
+    final Iterable<PrimaryWeapon> _weaponsData = _data.map((w) => PrimaryWeapon.fromJson(w as Map<String, dynamic>)).toList();
 
     if (_weapons.isEmpty) _weapons.addAll(_weaponsData);
   }
