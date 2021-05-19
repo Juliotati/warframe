@@ -13,8 +13,6 @@ class RootApp extends StatelessWidget {
         ListenableProvider<WarframeNetwork>(create: (_) => WarframeNetwork()),
         ListenableProvider<NewsNetwork>(create: (_) => NewsNetwork()),
         ListenableProvider<WeaponNetwork>(create: (_) => WeaponNetwork()),
-        ListenableProvider<DrawerProvider>(
-            create: (BuildContext context) => DrawerProvider()),
       ],
       child: const WarframeApp(),
     );
