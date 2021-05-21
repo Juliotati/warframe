@@ -5,7 +5,7 @@ import 'package:warframe/service/news_network.dart';
 import 'package:warframe/service/warframe_network.dart';
 import 'package:warframe/service/weapon_network.dart';
 
-class RootApp extends StatelessWidget {
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -14,13 +14,13 @@ class RootApp extends StatelessWidget {
         ListenableProvider<NewsNetwork>(create: (_) => NewsNetwork()),
         ListenableProvider<WeaponNetwork>(create: (_) => WeaponNetwork()),
       ],
-      child: const WarframeApp(),
+      child: const _App(),
     );
   }
 }
 
-class WarframeApp extends StatelessWidget {
-  const WarframeApp({
+class _App extends StatelessWidget {
+  const _App({
     Key key,
   }) : super(key: key);
 

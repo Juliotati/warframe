@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:warframe/warframe.dart';
 
 void main() {
-  runApp(RootApp());
+  runApp(App());
   SystemChrome.setPreferredOrientations(<DeviceOrientation>[
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
