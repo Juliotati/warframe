@@ -12,21 +12,16 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
-  final GlobalKey _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   String alias;
 
-  void login() {
-    const bool _isValid = true;
-    if (!_isValid) {
-      return;
-    } else {
-      Navigator.pushNamed(
-        context,
-        NewsScreen.route,
-        arguments: alias,
-      );
-    }
+  Future<void> login() async {
+    final bool isValid = _formKey.currentState.validate();
+
+    if (!isValid) return;
+
+    Navigator.pushNamed(context, NewsScreen.route, arguments: alias);
   }
 
   @override
@@ -44,24 +39,14 @@ class _LogInState extends State<LogIn> {
               cursorWidth: 5,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               cursorColor: Colors.grey,
-              onChanged: (String value) {
-                setState(() {
-                  alias = value;
-                });
-              },
               validator: (String value) {
-                if (value.isEmpty) {
-                  return 'Please enter your alias name';
-                }
-                if (value.length <= 2) {
-                  return 'Your alias is too short';
-                } else {
-                  return null;
-                }
+                if (value.isEmpty) return 'Please enter your alias name';
+
+                if (value.length <= 2) return 'Your alias is too short';
+                
+                return null;
               },
-              onSaved: (String value) {
-                alias = value;
-              },
+              onSaved: (String value) => alias = value,
               keyboardType: TextInputType.text,
             ),
           ),

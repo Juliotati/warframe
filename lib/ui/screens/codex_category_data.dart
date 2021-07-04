@@ -21,7 +21,6 @@ class CodexCategoryData extends StatelessWidget {
   }
 }
 
-/// Displayed when "warframe" is chosen from codex categories
 class CodexDataWarframes extends StatelessWidget {
   const CodexDataWarframes();
   @override
@@ -31,11 +30,13 @@ class CodexDataWarframes extends StatelessWidget {
       child: Consumer<WarframeNetwork>(
         builder: (BuildContext context, WarframeNetwork _network, _) {
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5.0),
+            padding: const EdgeInsets.symmetric(horizontal: 4.0),
             child: GridView.builder(
+              physics: const BouncingScrollPhysics(),
               itemCount: _network.data.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
+                mainAxisSpacing: 2.0,
                 childAspectRatio: 4 / 3,
                 crossAxisSpacing: 2.0,
               ),

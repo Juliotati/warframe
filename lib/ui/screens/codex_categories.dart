@@ -15,9 +15,9 @@ class CodexCategories extends StatelessWidget {
       screenName: 'Codex',
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: kCodexCategories
-            .map((CodexCategory category) => CodexCategoryItem(category.name))
-            .toList(),
+        children: kCodexCategories.map((CodexCategory category) {
+          return CodexCategoryItem(category.name);
+        }).toList(),
       ),
     );
   }
