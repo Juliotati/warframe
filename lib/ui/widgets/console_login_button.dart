@@ -4,12 +4,11 @@ class ConsoleLoginButton extends StatelessWidget {
   const ConsoleLoginButton({
     Key key,
     @required this.label,
-    @required this.alias,
     @required this.color,
     this.onTap,
   }) : super(key: key);
 
-  final String label, alias;
+  final String label;
   final Color color;
   final void Function() onTap;
 
