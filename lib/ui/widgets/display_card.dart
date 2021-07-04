@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class DisplayCard extends StatelessWidget {
   const DisplayCard({this.child, this.onTap});
 
-  final Widget child;
-  final void Function() onTap;
+  final Widget? child;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {

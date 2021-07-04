@@ -6,7 +6,7 @@ import 'package:warframe/ui/utilities/placeholders.dart';
 
 class CodexGridItem extends StatelessWidget {
   const CodexGridItem({
-    this.warframe,
+    required this.warframe,
   });
 
   final Warframe warframe;
@@ -27,7 +27,7 @@ class CodexGridItem extends StatelessWidget {
           child: GridTileBar(
             title: Text(
               warframe.name.toUpperCase(),
-              style: Theme.of(context).textTheme.subtitle1.copyWith(
+              style: Theme.of(context).textTheme.subtitle1!.copyWith(
                     color: Colors.black,
                   ),
             ),

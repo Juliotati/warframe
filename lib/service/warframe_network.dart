@@ -21,7 +21,7 @@ class WarframeNetwork with ChangeNotifier {
   Future<void> getAllWarframes() async {
     const String url = 'https://api.warframestat.us/warframes/';
 
-    final http.Response response = await http.get(url);
+    final http.Response response = await http.get(Uri.parse(url));
 
     final List<dynamic> _data = await json.decode(response.body) as List<dynamic>;
 

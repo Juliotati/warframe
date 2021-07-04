@@ -3,12 +3,12 @@ import 'package:warframe/ui/widgets/console_login_button.dart';
 
 class LoginBody extends StatelessWidget {
   const LoginBody({
-    this.form,
+    required this.form,
     this.onTap,
   });
 
   final Form form;
-  final void Function() onTap;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {

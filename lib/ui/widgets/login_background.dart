@@ -5,7 +5,7 @@ class LoginBackground extends StatelessWidget {
     this.child,
   });
 
-  final Widget child;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {

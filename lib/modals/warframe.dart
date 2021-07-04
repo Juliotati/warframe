@@ -7,26 +7,26 @@ part 'warframe.g.dart';
 @JsonSerializable(explicitToJson: true)
 class Warframe {
   Warframe({
-    this.uniqueName,
-    this.name,
-    this.description,
-    this.health,
-    this.shield,
-    this.armor,
-    this.stamina,
-    this.power,
+    required this.uniqueName,
+    required this.name,
+    required this.description,
+    required this.health,
+    required this.shield,
+    required this.armor,
+    required this.stamina,
+    required this.power,
     this.masteryReq,
     this.sprintSpeed,
     this.passiveDescription,
-    this.abilities,
+    required this.abilities,
     this.imageName,
-    this.category,
+    required this.category,
     this.color,
     this.polarities,
     this.sex,
     this.sprint,
     this.wikiaThumbnail,
-    this.wikiaUrl,
+    required this.wikiaUrl,
   });
 
   factory Warframe.fromJson(Map<String, dynamic> json) =>
@@ -40,18 +40,18 @@ class Warframe {
   int armor;
   int stamina;
   int power;
-  int masteryReq;
+  int? masteryReq;
   dynamic sprintSpeed;
-  String passiveDescription;
+  String? passiveDescription;
   List<Abilities> abilities;
-  String imageName;
+  String? imageName;
   String category;
-  int color;
-  List<String> polarities;
-  String sex;
+  int? color;
+  List<String>? polarities;
+  String? sex;
   dynamic sprint;
-  String wikiaThumbnail;
-  String wikiaUrl;
+  String? wikiaThumbnail;
+  String? wikiaUrl;
 
   Map<String, dynamic> toJson() => _$WarframeToJson(this);
 }

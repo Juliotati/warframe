@@ -27,7 +27,7 @@ class WeaponNetwork with ChangeNotifier {
   Future<void> getWeapons() async {
     const String url = 'https://api.warframestat.us/weapons/';
 
-    final http.Response response = await http.get(url);
+    final http.Response response = await http.get(Uri.parse(url));
 
     final List<dynamic> _data = await json.decode(response.body) as List<dynamic>;
 

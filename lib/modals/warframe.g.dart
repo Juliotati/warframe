@@ -16,21 +16,20 @@ Warframe _$WarframeFromJson(Map<String, dynamic> json) {
     armor: json['armor'] as int,
     stamina: json['stamina'] as int,
     power: json['power'] as int,
-    masteryReq: json['masteryReq'] as int,
+    masteryReq: json['masteryReq'] as int?,
     sprintSpeed: json['sprintSpeed'],
-    passiveDescription: json['passiveDescription'] as String,
+    passiveDescription: json['passiveDescription'] as String?,
     abilities: (json['abilities'] as List)
-        ?.map((e) =>
-            e == null ? null : Abilities.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-    imageName: json['imageName'] as String,
+        .map((e) => Abilities.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    imageName: json['imageName'] as String?,
     category: json['category'] as String,
-    color: json['color'] as int,
-    polarities: (json['polarities'] as List)?.map((e) => e as String)?.toList(),
-    sex: json['sex'] as String,
+    color: json['color'] as int?,
+    polarities: (json['polarities'] as List?)?.map((e) => e as String).toList(),
+    sex: json['sex'] as String?,
     sprint: json['sprint'],
-    wikiaThumbnail: json['wikiaThumbnail'] as String,
-    wikiaUrl: json['wikiaUrl'] as String,
+    wikiaThumbnail: json['wikiaThumbnail'] as String?,
+    wikiaUrl: json['wikiaUrl'] as String?,
   );
 }
 
@@ -46,7 +45,7 @@ Map<String, dynamic> _$WarframeToJson(Warframe instance) => <String, dynamic>{
       'masteryReq': instance.masteryReq,
       'sprintSpeed': instance.sprintSpeed,
       'passiveDescription': instance.passiveDescription,
-      'abilities': instance.abilities?.map((e) => e?.toJson())?.toList(),
+      'abilities': instance.abilities.map((e) => e.toJson()).toList(),
       'imageName': instance.imageName,
       'category': instance.category,
       'color': instance.color,

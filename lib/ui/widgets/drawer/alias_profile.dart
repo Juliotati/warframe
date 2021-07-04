@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:warframe/ui/utilities/assets.dart';
 
 class AliasProfile extends StatelessWidget {
-  const AliasProfile({Key key}) : super(key: key);
+  const AliasProfile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class AliasProfile extends StatelessWidget {
                     'GOLD DRAGON',
                     style: Theme.of(context)
                         .textTheme
-                        .caption
+                        .caption!
                         .copyWith(fontSize: 14),
                   )
                 ],

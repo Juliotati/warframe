@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomDivider extends StatelessWidget {
   const CustomDivider({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

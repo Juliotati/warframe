@@ -29,7 +29,7 @@ class CodexCategories extends StatelessWidget {
 class CodexCategoryItem extends StatelessWidget {
   const CodexCategoryItem(
     this.category, {
-    Key key,
+    Key? key,
   }) : super(key: key);
   final String category;
 
@@ -54,7 +54,7 @@ class CodexCategoryItem extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: Text(
             category,
-            style: Theme.of(context).textTheme.headline5.copyWith(
+            style: Theme.of(context).textTheme.headline5!.copyWith(
                   color: const Color.fromRGBO(0, 0, 0, 1.0),
                 ),
           ),

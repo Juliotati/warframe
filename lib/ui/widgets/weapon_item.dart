@@ -7,7 +7,7 @@ import 'display_card.dart';
 
 class WeaponCardItem extends StatelessWidget {
   const WeaponCardItem({
-    this.weapon,
+    required this.weapon,
   });
 
   final PrimaryWeapon weapon;
@@ -34,7 +34,7 @@ class WeaponCardItem extends StatelessWidget {
             width: double.infinity,
             child: Text(
               '${weapon.name.toUpperCase()}',
-              style: Theme.of(context).textTheme.bodyText1.copyWith(
+              style: Theme.of(context).textTheme.bodyText1!.copyWith(
                     fontSize: 18,
                   ),
               maxLines: 1,

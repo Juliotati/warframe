@@ -6,7 +6,7 @@ const String kImagePlaceholder =
 class WarframeError extends StatelessWidget {
   const WarframeError([this.message]);
 
-  final String message;
+  final String? message;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class WarframeError extends StatelessWidget {
 }
 
 class LoadingIndicator extends StatelessWidget {
-  const LoadingIndicator([this.label]);
+  const LoadingIndicator([this.label = 'GETTING GAME DATA']);
 
   final String label;
 
@@ -30,7 +30,7 @@ class LoadingIndicator extends StatelessWidget {
           backgroundColor: Color.fromRGBO(255, 255, 255, 0.2),
         ),
         const SizedBox(height: 15),
-        Text(label ?? 'GETTING GAME DATA'),
+        Text(label),
       ],
     );
   }

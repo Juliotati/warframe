@@ -13,7 +13,7 @@ class CodexCategoryData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String _category =
-        ModalRoute.of(context).settings.arguments as String;
+        ModalRoute.of(context)!.settings.arguments! as String;
     switch (_category) {
       case 'Warframe':
         return const CodexDataWarframes();
@@ -57,11 +57,11 @@ class CodexDataWarframes extends StatelessWidget {
 
 /// Displayed when any type of weapon is chosen from codex categories
 class CodexDataWeapons extends StatelessWidget {
-  const CodexDataWeapons({Key key, this.category}) : super(key: key);
+  const CodexDataWeapons({Key? key, this.category}) : super(key: key);
 
   static const String route = 'codex_weapon_category';
 
-  final String category;
+  final String? category;
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +74,7 @@ class CodexDataWeapons extends StatelessWidget {
               itemCount: _network.data.length,
               itemBuilder: (BuildContext context, int i) {
                 return WeaponCardItem(
-                  weapon: _network.getWeapon(category)[i],
+                  weapon: _network.getWeapon(category!)[i],
                 );
               },
             );

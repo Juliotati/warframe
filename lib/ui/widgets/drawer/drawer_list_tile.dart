@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 class DrawerListTile extends StatelessWidget {
   const DrawerListTile({
-    Key key,
+    Key? key,
     this.leadingIcon,
     this.trailingIcon,
     this.label,
     this.onTap,
   }) : super(key: key);
 
-  final IconData leadingIcon, trailingIcon;
-  final String label;
-  final void Function() onTap;
+  final IconData? leadingIcon, trailingIcon;
+  final String? label;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class DrawerListTile extends StatelessWidget {
             color: Colors.grey,
           ),
           title: Text(
-            label.toUpperCase(),
+            label!.toUpperCase(),
           ),
           trailing: Icon(
             trailingIcon,

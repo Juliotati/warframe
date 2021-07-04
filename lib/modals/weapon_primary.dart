@@ -47,7 +47,7 @@ class PrimaryWeapon {
   dynamic ammo;
   dynamic magazineSize;
   dynamic reloadTime;
-  Map<String, dynamic> damageTypes;
+  Map<String, dynamic>? damageTypes;
 
   Map<String, dynamic> toJson() => _$PrimaryWeaponToJson(this);
 }

@@ -9,7 +9,7 @@ import 'package:warframe/ui/widgets/attributes.dart';
 
 class WarframeProfile extends StatefulWidget {
   const WarframeProfile();
-  
+
   static const String route = 'Warframe_Profile';
 
   @override
@@ -20,13 +20,13 @@ class _WarframeProfileState extends State<WarframeProfile> {
   @override
   Widget build(BuildContext context) {
     final String _warframeName =
-        ModalRoute.of(context).settings.arguments as String;
+        ModalRoute.of(context)!.settings.arguments! as String;
 
     return WarframeScaffold(
       screenName: 'Warframe',
       child: SafeArea(
         child: Consumer<WarframeNetwork>(
-          builder: (BuildContext context, WarframeNetwork _network, _) {
+          builder: (_, WarframeNetwork _network, __) {
             return WarframeInfo(
               warframe: _network.getWarframe(_warframeName),
             );
@@ -39,8 +39,8 @@ class _WarframeProfileState extends State<WarframeProfile> {
 
 class WarframeInfo extends StatelessWidget {
   const WarframeInfo({
-    Key key,
-    this.warframe,
+    Key? key,
+    required this.warframe,
   }) : super(key: key);
 
   final Warframe warframe;
@@ -66,7 +66,7 @@ class WarframeInfo extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       warframe.name,
-                      style: Theme.of(context).textTheme.headline3.copyWith(
+                      style: Theme.of(context).textTheme.headline3!.copyWith(
                             color: Colors.black,
                             fontSize: 22,
                           ),
@@ -77,7 +77,7 @@ class WarframeInfo extends StatelessWidget {
                   height: 250,
                   child: Image.network(
                     warframe.wikiaThumbnail ?? kImagePlaceholder,
-                    errorBuilder: (BuildContext context, Object object, _) {
+                    errorBuilder: (_, Object object, __) {
                       return Image.network(kImagePlaceholder);
                     },
                     fit: BoxFit.contain,
@@ -109,7 +109,7 @@ class WarframeInfo extends StatelessWidget {
 
 class InfoDivider extends StatelessWidget {
   const InfoDivider({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

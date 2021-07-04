@@ -3,8 +3,8 @@ import 'package:warframe/modals/warframe.dart';
 
 class Attributes extends StatelessWidget {
   const Attributes({
-    Key key,
-    @required this.warframe,
+    Key? key,
+    required this.warframe,
   }) : super(key: key);
 
   final Warframe warframe;
@@ -29,9 +29,9 @@ class Attributes extends StatelessWidget {
 
 class AttributeItem extends StatelessWidget {
   const AttributeItem({
-    Key key,
-    @required this.label,
-    @required this.attribute,
+    Key? key,
+    required this.label,
+    required this.attribute,
   }) : super(key: key);
 
   final String label;

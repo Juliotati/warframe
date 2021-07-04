@@ -6,7 +6,7 @@ import 'display_card.dart';
 
 class NewsCardItem extends StatelessWidget {
   const NewsCardItem({
-    this.newsItem,
+    required this.newsItem,
   });
 
   final WarframeNews newsItem;
@@ -39,7 +39,7 @@ class NewsCardItem extends StatelessWidget {
               width: double.infinity,
               child: Text(
                 newsItem.message.toUpperCase(),
-                style: Theme.of(context).textTheme.bodyText1.copyWith(
+                style: Theme.of(context).textTheme.bodyText1!.copyWith(
                       fontSize: 18,
                     ),
                 maxLines: 1,

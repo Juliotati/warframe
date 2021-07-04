@@ -5,7 +5,7 @@ import 'drawer_items.dart';
 import 'drawer_list_tile.dart';
 
 class ItemsColumn extends StatelessWidget {
-  const ItemsColumn({Key key}) : super(key: key);
+  const ItemsColumn({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class ItemsColumn extends StatelessWidget {
                     leadingIcon: item.leadingIcon,
                     label: item.label,
                     trailingIcon: item.trailingIcon,
-                    onTap: () => Navigator.of(context).pushNamed(item.navigation),
+                    onTap: () => Navigator.of(context).pushNamed(item.navigation!),
                   ))
               .toList(),
         ),

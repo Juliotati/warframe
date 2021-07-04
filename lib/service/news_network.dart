@@ -9,7 +9,7 @@ class NewsNetwork with ChangeNotifier {
 
     const String url = 'https://api.warframestat.us/ps4/news/';
 
-    final http.Response response = await http.get(url);
+    final http.Response response = await http.get(Uri.parse(url));
 
     final List<dynamic> _data = await jsonDecode(response.body) as List<dynamic>;
 

@@ -3,15 +3,15 @@ import 'package:warframe/ui/widgets/drawer/warframe_drawer.dart';
 
 class WarframeScaffold extends StatelessWidget {
   const WarframeScaffold({
-    @required this.screenName,
+    required this.screenName,
     this.onTap,
     this.isLoader = false,
-    this.child,
+    required this.child,
   });
 
-  final void Function() onTap;
+  final void Function()? onTap;
   final Widget child;
-  final String screenName;
+  final String? screenName;
   final bool isLoader;
 
   @override
@@ -25,7 +25,7 @@ class WarframeScaffold extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        title: Text(screenName.toUpperCase()),
+        title: Text(screenName!.toUpperCase()),
         actions: <IconButton>[
           IconButton(icon: const Icon(Icons.group), onPressed: () {}),
           IconButton(

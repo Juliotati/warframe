@@ -17,10 +17,10 @@ class LogIn extends StatefulWidget {
 class _LogInState extends State<LogIn> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  String alias;
+  String? alias;
 
   Future<void> login(BuildContext context) async {
-    final bool isValid = _formKey.currentState.validate();
+    final bool isValid = _formKey.currentState!.validate();
 
     if (!isValid) return;
 
@@ -42,14 +42,14 @@ class _LogInState extends State<LogIn> {
               cursorWidth: 5,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               cursorColor: Colors.grey,
-              validator: (String value) {
-                if (value.isEmpty) return 'Please enter your alias name';
+              validator: (String? value) {
+                if (value!.isEmpty) return 'Please enter your alias name';
 
                 if (value.length <= 2) return 'Your alias is too short';
 
                 return null;
               },
-              onSaved: (String value) => alias = value,
+              onSaved: (String? value) => alias = value,
               keyboardType: TextInputType.text,
             ),
           ),

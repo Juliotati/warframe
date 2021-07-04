@@ -3,8 +3,8 @@ import 'package:warframe/modals/warframe.dart';
 
 class AbilitiesTile extends StatelessWidget {
   const AbilitiesTile({
-    Key key,
-    @required this.warframe,
+    Key? key,
+    required this.warframe,
   }) : super(key: key);
 
   final Warframe warframe;
@@ -51,13 +51,13 @@ class AbilitiesTile extends StatelessWidget {
 
 class AbilityItem extends StatelessWidget {
   const AbilityItem({
-    Key key,
-    @required this.ability,
-    @required this.abilityName,
+    Key? key,
+    required this.ability,
+    required this.abilityName,
   }) : super(key: key);
 
   final String abilityName;
-  final String ability;
+  final String? ability;
 
   @override
   Widget build(BuildContext context) {
@@ -66,14 +66,14 @@ class AbilityItem extends StatelessWidget {
         abilityName.toUpperCase(),
         style: Theme.of(context)
             .textTheme
-            .bodyText2
+            .bodyText2!
             .copyWith(fontWeight: FontWeight.w500),
       ),
       subtitle: Text(
-        ability,
+        ability!,
         style: Theme.of(context)
             .textTheme
-            .bodyText2
+            .bodyText2!
             .copyWith(fontWeight: FontWeight.w300),
       ),
     );

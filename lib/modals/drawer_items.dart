@@ -8,8 +8,8 @@ class DrawerItem {
     this.navigation,
   });
 
-  final IconData leadingIcon;
-  final String label;
-  final IconData trailingIcon;
-  final String navigation;
+  final IconData? leadingIcon;
+  final String? label;
+  final IconData? trailingIcon;
+  final String? navigation;
 }

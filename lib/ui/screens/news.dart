@@ -8,7 +8,7 @@ import 'package:warframe/ui/widgets/news_card_item.dart';
 
 class NewsScreen extends StatefulWidget {
   const NewsScreen();
-  
+
   static const String route = 'news_screen';
 
   @override
@@ -25,7 +25,7 @@ class _NewsScreenState extends State<NewsScreen>
   Future<void> _refresh() async {
     setState(() {
       news = <WarframeNews>[];
-      Provider.of<NewsNetwork>(context, listen: false).getWarframeNews();
+      context.read<NewsNetwork>().getWarframeNews();
     });
     return;
   }
@@ -35,13 +35,13 @@ class _NewsScreenState extends State<NewsScreen>
 
   Future<void> _stagger = Future<void>(() {});
 
-  Future<void> animateList([List<WarframeNews> data]) async {
+  Future<void> animateList([List<WarframeNews>? data]) async {
     if (done) {
       data?.forEach((WarframeNews wn) {
         _stagger = _stagger.then((_) {
           return Future<void>.delayed(const Duration(milliseconds: 8), () {
-            news?.add(wn);
-            _key?.currentState?.insertItem(index);
+            news.add(wn);
+            _key.currentState?.insertItem(index);
           });
         });
       });
@@ -57,14 +57,11 @@ class _NewsScreenState extends State<NewsScreen>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      animateList();
-    });
+    WidgetsBinding.instance!.addPostFrameCallback((_) => animateList());
   }
 
   @override
   Widget build(BuildContext context) {
-    final NewsNetwork _news = Provider.of<NewsNetwork>(context, listen: false);
     return WarframeScaffold(
       screenName: 'news',
       isLoader: true,
@@ -75,7 +72,7 @@ class _NewsScreenState extends State<NewsScreen>
           color: const Color.fromRGBO(154, 154, 154, 1.0),
           backgroundColor: const Color.fromRGBO(0, 0, 0, 0.8),
           child: FutureBuilder<List<WarframeNews>>(
-            future: _news.getWarframeNews(),
+            future: context.read<NewsNetwork>().getWarframeNews(),
             builder: (BuildContext context,
                 AsyncSnapshot<List<WarframeNews>> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
@@ -85,7 +82,7 @@ class _NewsScreenState extends State<NewsScreen>
                 return const WarframeError('UNABLE TO LOAD NEWS');
               } else {
                 done = true;
-                animateList(snapshot?.data?.reversed?.toList());
+                animateList(snapshot.data?.reversed.toList());
                 return AnimatedList(
                   key: _key,
                   initialItemCount: news.length,

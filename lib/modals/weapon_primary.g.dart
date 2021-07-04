@@ -26,7 +26,7 @@ PrimaryWeapon _$PrimaryWeaponFromJson(Map<String, dynamic> json) {
     ammo: json['ammo'] as dynamic,
     magazineSize: json['magazineSize'] as dynamic,
     reloadTime: json['reloadTime'] as dynamic,
-    damageTypes: json['damageTypes'] as Map<String, dynamic>,
+    damageTypes: json['damageTypes'] as Map<String, dynamic>?,
   );
 }
 

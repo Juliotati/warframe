@@ -21,18 +21,13 @@ class App extends StatelessWidget {
 
 class _App extends StatelessWidget {
   const _App({
-    Key key,
+    Key? key,
   }) : super(key: key);
-
-  Future<void> getDataFromAPI(BuildContext context) async {
-    await Provider.of<WarframeNetwork>(context, listen: false)
-        .getAllWarframes();
-    await Provider.of<WeaponNetwork>(context, listen: false).getWeapons();
-  }
 
   @override
   Widget build(BuildContext context) {
-    getDataFromAPI(context);
+    context.read<WarframeNetwork>().getAllWarframes();
+    context.read<WeaponNetwork>().getWeapons();
     return MaterialApp(
       title: 'Warframe',
       theme: warframeTheme,
