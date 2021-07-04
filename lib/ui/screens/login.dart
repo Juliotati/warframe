@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:warframe/ui/screens/news.dart';
 import 'package:warframe/ui/widgets/login_background.dart';
 import 'package:warframe/ui/widgets/login_body.dart';
 
 class LogIn extends StatefulWidget {
+  const LogIn();
+
   static const String route = 'login';
 
   @override
@@ -16,7 +19,7 @@ class _LogInState extends State<LogIn> {
 
   String alias;
 
-  Future<void> login() async {
+  Future<void> login(BuildContext context) async {
     final bool isValid = _formKey.currentState.validate();
 
     if (!isValid) return;
@@ -29,7 +32,7 @@ class _LogInState extends State<LogIn> {
     return Scaffold(
       body: LoginBackground(
         child: LoginBody(
-          alias: alias,
+          onTap: () => login(context),
           form: Form(
             key: _formKey,
             autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -43,14 +46,13 @@ class _LogInState extends State<LogIn> {
                 if (value.isEmpty) return 'Please enter your alias name';
 
                 if (value.length <= 2) return 'Your alias is too short';
-                
+
                 return null;
               },
               onSaved: (String value) => alias = value,
               keyboardType: TextInputType.text,
             ),
           ),
-          onTap: login,
         ),
       ),
     );

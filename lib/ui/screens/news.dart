@@ -7,6 +7,8 @@ import 'package:warframe/ui/utilities/scaffold.dart';
 import 'package:warframe/ui/widgets/news_card_item.dart';
 
 class NewsScreen extends StatefulWidget {
+  const NewsScreen();
+  
   static const String route = 'news_screen';
 
   @override
@@ -80,7 +82,7 @@ class _NewsScreenState extends State<NewsScreen>
                 return const LoadingIndicator('GETTING NEWS');
               }
               if (snapshot.hasError) {
-                return  const WarframeError('UNABLE TO LOAD NEWS');
+                return const WarframeError('UNABLE TO LOAD NEWS');
               } else {
                 done = true;
                 animateList(snapshot?.data?.reversed?.toList());

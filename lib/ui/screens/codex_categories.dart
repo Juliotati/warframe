@@ -7,6 +7,8 @@ import 'package:warframe/ui/utilities/scaffold.dart';
 import 'codex_category_data.dart';
 
 class CodexCategories extends StatelessWidget {
+  const CodexCategories();
+
   static const String route = 'Codex_categories';
 
   @override

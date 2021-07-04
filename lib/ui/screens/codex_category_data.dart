@@ -8,10 +8,12 @@ import 'package:warframe/ui/widgets/codex_grid_item.dart';
 import 'package:warframe/ui/widgets/weapon_item.dart';
 
 class CodexCategoryData extends StatelessWidget {
+ const CodexCategoryData();
   static const String route = 'codex_category_data';
   @override
   Widget build(BuildContext context) {
-    final String _category = ModalRoute.of(context).settings.arguments as String;
+    final String _category =
+        ModalRoute.of(context).settings.arguments as String;
     switch (_category) {
       case 'Warframe':
         return const CodexDataWarframes();

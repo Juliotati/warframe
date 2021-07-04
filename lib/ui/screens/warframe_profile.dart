@@ -8,6 +8,8 @@ import 'package:warframe/ui/widgets/abilities.dart';
 import 'package:warframe/ui/widgets/attributes.dart';
 
 class WarframeProfile extends StatefulWidget {
+  const WarframeProfile();
+  
   static const String route = 'Warframe_Profile';
 
   @override
