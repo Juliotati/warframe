@@ -39,11 +39,11 @@ class _App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const NewsScreen(),
       routes: <String, Widget Function(BuildContext)>{
-        NewsScreen.route: (_) => const NewsScreen(),
         LogIn.route: (_) => const LogIn(),
-        CodexCategoryData.route: (_) => const CodexCategoryData(),
+        NewsScreen.route: (_) => const NewsScreen(),
         WarframeProfile.route: (_) => const WarframeProfile(),
         CodexCategories.route: (_) => const CodexCategories(),
+        CodexCategoryData.route: (_) => const CodexCategoryData(),
       },
     );
   }
