@@ -4,12 +4,10 @@ import 'package:warframe/ui/widgets/console_login_button.dart';
 class LoginBody extends StatelessWidget {
   const LoginBody({
     this.form,
-    this.alias,
     this.onTap,
   });
 
   final Form form;
-  final String alias;
   final void Function() onTap;
 
   @override
@@ -24,7 +22,6 @@ class LoginBody extends StatelessWidget {
         ConsoleLoginButton(
           label: 'LOGIN',
           color: Colors.black,
-          alias: alias,
           onTap: onTap,
         ),
         const Text('or continue with'),
@@ -34,19 +31,16 @@ class LoginBody extends StatelessWidget {
             ConsoleLoginButton(
               label: 'PS4',
               color: Colors.lightBlue[800],
-              alias: alias,
               onTap: onTap,
             ),
             ConsoleLoginButton(
               label: 'XBOX ONE',
               color: Colors.green[700],
-              alias: alias,
               onTap: onTap,
             ),
             ConsoleLoginButton(
               label: 'Nitendo Switch',
               color: Colors.red,
-              alias: alias,
               onTap: onTap,
             ),
           ],
