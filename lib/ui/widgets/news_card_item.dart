@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:warframe/modals/news.dart';
-
-import 'display_card.dart';
+import 'package:warframe/ui/widgets/warframe_container.dart';
 
 class NewsCardItem extends StatelessWidget {
   const NewsCardItem({
@@ -20,34 +19,44 @@ class NewsCardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DisplayCard(
-      onTap: launchWebPage,
-      child: Column(
-          children: <Widget>[
-            SizedBox(
-              height: 197,
-              width: double.infinity,
-              child: Image.network(
-                newsItem.imageLink,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6),
-              height: 35,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: <Widget>[
+          WarframeContainer(
+            onTap: launchWebPage,
+            withShadow: true,
+            height: 197,
+            margin: 0.0,
+            width: double.infinity,
+            color: const Color.fromRGBO(109, 109, 109, 1.0),
+            showImage: true,
+            backgroundImage: newsItem.imageLink,
+          ),
+          Positioned(
+            bottom: -8.0,
+            left: 0.0,
+            right: 0.0,
+            child: WarframeContainer(
+              onTap: launchWebPage,
+              margin: 0.0,
+              withShadow: true,
               width: double.infinity,
               child: Text(
                 newsItem.message.toUpperCase(),
+                softWrap: true,
+                overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                      fontSize: 18,
+                      fontSize: 13,
+                      color: const Color.fromRGBO(0, 0, 0, 1.0),
                     ),
-                maxLines: 1,
+                maxLines: 2,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
+      ),
     );
   }
 }
-

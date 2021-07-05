@@ -27,30 +27,27 @@ class CodexDataWarframes extends StatelessWidget {
   const CodexDataWarframes();
   @override
   Widget build(BuildContext context) {
-    return WarframeScaffold(
-      screenName: 'Warframe',
-      child: Consumer<WarframeNetwork>(
-        builder: (BuildContext context, WarframeNetwork _network, _) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.0),
-            child: GridView.builder(
-              physics: const BouncingScrollPhysics(),
-              itemCount: _network.data.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 2.0,
-                childAspectRatio: 4 / 3,
-                crossAxisSpacing: 2.0,
-              ),
-              itemBuilder: (BuildContext context, int i) {
-                return CodexGridItem(
-                  warframe: _network.data[i],
-                );
-              },
+    return Consumer<WarframeNetwork>(
+      builder: (BuildContext context, WarframeNetwork _network, _) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+          child: GridView.builder(
+            physics: const BouncingScrollPhysics(),
+            itemCount: _network.data.length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 2.0,
+              childAspectRatio: 4 / 3,
+              crossAxisSpacing: 2.0,
             ),
-          );
-        },
-      ),
+            itemBuilder: (BuildContext context, int i) {
+              return CodexGridItem(
+                warframe: _network.data[i],
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }
@@ -65,21 +62,18 @@ class CodexDataWeapons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WarframeScaffold(
-      screenName: category,
-      child: SafeArea(
-        child: Consumer<WeaponNetwork>(
-          builder: (BuildContext context, WeaponNetwork _network, _) {
-            return ListView.builder(
-              itemCount: _network.data.length,
-              itemBuilder: (BuildContext context, int i) {
-                return WeaponCardItem(
-                  weapon: _network.getWeapon(category!)[i],
-                );
-              },
-            );
-          },
-        ),
+    return SafeArea(
+      child: Consumer<WeaponNetwork>(
+        builder: (BuildContext context, WeaponNetwork _network, _) {
+          return ListView.builder(
+            itemCount: _network.data.length,
+            itemBuilder: (BuildContext context, int i) {
+              return WeaponCardItem(
+                weapon: _network.getWeapon(category!)[i],
+              );
+            },
+          );
+        },
       ),
     );
   }

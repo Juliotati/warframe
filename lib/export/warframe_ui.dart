@@ -5,3 +5,5 @@ export 'package:warframe/ui/screens/codex_category_data.dart';
 export 'package:warframe/ui/screens/warframe_profile.dart';
 export 'package:warframe/ui/screens/login.dart';
 export 'package:warframe/ui/screens/news.dart';
+export 'package:warframe/ui/widgets/drawer/warframe_drawer.dart';
+export 'package:warframe/ui/widgets/warframe_container.dart';

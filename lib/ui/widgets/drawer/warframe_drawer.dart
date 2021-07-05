@@ -9,13 +9,16 @@ class WarframeDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size _screen = MediaQuery.of(context).size;
     return SafeArea(
       child: Drawer(
         child: Container(
-          color: const Color.fromRGBO(0,0,0,0.8),
+          width: _screen.width,
+          color: const Color.fromRGBO(0, 0, 0, 0.8),
           child: Column(
             children: const <Widget>[
               AliasProfile(),
+          SizedBox(height: 10.0),
               ItemsColumn(),
               DrawerFooter(),
             ],

@@ -21,16 +21,13 @@ class _WarframeProfileState extends State<WarframeProfile> {
     final String _warframeName =
         ModalRoute.of(context)!.settings.arguments! as String;
 
-    return WarframeScaffold(
-      screenName: 'Warframe',
-      child: SafeArea(
-        child: Consumer<WarframeNetwork>(
-          builder: (_, WarframeNetwork _network, __) {
-            return WarframeInfo(
-              warframe: _network.getWarframe(_warframeName),
-            );
-          },
-        ),
+    return SafeArea(
+      child: Consumer<WarframeNetwork>(
+        builder: (_, WarframeNetwork _network, __) {
+          return WarframeInfo(
+            warframe: _network.getWarframe(_warframeName),
+          );
+        },
       ),
     );
   }

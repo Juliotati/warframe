@@ -4,6 +4,7 @@ import 'package:warframe/export/warframe_ui.dart';
 import 'package:warframe/service/news_network.dart';
 import 'package:warframe/service/warframe_network.dart';
 import 'package:warframe/service/weapon_network.dart';
+import 'package:warframe/ui/screens/wrapper.dart';
 
 class App extends StatelessWidget {
   @override
@@ -11,8 +12,8 @@ class App extends StatelessWidget {
     return MultiProvider(
       providers: <ListenableProvider<dynamic>>[
         ListenableProvider<WarframeNetwork>(create: (_) => WarframeNetwork()),
+        ListenableProvider<LayoutHelper>(create: (_) => LayoutHelper()),
         ListenableProvider<NewsNetwork>(create: (_) => NewsNetwork()),
-        ListenableProvider<NewsHelper>(create: (_) => NewsHelper()),
         ListenableProvider<WeaponNetwork>(create: (_) => WeaponNetwork()),
       ],
       child: const _App(),
@@ -33,8 +34,9 @@ class _App extends StatelessWidget {
       title: 'Warframe',
       theme: warframeTheme,
       debugShowCheckedModeBanner: false,
-      home: const NewsScreen(),
+      home: const WarframeWrapper(),
       routes: <String, Widget Function(BuildContext)>{
+        WarframeWrapper.route: (_) => const WarframeWrapper(),
         LogIn.route: (_) => const NewsScreen(),
         NewsScreen.route: (_) => const NewsScreen(),
         WarframeProfile.route: (_) => const WarframeProfile(),

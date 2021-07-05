@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:warframe/ui/utilities/utilities.dart';
+import 'package:warframe/ui/widgets/warframe_container.dart';
 
 class AliasProfile extends StatelessWidget {
   const AliasProfile({Key? key}) : super(key: key);
@@ -7,38 +8,33 @@ class AliasProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Container(
-          constraints: const BoxConstraints(maxHeight: 140, minHeight: 120),
-          child: Image.network(kAvatar),
+        const WarframeContainer(
+          showImage: true,
+          backgroundImage: kAvatar,
+          height: 140,
+          margin: 8.0,
+          horizontalPadding: 0.0,
+          verticalPadding: 0.0,
+          width: 140,
         ),
         Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             const Text(
-              'blazertherazer12',
-              textAlign: TextAlign.left,
-              style: TextStyle(fontSize: 18),
+              '24',
+              style: TextStyle(fontSize: 45),
             ),
-            Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: <Text>[
-                  const Text(
-                    '24',
-                    style: TextStyle(fontSize: 24),
+            Text(
+              'GOLD DRAGON',
+              style: Theme.of(context).textTheme.caption!.copyWith(
+                    fontSize: 13,
                   ),
-                  Text(
-                    'GOLD DRAGON',
-                    style: Theme.of(context)
-                        .textTheme
-                        .caption!
-                        .copyWith(fontSize: 14),
-                  )
-                ],
-              ),
+            ),
+            const Text(
+              'blazertherazer12',
+              textAlign: TextAlign.right,
+              style: TextStyle(fontSize: 17),
             ),
           ],
         ),

@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:warframe/ui/screens/news.dart';
+import 'package:warframe/export/warframe_ui.dart';
+import 'package:provider/provider.dart';
+import 'package:warframe/ui/screens/wrapper.dart';
 import 'package:warframe/ui/widgets/login_background.dart';
 import 'package:warframe/ui/widgets/login_body.dart';
 
@@ -23,8 +24,7 @@ class _LogInState extends State<LogIn> {
     final bool isValid = _formKey.currentState!.validate();
 
     if (!isValid) return;
-
-    Navigator.pushNamed(context, NewsScreen.route, arguments: alias);
+    Navigator.pushNamed(context, WarframeWrapper.route, arguments: alias);
   }
 
   @override

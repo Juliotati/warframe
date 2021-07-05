@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:warframe/ui/screens/wrapper.dart';
 
 class DrawerItem {
   DrawerItem({
-    this.leadingIcon,
-    this.label,
+    required this.leadingIcon,
+    required this.label,
     this.trailingIcon,
-    this.navigation,
+    required this.screen,
   });
 
-  final IconData? leadingIcon;
-  final String? label;
+  final IconData leadingIcon;
+  final String label;
   final IconData? trailingIcon;
-  final String? navigation;
+  final Screen screen;
 }
