@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:warframe/modals/weapon_primary.dart';
-import 'package:warframe/ui/utilities/placeholders.dart';
+import 'package:warframe/ui/utilities/utilities.dart';
 
 import 'display_card.dart';
 

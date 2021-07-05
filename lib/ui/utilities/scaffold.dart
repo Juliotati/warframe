@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:warframe/ui/widgets/drawer/warframe_drawer.dart';
+part of utilities;
 
 class WarframeScaffold extends StatelessWidget {
   const WarframeScaffold({

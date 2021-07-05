@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:warframe/modals/codex_modals.dart';
-import 'package:warframe/ui/utilities/codex_categories.dart';
-import 'package:warframe/ui/utilities/scaffold.dart';
+import 'package:warframe/ui/utilities/utilities.dart';
 
 import 'codex_category_data.dart';
 
 class CodexCategories extends StatelessWidget {
   const CodexCategories();
 
-  static const String route = 'Codex_categories';
+  static const String route = 'codex-categories';
 
   @override
   Widget build(BuildContext context) {

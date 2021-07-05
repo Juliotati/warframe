@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:warframe/modals/warframe.dart';
 import 'package:warframe/ui/screens/warframe_profile.dart';
-import 'package:warframe/ui/utilities/placeholders.dart';
+import 'package:warframe/ui/utilities/utilities.dart';
 
 class CodexGridItem extends StatelessWidget {
   const CodexGridItem({

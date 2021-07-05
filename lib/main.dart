@@ -4,9 +4,11 @@ import 'package:flutter/services.dart';
 import 'package:warframe/warframe.dart';
 
 void main() {
-  runApp(App());
+  WidgetsFlutterBinding.ensureInitialized();
+
   SystemChrome.setPreferredOrientations(<DeviceOrientation>[
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+  runApp(App());
 }

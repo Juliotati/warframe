@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:warframe/ui/utilities/assets.dart';
+import 'package:warframe/ui/utilities/utilities.dart';
 
 class AliasProfile extends StatelessWidget {
   const AliasProfile({Key? key}) : super(key: key);

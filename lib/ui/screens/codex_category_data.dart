@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:warframe/service/warframe_network.dart';
 import 'package:warframe/service/weapon_network.dart';
-import 'package:warframe/ui/utilities/scaffold.dart';
+import 'package:warframe/ui/utilities/utilities.dart';
 import 'package:warframe/ui/widgets/codex_grid_item.dart';
 import 'package:warframe/ui/widgets/weapon_item.dart';
 
 class CodexCategoryData extends StatelessWidget {
  const CodexCategoryData();
-  static const String route = 'codex_category_data';
+  static const String route = 'codex-category-data';
   @override
   Widget build(BuildContext context) {
     final String _category =

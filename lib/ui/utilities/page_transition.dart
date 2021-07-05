@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of utilities;
 
 class CustomPageTransitionBuilder extends PageTransitionsBuilder {
   @override

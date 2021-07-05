@@ -1,4 +1,4 @@
-import 'package:warframe/modals/codex_modals.dart';
+part of utilities;
 
 const List<CodexCategory> kCodexCategories = <CodexCategory>[
   CodexCategory(name: 'Warframe'),

@@ -1,4 +1,4 @@
-export 'package:warframe/ui/utilities/theme.dart';
+export 'package:warframe/ui/utilities/utilities.dart';
 export 'package:warframe/ui/widgets/drawer/drawer_items.dart';
 export 'package:warframe/ui/screens/codex_categories.dart';
 export 'package:warframe/ui/screens/codex_category_data.dart';

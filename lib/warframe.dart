@@ -12,6 +12,7 @@ class App extends StatelessWidget {
       providers: <ListenableProvider<dynamic>>[
         ListenableProvider<WarframeNetwork>(create: (_) => WarframeNetwork()),
         ListenableProvider<NewsNetwork>(create: (_) => NewsNetwork()),
+        ListenableProvider<NewsHelper>(create: (_) => NewsHelper()),
         ListenableProvider<WeaponNetwork>(create: (_) => WeaponNetwork()),
       ],
       child: const _App(),
@@ -34,7 +35,7 @@ class _App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const NewsScreen(),
       routes: <String, Widget Function(BuildContext)>{
-        LogIn.route: (_) => const LogIn(),
+        LogIn.route: (_) => const NewsScreen(),
         NewsScreen.route: (_) => const NewsScreen(),
         WarframeProfile.route: (_) => const WarframeProfile(),
         CodexCategories.route: (_) => const CodexCategories(),

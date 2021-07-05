@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:warframe/modals/warframe.dart';
 import 'package:warframe/service/warframe_network.dart';
-import 'package:warframe/ui/utilities/placeholders.dart';
-import 'package:warframe/ui/utilities/scaffold.dart';
+import 'package:warframe/ui/utilities/utilities.dart';
 import 'package:warframe/ui/widgets/abilities.dart';
 import 'package:warframe/ui/widgets/attributes.dart';
 
 class WarframeProfile extends StatefulWidget {
   const WarframeProfile();
 
-  static const String route = 'Warframe_Profile';
+  static const String route = 'warframe-profile';
 
   @override
   _WarframeProfileState createState() => _WarframeProfileState();
@@ -47,6 +46,7 @@ class WarframeInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint(warframe.wikiaThumbnail);
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,19 +73,16 @@ class WarframeInfo extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
+                Image.network(
+                  warframe.wikiaThumbnail ?? kImagePlaceholder,
+                  errorBuilder: (_,__, ___) {
+                    return Image.network(kImagePlaceholder);
+                  },
+                  fit: BoxFit.contain,
                   height: 250,
-                  child: Image.network(
-                    warframe.wikiaThumbnail ?? kImagePlaceholder,
-                    errorBuilder: (_, Object object, __) {
-                      return Image.network(kImagePlaceholder);
-                    },
-                    fit: BoxFit.contain,
-                  ),
                 ),
                 const InfoDivider(),
-                Container(
-                  color: Colors.transparent,
+                Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
                     warframe.description,
