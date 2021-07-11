@@ -2,15 +2,55 @@
 
 Designing my favourite games' mobile app and populating it with data from its API.
 
-## Getting Started
+### Link
 
-This project is a starting point for a Flutter application.
+[Official Warframe App on PlayStore](https://play.google.com/store/apps/details?id=com.digitalextremes.warframenexus) by [Digital Extremes](https://play.google.com/store/apps/developer?id=Digital+Extremes)
 
-A few resources to get you started if this is your first Flutter project:
+# Road Map - Here's the set of features that the app will have overtime.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+screenshots of completed screens coming soon
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 1. News Screen
+```
+[x] Warframe news
+```
+
+### 2. Codex Screen 
+
+```
+[x] Categories
+
+[x] Warframe listing
+
+[ ] Warframe Profile/Details
+
+[x] Primary, Secondary & Melee Weapons Listings
+
+[ ] Primary, Secondary & Melee Weapon Profile/Details
+
+[ ] Mods Listing
+
+[ ] Mod Details
+
+[ ] Companions Listing
+
+[ ] Companions Profile/Details
+```
+
+### 3. Activities Screen
+
+```
+[ ] Baro K'teer
+
+[ ] Nightwave
+
+[ ] Invasions
+
+[ ] Sorties
+
+[ ] Void Fissures
+
+[ ] World Cycles
+
+[ ] Syndicates
+```
