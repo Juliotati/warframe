@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import '../../../../core/presentation/presentation.dart';
 import '../../data/models/codex_model.dart';
@@ -14,7 +13,10 @@ class CodexCategories extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: kCodexCategories.map((CodexCategoryModel category) {
-        return CodexCategoryItem(category.name);
+        return CodexCategoryItem(
+          category.name,
+          icon: category.icon,
+        );
       }).toList(),
     );
   }

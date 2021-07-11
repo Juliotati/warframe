@@ -17,67 +17,15 @@ class WarframeListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Padding(
-          key: key,
-          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-          child: Stack(
-            clipBehavior: Clip.none,
-            children: <Widget>[
-              WarframeContainer(
-                onTap: () => selectedWarframe(context),
-                withShadow: true,
-                height: 197,
-                margin: 0.0,
-                width: double.infinity,
-                color: const Color.fromRGBO(255, 255, 255, 0.65),
-                showImage: true,
-                backgroundImage: warframe.wikiaThumbnail ?? kImagePlaceholder,
-              ),
-              Hero(
-                tag: warframe.wikiaThumbnail ?? kImagePlaceholder,
-                child: Material(
-                  color: const Color.fromRGBO(0, 0, 0, 0.0),
-                  child: WarframeContainer(
-                    onTap: () => selectedWarframe(context),
-                    withShadow: true,
-                    height: 197,
-                    margin: 0.0,
-                    width: double.infinity,
-                    color: const Color.fromRGBO(255, 255, 255, 0.65),
-                    showImage: true,
-                    backgroundImage:
-                        warframe.wikiaThumbnail ?? kImagePlaceholder,
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ),
-              Positioned(
-                bottom: -8.0,
-                left: 15.0,
-                right: 15.0,
-                child: WarframeContainer(
-                  onTap: () => selectedWarframe(context),
-                  margin: 0.0,
-                  withShadow: true,
-                  width: double.infinity,
-                  child: Text(
-                    warframe.name.toUpperCase(),
-                    softWrap: true,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: 16,
-                          color: const Color.fromRGBO(0, 0, 0, 1.0),
-                        ),
-                    maxLines: 2,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
+    return StackedContainer(
+      showBackground: true,
+      key: Key(warframe.uniqueName),
+      onTap: () => selectedWarframe(context),
+      image: warframe.wikiaThumbnail,
+      label: warframe.name.toUpperCase(),
+      tag: warframe.uniqueName,
+      labelTag: warframe.description,
+      maxLines: 2,
     );
   }
 }

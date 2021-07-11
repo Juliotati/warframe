@@ -26,7 +26,6 @@ class CodexPrimaryWeapons extends StatelessWidget {
               itemBuilder: (_, int i) {
                 return PrimaryWeaponCard(
                   key: ValueKey<String>(data[i].uniqueName),
-
                   weapon: data[i],
                 );
               },

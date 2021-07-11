@@ -15,7 +15,6 @@ class CodexDataScaffold extends StatelessWidget {
     return Scaffold(
       extendBody: true,
       extendBodyBehindAppBar: true,
-      backgroundColor: const Color.fromRGBO(255, 255, 255, 0.7),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: WarframeContainer(
@@ -23,9 +22,12 @@ class CodexDataScaffold extends StatelessWidget {
           verticalPadding: 0.0,
           margin: 9.0,
           centerChild: true,
-          color: const Color.fromRGBO(255, 255, 255, 0.4),
+          color: const Color.fromRGBO(255, 255, 255, 0.6),
           onTap: () => Navigator.of(context).pop(),
-          child: const Icon(Icons.arrow_back),
+          child: const Icon(
+            Icons.arrow_back,
+            color: Color.fromRGBO(158, 158, 158, 1.0),
+          ),
         ),
         titleSpacing: 0.0,
         title: WarframeContainer(

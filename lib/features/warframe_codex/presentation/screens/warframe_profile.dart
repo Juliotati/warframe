@@ -56,58 +56,6 @@ class WarframeInfo extends StatelessWidget {
   }
 }
 
-class _WarframeThumbnailAndBio extends StatelessWidget {
-  const _WarframeThumbnailAndBio({
-    Key? key,
-    required this.warframe,
-  }) : super(key: key);
-
-  final WarframeModel warframe;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: <Widget>[
-          Hero(
-            tag: warframe.wikiaThumbnail ?? kImagePlaceholder,
-            child: Material(
-              color: const Color.fromRGBO(0, 0, 0, 0.0),
-              child: WarframeContainer(
-                margin: 0.0,
-                height: 250,
-                showImage: true,
-                withShadow: true,
-                fit: BoxFit.contain,
-                backgroundImage: warframe.wikiaThumbnail,
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: -40.0,
-            left: 15.0,
-            right: 15.0,
-            child: WarframeContainer(
-              horizontalPadding: 10.0,
-              margin: 0.0,
-              withShadow: true,
-              child: Text(
-                warframe.description,
-                style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                      color: const Color.fromRGBO(0, 0, 0, 1.0),
-                    ),
-                softWrap: true,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class _WarframeName extends StatelessWidget {
   const _WarframeName({
     Key? key,
@@ -138,14 +86,39 @@ class _WarframeName extends StatelessWidget {
                 ),
               ),
             ),
-            // const Spacer(),
             IconButton(
               icon: const Icon(Icons.cancel),
+              iconSize: 35.0,
               onPressed: () => Navigator.of(context).pop(),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _WarframeThumbnailAndBio extends StatelessWidget {
+  const _WarframeThumbnailAndBio({
+    Key? key,
+    required this.warframe,
+  }) : super(key: key);
+
+  final WarframeModel warframe;
+
+  @override
+  Widget build(BuildContext context) {
+    return StackedContainer(
+      height: 360,
+      bottom: -40.0,
+      key: Key(warframe.uniqueName),
+      onTap: (){},
+      image: warframe.wikiaThumbnail,
+      label: warframe.description,
+      tag: warframe.uniqueName,
+      labelTag: warframe.description,
+      fontSize: 14,
+      maxLines: 9,
     );
   }
 }

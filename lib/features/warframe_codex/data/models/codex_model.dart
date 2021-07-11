@@ -1,3 +1,5 @@
+import 'package:flutter/widgets.dart';
+
 import '../../domain/entities/codex.dart';
 
 class CodexCategoryModel extends CodexCategory {
@@ -7,5 +9,5 @@ class CodexCategoryModel extends CodexCategory {
   }) : super(name: name, icon: icon);
 
   final String name;
-  final String icon;
+  final IconData icon;
 }

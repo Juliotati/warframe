@@ -8,8 +8,8 @@ const String kImagePlaceholder =
 
 
 const List<CodexCategoryModel> kCodexCategories = <CodexCategoryModel>[
-  CodexCategoryModel(name: 'Warframe', icon: ''),
-  CodexCategoryModel(name: 'Primary', icon: ''),
-  CodexCategoryModel(name: 'Secondary', icon: ''),
-  CodexCategoryModel(name: 'Melee', icon: ''),
+  CodexCategoryModel(name: 'Warframe', icon: Icons.person),
+  CodexCategoryModel(name: 'Primary', icon: Icons.handyman),
+  CodexCategoryModel(name: 'Secondary', icon: Icons.waves),
+  CodexCategoryModel(name: 'Melee', icon: Icons.kitchen_outlined),
 ];

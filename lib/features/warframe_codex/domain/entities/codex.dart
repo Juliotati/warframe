@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/widgets.dart';
 
 abstract class CodexCategory extends Equatable {
   const CodexCategory({
@@ -7,8 +8,8 @@ abstract class CodexCategory extends Equatable {
   });
 
   final String name;
-  final String icon;
+  final IconData icon;
 
   @override
-  List<Object?> get props => <String>[name, icon];
+  List<Object?> get props => <dynamic>[name, icon];
 }

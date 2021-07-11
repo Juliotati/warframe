@@ -22,3 +22,4 @@ part 'widgets/drawer/drawer_items_list.dart';
 part 'widgets/drawer/drawer_footer.dart';
 part 'widgets/warframe_container.dart';
 part 'widgets/warframe_list.dart';
+part 'widgets/stacked_container.dart';

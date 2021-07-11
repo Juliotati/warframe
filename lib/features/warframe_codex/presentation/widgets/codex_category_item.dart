@@ -3,9 +3,13 @@ import '../../../../core/presentation/presentation.dart';
 import '../screens/codex_category_data.dart';
 
 class CodexCategoryItem extends StatelessWidget {
-  const CodexCategoryItem(this.category, {Key? key}) : super(key: key);
+  const CodexCategoryItem(
+    this.category, {
+    Key? key,
+    required this.icon,
+  }) : super(key: key);
   final String category;
-
+  final IconData icon;
   void navigateToDataScreen(BuildContext context) {
     Navigator.pushNamed(
       context,
@@ -27,7 +31,14 @@ class CodexCategoryItem extends StatelessWidget {
             onTap: () => navigateToDataScreen(context),
             margin: 4.0,
             width: 50.0,
-            color: const Color.fromRGBO(255, 255, 255, 0.6),
+            centerChild: true,
+            horizontalPadding: 0.0,
+            verticalPadding: 0.0,
+            color: const Color.fromRGBO(255, 255, 255, 0.75),
+            child: Icon(
+              icon,
+              color: const Color.fromRGBO(158, 158, 158, 1.0),
+            ),
           ),
           const SizedBox(width: 8.0),
           WarframeContainer(
