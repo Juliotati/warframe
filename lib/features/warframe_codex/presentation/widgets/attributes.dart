@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../../../core/presentation/presentation.dart';
 import '../../data/models/warframe_model.dart';
 
-
 class Attributes extends StatelessWidget {
   const Attributes({
     Key? key,
@@ -14,7 +13,7 @@ class Attributes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      scrollDirection:Axis.horizontal,
+      scrollDirection: Axis.horizontal,
       physics: const BouncingScrollPhysics(),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -53,17 +52,17 @@ class AttributeItem extends StatelessWidget {
           Text(
             label.toUpperCase(),
             style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                  color: const Color.fromRGBO(0, 0, 0, 1.0),
+                  color: const Color.fromRGBO(255, 255, 255, 0.7),
                   fontSize: 13,
+                  fontWeight: FontWeight.w600,
                 ),
           ),
           const SizedBox(height: 3.0),
           Text(
             '$attribute',
             style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                  color: const Color.fromRGBO(0, 0, 0, 1.0),
+                  color: const Color.fromRGBO(255, 255, 255, 1.0),
                   fontSize: 11,
-
                 ),
           )
         ],
