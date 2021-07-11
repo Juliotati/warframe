@@ -1,5 +1,7 @@
 part of presentation;
 
+const String kBackgroundShip = 'images/ship.jpg';
+
 const String kAvatar =
     'https://content.invisioncic.com/Mwarframe/pages_media/1_AshDeluxeAvatar.png';
 
