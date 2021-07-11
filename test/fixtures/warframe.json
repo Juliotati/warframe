@@ -1,0 +1,59 @@
+[
+    {
+        "uniqueName": "/Lotus/Powersuits/Ninja/Ninja",
+        "name": "Ash",
+        "description": "Ash is great for players looking for a stealthier approach to combat. Lethal abilities are complemented by powers of distraction.",
+        "health": 150,
+        "shield": 100,
+        "armor": 100,
+        "power": 100,
+        "wikiaUrl": "http://warframe.fandom.com/wiki/Ash",
+        "wikiaThumbnail": "https://static.wikia.nocookie.net/warframe/images/1/17/AshNewLook.png/revision/latest?cb=20141124022921",
+        "abilities": [
+            {
+                "name": "Shuriken",
+                "description": "Launches a spinning blade of pain, dealing high damage and impaling enemies to walls."
+            },
+            {
+                "name": "Smoke Screen",
+                "description": "Drops a smoke bomb that stuns enemies and obscures their vision, rendering Ash invisible for a short time."
+            },
+            {
+                "name": "Teleport",
+                "description": "Ash teleports towards the target, bringing him into melee range and making enemies vulnerable to finishers."
+            },
+            {
+                "name": "Blade Storm",
+                "description": "Project fierce shadow clones of Ash upon groups of distant enemies. Join the fray using Teleport."
+            }
+        ]
+    },
+    {
+        "uniqueName": "/Lotus/Powersuits/Ember/Ember",
+        "name": "Ember",
+        "description": "Ember is a nightmare for light-armored targets. Ember can super-heat the air which opens up surprising crowd-control possibilities.",
+        "health": 100,
+        "shield": 100,
+        "armor": 125,
+        "power": 150,
+        "wikiaUrl": "http://warframe.fandom.com/wiki/Ember",
+        "abilities": [
+            {
+                "name": "Fireball",
+                "description": "Charge and release a fiery projectile that ignites enemies on contact."
+            },
+            {
+                "name": "Immolation",
+                "description": "Protect Ember with flame armor that burns stronger over time, consuming energy once its meter is at full strength. Cast again to extinguish the flame."
+            },
+            {
+                "name": "Fire Blast",
+                "description": "Slam the ground to create a wave of incinerating plasma that knocks back enemies and strips their armor."
+            },
+            {
+                "name": "Inferno",
+                "description": "Command a flaming comet to crash down in front of Ember, engulfing enemies with a fire that can spread through their ranks."
+            }
+        ]
+    }
+]

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:warframe/export/warframe_ui.dart';
-import 'package:warframe/service/news_network.dart';
-import 'package:warframe/service/warframe_network.dart';
-import 'package:warframe/service/weapon_network.dart';
-import 'package:warframe/ui/screens/wrapper.dart';
+import 'core/presentation/wrapper.dart';
+import 'export/warframe_ui.dart';
+import 'features/warframe_codex/data/datasources/warframe_network.dart';
+import 'features/warframe_codex/data/datasources/weapon_network.dart';
+import 'features/warframe_codex/presentation/screens/codex_categories.dart';
+import 'features/warframe_codex/presentation/screens/codex_category_data.dart';
+import 'features/warframe_news/data/datasources/news_network.dart';
+import 'features/warframe_news/presentation/screens/news.dart';
 
 class App extends StatelessWidget {
   @override
@@ -37,7 +40,6 @@ class _App extends StatelessWidget {
       home: const WarframeWrapper(),
       routes: <String, Widget Function(BuildContext)>{
         WarframeWrapper.route: (_) => const WarframeWrapper(),
-        LogIn.route: (_) => const NewsScreen(),
         NewsScreen.route: (_) => const NewsScreen(),
         WarframeProfile.route: (_) => const WarframeProfile(),
         CodexCategories.route: (_) => const CodexCategories(),
