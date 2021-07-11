@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:warframe/features/warframe_codex/presentation/widgets/codex_data_scaffold.dart';
 
 import '../../../../export/warframe_ui.dart';
 import '../widgets/abilities.dart';
@@ -14,8 +15,9 @@ class WarframeProfile extends StatelessWidget {
     final WarframeModel warframe =
         ModalRoute.of(context)!.settings.arguments! as WarframeModel;
 
-    return Scaffold(
-      backgroundColor: const Color.fromRGBO(255, 255, 255, 0.65),
+    return CodexDataScaffold(
+      label: warframe.name,
+      icon: Icons.cancel,
       body: WarframeInfo(
         key: ValueKey<String>(warframe.uniqueName),
         warframe: warframe,
@@ -34,23 +36,19 @@ class WarframeInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WarframeContainer(
-      horizontalPadding: 0.0,
-      color: const Color.fromRGBO(255, 255, 255, 0.8),
-      child: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            _WarframeName(warframe: warframe),
-            _WarframeThumbnailAndBio(warframe: warframe),
-            const SizedBox(height: 50.0),
-            Attributes(warframe: warframe),
-            const SizedBox(height: 10.0),
-            AbilitiesTile(warframe: warframe),
-            const SizedBox(height: 30.0),
-          ],
-        ),
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          const SizedBox(height: 80.0),
+          _WarframeThumbnailAndBio(warframe: warframe),
+          const SizedBox(height: 50.0),
+          Attributes(warframe: warframe),
+          const SizedBox(height: 10.0),
+          AbilitiesTile(warframe: warframe),
+          const SizedBox(height: 100.0),
+        ],
       ),
     );
   }
@@ -112,7 +110,7 @@ class _WarframeThumbnailAndBio extends StatelessWidget {
       height: 360,
       bottom: -40.0,
       key: Key(warframe.uniqueName),
-      onTap: (){},
+      onTap: () {},
       image: warframe.wikiaThumbnail,
       label: warframe.description,
       tag: warframe.uniqueName,
