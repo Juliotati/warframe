@@ -54,48 +54,6 @@ class WarframeInfo extends StatelessWidget {
   }
 }
 
-class _WarframeName extends StatelessWidget {
-  const _WarframeName({
-    Key? key,
-    required this.warframe,
-  }) : super(key: key);
-
-  final WarframeModel warframe;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-      child: SizedBox(
-        width: double.infinity,
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: WarframeContainer(
-                withShadow: true,
-                margin: 0.0,
-                height: 45,
-                child: Text(
-                  warframe.name,
-                  style: Theme.of(context).textTheme.headline3!.copyWith(
-                        color: Colors.black,
-                        fontSize: 22,
-                      ),
-                ),
-              ),
-            ),
-            IconButton(
-              icon: const Icon(Icons.cancel),
-              iconSize: 35.0,
-              onPressed: () => Navigator.of(context).pop(),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 class _WarframeThumbnailAndBio extends StatelessWidget {
   const _WarframeThumbnailAndBio({
     Key? key,
