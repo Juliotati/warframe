@@ -1,7 +1,4 @@
-import '../../../../export/warframe_ui.dart';
-import '../../data/models/melee_weapon_model.dart';
-import '../../data/models/primary_weapon_model.dart';
-import '../../data/models/secondary_weapon_model.dart';
+part of widgets;
 
 class PrimaryWeaponCard extends StatelessWidget {
   const PrimaryWeaponCard({
@@ -15,7 +12,6 @@ class PrimaryWeaponCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return StackedContainer(
       key: Key(weapon.uniqueName),
-      onTap: null,
       image: weapon.wikiaThumbnail,
       label: weapon.name.toUpperCase(),
       tag: weapon.uniqueName,
@@ -36,7 +32,6 @@ class SecondaryWeaponCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return StackedContainer(
       key: Key(weapon.uniqueName),
-      onTap: null,
       image: weapon.wikiaThumbnail,
       label: weapon.name.toUpperCase(),
       tag: weapon.uniqueName,
@@ -57,7 +52,6 @@ class MeleeWeaponCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return StackedContainer(
       key: Key(weapon.uniqueName),
-      onTap: null,
       image: weapon.wikiaThumbnail,
       label: weapon.name.toUpperCase(),
       tag: weapon.uniqueName,

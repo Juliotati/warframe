@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:warframe/features/warframe_codex/presentation/widgets/codex_data_scaffold.dart';
+import 'package:warframe/features/warframe_codex/data/models/warframe_model.dart';
 
-import '../../../../export/warframe_ui.dart';
-import '../widgets/abilities.dart';
-import '../widgets/attributes.dart';
+import '../widgets/widgets.dart';
 
 class WarframeProfile extends StatelessWidget {
   const WarframeProfile();
@@ -12,9 +10,7 @@ class WarframeProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final WarframeModel warframe =
-        ModalRoute.of(context)!.settings.arguments! as WarframeModel;
-
+    final WarframeModel warframe = ModalRoute.of(context)!.settings.arguments! as WarframeModel;
     return CodexDataScaffold(
       label: warframe.name,
       icon: Icons.cancel,
@@ -42,39 +38,14 @@ class WarframeInfo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           const SizedBox(height: 80.0),
-          _WarframeThumbnailAndBio(warframe: warframe),
+          WarframeThumbnailAndBio(warframe: warframe),
           const SizedBox(height: 50.0),
-          Attributes(warframe: warframe),
+          AttributesList(warframe: warframe),
           const SizedBox(height: 10.0),
-          AbilitiesTile(warframe: warframe),
-          const SizedBox(height: 100.0),
+          AbilitiesList(warframe: warframe),
+          const SizedBox(height: 50.0),
         ],
       ),
-    );
-  }
-}
-
-class _WarframeThumbnailAndBio extends StatelessWidget {
-  const _WarframeThumbnailAndBio({
-    Key? key,
-    required this.warframe,
-  }) : super(key: key);
-
-  final WarframeModel warframe;
-
-  @override
-  Widget build(BuildContext context) {
-    return StackedContainer(
-      height: 360,
-      bottom: -40.0,
-      key: Key(warframe.uniqueName),
-      onTap: () {},
-      image: warframe.wikiaThumbnail,
-      label: warframe.description,
-      tag: warframe.uniqueName,
-      labelTag: warframe.description,
-      fontSize: 14,
-      maxLines: 9,
     );
   }
 }

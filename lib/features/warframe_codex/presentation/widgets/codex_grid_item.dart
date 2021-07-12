@@ -1,6 +1,4 @@
-import 'package:flutter/foundation.dart';
-
-import '../../../../export/warframe_ui.dart';
+part of widgets;
 
 class CodexGridItem extends StatelessWidget {
   const CodexGridItem(this.warframe, {Key? key}) : super(key: key);

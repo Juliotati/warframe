@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../widgets/codex_melee_weapons.dart';
-import '../widgets/codex_primary_weapons.dart';
-import '../widgets/codex_secondary_weapons.dart';
-import '../widgets/codex_warframes.dart';
+
+import '../widgets/widgets.dart';
 
 class CodexCategoryData extends StatelessWidget {
   const CodexCategoryData();

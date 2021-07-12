@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import '../../../../core/presentation/presentation.dart';
-import '../screens/codex_category_data.dart';
+part of widgets;
 
 class CodexCategoryItem extends StatelessWidget {
   const CodexCategoryItem(

@@ -1,11 +1,4 @@
-import 'package:flutter/foundation.dart';
-import 'package:provider/provider.dart';
-
-import '../../../../export/warframe_ui.dart';
-import '../../data/datasources/warframe_network.dart';
-import '../widgets/codex_grid_item.dart';
-import 'codex_data_scaffold.dart';
-import 'codex_warframes_list_item.dart';
+part of widgets;
 
 class CodexWarframesListView extends StatelessWidget {
   const CodexWarframesListView();

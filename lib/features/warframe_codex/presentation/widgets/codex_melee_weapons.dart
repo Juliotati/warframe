@@ -1,11 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../../../../export/warframe_ui.dart';
-import '../../data/datasources/weapon_network.dart';
-import '../../data/models/melee_weapon_model.dart';
-import 'codex_data_scaffold.dart';
-import 'weapon_item.dart';
+part of widgets;
 
 class CodexMeleeWeapons extends StatelessWidget {
   const CodexMeleeWeapons({

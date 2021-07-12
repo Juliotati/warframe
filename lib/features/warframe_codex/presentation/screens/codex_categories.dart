@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/presentation/presentation.dart';
 import '../../data/models/codex_model.dart';
-import '../widgets/codex_category_item.dart';
+import '../widgets/widgets.dart';
 
 class CodexCategories extends StatelessWidget {
   const CodexCategories();

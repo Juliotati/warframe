@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import '../../../../export/warframe_ui.dart';
+part of widgets;
 
 class CodexDataScaffold extends StatelessWidget {
   const CodexDataScaffold({

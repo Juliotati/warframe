@@ -1,4 +1,4 @@
-import '../../../../export/warframe_ui.dart';
+part of widgets;
 
 class WarframeListItem extends StatelessWidget {
   const WarframeListItem(

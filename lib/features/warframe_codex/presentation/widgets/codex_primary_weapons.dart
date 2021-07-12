@@ -1,11 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../../../../core/presentation/presentation.dart';
-import '../../data/datasources/weapon_network.dart';
-import '../../data/models/primary_weapon_model.dart';
-import 'codex_data_scaffold.dart';
-import 'weapon_item.dart';
+part of widgets;
 
 class CodexPrimaryWeapons extends StatelessWidget {
   const CodexPrimaryWeapons({Key? key}) : super(key: key);

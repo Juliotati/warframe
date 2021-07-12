@@ -5,10 +5,11 @@ class StackedContainer extends StatelessWidget {
     Key? key,
     required this.label,
     required this.image,
-    required this.onTap,
+    this.onTap,
     this.fontSize = 16,
     this.height = 197,
     this.maxLines,
+    this.isBodyText2 = false,
     this.bottom = -8.0,
     required this.tag,
     required this.labelTag,
@@ -26,6 +27,7 @@ class StackedContainer extends StatelessWidget {
   final Object tag;
   final Object labelTag;
   final bool showBackground;
+  final bool isBodyText2;
   final BoxFit fit;
 
   @override
@@ -83,10 +85,15 @@ class StackedContainer extends StatelessWidget {
                     softWrap: true,
                     maxLines: maxLines,
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: fontSize,
-                          color: const Color.fromRGBO(0, 0, 0, 1.0),
-                        ),
+                    style: isBodyText2
+                        ? Theme.of(context).textTheme.bodyText2!.copyWith(
+                              fontSize: fontSize,
+                              color: const Color.fromRGBO(0, 0, 0, 1.0),
+                            )
+                        : Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: fontSize,
+                              color: const Color.fromRGBO(0, 0, 0, 1.0),
+                            ),
                   ),
                 ),
               ),
