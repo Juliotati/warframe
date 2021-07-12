@@ -12,17 +12,17 @@ screenshots of completed screens coming soon
 
 ### 1. News Screen
 ```
-[x] Warframe news
+[x] ---Warframe news---
 ```
 
 ### 2. Codex Screen 
 
 ```
-[x] Categories
+[x] ---Categories---
 
-[x] Warframe listing
+[x] ---Warframe listing---
 
-[ ] Warframe Profile/Details
+[X] ---Warframe Profile/Details---
 
 [x] Primary, Secondary & Melee Weapons Listings
 
