@@ -14,37 +14,20 @@ class WarframeProfile extends StatelessWidget {
     return CodexDataScaffold(
       label: warframe.name,
       icon: Icons.cancel,
-      body: WarframeInfo(
-        key: ValueKey<String>(warframe.uniqueName),
-        warframe: warframe,
-      ),
-    );
-  }
-}
-
-class WarframeInfo extends StatelessWidget {
-  const WarframeInfo({
-    Key? key,
-    required this.warframe,
-  }) : super(key: key);
-
-  final WarframeModel warframe;
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          const SizedBox(height: 80.0),
-          WarframeThumbnailAndBio(warframe: warframe),
-          const SizedBox(height: 50.0),
-          AttributesList(warframe: warframe),
-          const SizedBox(height: 10.0),
-          AbilitiesList(warframe: warframe),
-          const SizedBox(height: 50.0),
-        ],
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const SizedBox(height: 80.0),
+            WarframeThumbnailAndBio(warframe: warframe),
+            const SizedBox(height: 50.0),
+            AttributesList(warframe: warframe),
+            const SizedBox(height: 10.0),
+            AbilitiesList(warframe: warframe),
+            const SizedBox(height: 50.0),
+          ],
+        ),
       ),
     );
   }
