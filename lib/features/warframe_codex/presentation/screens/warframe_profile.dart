@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:warframe/features/warframe_codex/data/models/warframe_model.dart';
+import '../../data/models/warframe_model.dart';
 
 import '../widgets/widgets.dart';
 

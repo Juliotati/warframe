@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
-import '../../../../core/usecases/usecases.dart';
+
 import '../../../../core/error/failures.dart';
+import '../../../../core/usecases/usecases.dart';
 import '../entities/warframe_news.dart';
 import '../repositories/warframe_news_repository.dart';
 
