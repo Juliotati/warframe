@@ -7,9 +7,7 @@ class CodexSecondaryWeapons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<SecondaryWeaponModel> data =
-        context.watch<WeaponNetwork>().secondary;
-
+    final List<SecondaryWeaponModel> data = context.watch<WeaponNetwork>().secondary;
     return CodexDataScaffold(
       label: 'Secondary',
       body: data.isEmpty
@@ -19,7 +17,7 @@ class CodexSecondaryWeapons extends StatelessWidget {
               itemBuilder: (_, int i) {
                 return SecondaryWeaponCard(
                   key: ValueKey<String>(data[i].uniqueName),
-                  weapon: data[i],
+                  secondary: data[i],
                 );
               },
             ),

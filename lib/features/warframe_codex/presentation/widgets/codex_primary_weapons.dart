@@ -7,8 +7,7 @@ class CodexPrimaryWeapons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<PrimaryWeaponModel> data =
-        context.watch<WeaponNetwork>().primary;
+    final List<PrimaryWeaponModel> data = context.watch<WeaponNetwork>().primary;
 
     return CodexDataScaffold(
       label: 'Primary',
@@ -19,7 +18,7 @@ class CodexPrimaryWeapons extends StatelessWidget {
               itemBuilder: (_, int i) {
                 return PrimaryWeaponCard(
                   key: ValueKey<String>(data[i].uniqueName),
-                  weapon: data[i],
+                  primary: data[i],
                 );
               },
             ),

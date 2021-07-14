@@ -4,6 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:warframe/features/warframe_codex/data/models/melee_weapon_model.dart';
+import 'package:warframe/features/warframe_codex/data/models/weapon_model.dart';
+import 'package:warframe/features/warframe_codex/presentation/screens/weapon_profile.dart';
 
 import '../../../../core/presentation/presentation.dart';
 import '../../../../export/warframe_ui.dart';
@@ -23,7 +25,8 @@ part 'codex_primary_weapons.dart';
 part 'codex_secondary_weapons.dart';
 part 'codex_warframes.dart';
 part 'codex_warframes_list_item.dart';
+part 'details_body_wrapper.dart';
 part 'warframe_profile_abilities.dart';
 part 'warframe_profile_attributes.dart';
-part 'warframe_profile_thumbnail_and_bio.dart';
+part 'profile_thumbnails_and_bios.dart';
 part 'weapon_item.dart';

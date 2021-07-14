@@ -20,7 +20,7 @@ class CodexMeleeWeapons extends StatelessWidget {
               itemBuilder: (_, int i) {
                 return MeleeWeaponCard(
                   key: ValueKey<String>(data[i].uniqueName),
-                  weapon: data[i],
+                  melee: data[i],
                 );
               },
             ),
