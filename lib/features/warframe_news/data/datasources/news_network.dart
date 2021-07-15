@@ -11,8 +11,7 @@ class NewsNetwork with ChangeNotifier {
 
     final http.Response response = await http.get(Uri.parse(url));
 
-    final List<dynamic> _data =
-        await jsonDecode(response.body) as List<dynamic>;
+    final List<dynamic> _data = await jsonDecode(response.body) as List<dynamic>;
 
     final Iterable<WarframeNewsModel> _news = _data.map((dynamic news) {
       return WarframeNewsModel.fromJson(news as Map<String, dynamic>);
