@@ -54,7 +54,7 @@ class _AbilitiesListState extends State<AbilitiesList> {
             child: Padding(
               padding: const EdgeInsets.only(top: 20),
               child: Text(
-                widget.warframe.abilities[currentIndex].description,
+                ability[currentIndex].description,
                 softWrap: true,
                 style: Theme.of(context).textTheme.bodyText2!.copyWith(
                       color: const Color.fromRGBO(0, 0, 0, 1.0),
