@@ -2,7 +2,6 @@ part of widgets;
 
 List<WeaponStat> meleeWeaponStat(MeleeWeaponModel weapon) {
   return <WeaponStat>[
-    // WeaponStat(label: 'Attack Speed', data: weapon.attackSpeed),
     WeaponStat(label: 'Fire Rate', data: weapon.blockingAngle),
     WeaponStat(label: 'Combo Duration', data: weapon.comboDuration),
     WeaponStat(label: 'Critical Chance', data: weapon.criticalChance),
