@@ -12,7 +12,6 @@ class StatsText extends StatelessWidget {
       data,
       style: style ??
           const TextStyle(
-            fontWeight: FontWeight.w600,
             color: Color.fromRGBO(0, 0, 0, 1.0),
           ),
     );
