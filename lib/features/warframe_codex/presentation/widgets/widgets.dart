@@ -30,3 +30,6 @@ part 'warframe_profile_abilities.dart';
 part 'warframe_profile_attributes.dart';
 part 'profile_thumbnails_and_bios.dart';
 part 'weapon_item.dart';
+part 'weapon_primary_stats.dart';
+part 'weapon_secondary_stats.dart';
+part 'weapon_melee_stats.dart';

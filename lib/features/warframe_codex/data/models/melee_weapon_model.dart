@@ -15,11 +15,16 @@ class MeleeWeaponModel extends MeleeWeapon {
     required this.wikiaThumbnail,
     required this.criticalChance,
     required this.criticalMultiplier,
+    required this.comboDuration,
+    required this.followThrough,
     required this.range,
     required this.totalDamage,
     required this.masteryReq,
     required this.blockingAngle,
     required this.attackSpeed,
+    required this.slamRadius,
+    required this.slamAttack,
+    required this.slamRadialDamage,
     required this.heavyAttackDamage,
     required this.heavySlamAttack,
     required this.heavySlamRadialDamage,
@@ -35,11 +40,16 @@ class MeleeWeaponModel extends MeleeWeapon {
           wikiaThumbnail: wikiaThumbnail,
           criticalChance: criticalChance,
           criticalMultiplier: criticalMultiplier,
+          comboDuration: comboDuration,
+          followThrough: followThrough,
           range: range,
           totalDamage: totalDamage,
           masteryReq: masteryReq,
           blockingAngle: blockingAngle,
           attackSpeed: attackSpeed,
+          slamRadius: slamRadius,
+          slamAttack: slamAttack,
+          slamRadialDamage: slamRadialDamage,
           heavyAttackDamage: heavyAttackDamage,
           heavySlamAttack: heavySlamAttack,
           heavySlamRadialDamage: heavySlamRadialDamage,
@@ -59,12 +69,17 @@ class MeleeWeaponModel extends MeleeWeapon {
   final String? wikiaThumbnail;
   final num? criticalChance;
   final num? criticalMultiplier;
+  final num? comboDuration;
+  final num? followThrough;
   final num? range;
   final num? totalDamage;
   final int? masteryReq;
   final Map<String, dynamic>? damageTypes;
   final num? blockingAngle;
   final double? attackSpeed;
+  final num? slamRadius;
+  final num? slamAttack;
+  final num? slamRadialDamage;
   final num? heavyAttackDamage;
   final num? heavySlamAttack;
   final num? heavySlamRadialDamage;
@@ -83,11 +98,17 @@ class MeleeWeaponModel extends MeleeWeapon {
         disposition,
         criticalChance,
         criticalMultiplier,
+        comboDuration,
+        followThrough,
         range,
         totalDamage,
         masteryReq,
         blockingAngle,
         attackSpeed,
+        slamAttack,
+        slamRadius,
+        slamRadialDamage,
+        heavyAttackDamage,
         heavyAttackDamage,
         heavySlamAttack,
         heavySlamRadialDamage,

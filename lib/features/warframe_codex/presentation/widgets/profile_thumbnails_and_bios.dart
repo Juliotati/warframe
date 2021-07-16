@@ -37,17 +37,20 @@ class WeaponThumbnailAndBio extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isShort = weapon.description.characters.length <= 90;
     final bool isLong = weapon.description.characters.length >= 200;
-    return StackedContainer(
-      height: 270,
-      bottom: isShort ? -20 : isLong ? -60.0 : -50.0,
-      isBodyText2: true,
-      key: ValueKey<String>(weapon.uniqueName),
-      image: weapon.wikiaThumbnail,
-      label: weapon.description,
-      tag: weapon.uniqueName,
-      labelTag: weapon.description,
-      fontSize: 14,
-      maxLines: 9,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 50.0),
+      child: StackedContainer(
+        height: 270,
+        bottom: isShort ? -20 : isLong ? -60.0 : -50.0,
+        isBodyText2: true,
+        key: ValueKey<String>(weapon.uniqueName),
+        image: weapon.wikiaThumbnail,
+        label: weapon.description,
+        tag: weapon.uniqueName,
+        labelTag: weapon.description,
+        fontSize: 14,
+        maxLines: 9,
+      ),
     );
   }
 }

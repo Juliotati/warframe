@@ -2,7 +2,8 @@ import 'package:equatable/equatable.dart';
 import 'weapon.dart';
 
 abstract class MeleeWeapon extends Equatable implements Weapon {
-  const MeleeWeapon({
+  const MeleeWeapon(
+    {
     required this.name,
     required this.uniqueName,
     required this.type,
@@ -12,11 +13,16 @@ abstract class MeleeWeapon extends Equatable implements Weapon {
     required this.wikiaThumbnail,
     required this.criticalChance,
     required this.criticalMultiplier,
+    required this.comboDuration,
+    required this.followThrough,
     required this.range,
     required this.totalDamage,
     required this.masteryReq,
     required this.blockingAngle,
     required this.attackSpeed,
+    required this.slamAttack,
+    required this.slamRadius,
+    required this.slamRadialDamage,
     required this.heavyAttackDamage,
     required this.heavySlamAttack,
     required this.heavySlamRadialDamage,
@@ -49,8 +55,13 @@ abstract class MeleeWeapon extends Equatable implements Weapon {
   @override
   final Map<String, dynamic>? damageTypes;
   final num? range;
+  final num? comboDuration;
+  final num? followThrough;
   final num? blockingAngle;
   final double? attackSpeed;
+  final num? slamRadius;
+  final num? slamAttack;
+  final num? slamRadialDamage;
   final num? heavyAttackDamage;
   final num? heavySlamAttack;
   final num? heavySlamRadialDamage;

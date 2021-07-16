@@ -43,7 +43,8 @@ class AttributeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WarframeContainer(
-      margin: 6.0,
+      horizontalMargin: 6.0,
+      verticalMargin: 6.0,
       verticalPadding: 5.0,
       color: const Color.fromRGBO(255, 255, 255, 0.45),
       child: Column(

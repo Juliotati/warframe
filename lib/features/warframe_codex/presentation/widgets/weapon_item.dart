@@ -12,7 +12,9 @@ class PrimaryWeaponCard extends StatelessWidget {
     Navigator.of(context).push(
       MaterialPageRoute<WeaponProfile>(
         builder: (BuildContext contetxt) {
-          return WeaponProfile.primary(primary: primary);
+          return WeaponProfile.primary(
+            primary: primary,
+          );
         },
       ),
     );

@@ -24,7 +24,8 @@ class CodexDataScaffold extends StatelessWidget {
             child: WarframeContainer(
               horizontalPadding: 0.0,
               verticalPadding: 0.0,
-              margin: 9.0,
+              horizontalMargin: 9.0,
+              verticalMargin: 9.0,
               centerChild: true,
               color: const Color.fromRGBO(255, 255, 255, 0.6),
               onTap: () => Navigator.of(context).pop(),

@@ -27,7 +27,8 @@ class CodexCategoryItem extends StatelessWidget {
           const SizedBox(width: 10.0),
           WarframeContainer(
             onTap: () => navigateToDataScreen(context),
-            margin: 4.0,
+            horizontalMargin: 4.0,
+            verticalMargin: 4.0,
             width: 50.0,
             centerChild: true,
             horizontalPadding: 0.0,
@@ -43,7 +44,8 @@ class CodexCategoryItem extends StatelessWidget {
             onTap: () => navigateToDataScreen(context),
             width: _screen.width * 0.7,
             withShadow: true,
-            margin: 4.0,
+            horizontalMargin: 4.0,
+            verticalMargin: 4.0,
             child: Text(
               category,
               style: Theme.of(context).textTheme.headline5!.copyWith(
