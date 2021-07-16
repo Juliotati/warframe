@@ -25,7 +25,7 @@ screenshots of completed screens coming soon
 
 [x] Primary, Secondary & Melee Weapons Listings
 
-[ ] Primary, Secondary & Melee Weapon Profile/Details
+[x] Primary, Secondary & Melee Weapon Profile/Details
 
 ```
 ### 2.1 Codex Screen 
