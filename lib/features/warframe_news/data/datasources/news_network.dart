@@ -2,14 +2,14 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:warframe/core/presentation/apis.dart';
 
 import '../models/warframe_news.dart';
 
 class NewsNetwork with ChangeNotifier {
   Future<List<WarframeNewsModel>> getWarframeNews() async {
-    const String url = 'https://api.warframestat.us/ps4/news/';
 
-    final http.Response response = await http.get(Uri.parse(url));
+    final http.Response response = await http.get(Uri.parse(API.newsAPI));
 
     final List<dynamic> _data = await jsonDecode(response.body) as List<dynamic>;
 

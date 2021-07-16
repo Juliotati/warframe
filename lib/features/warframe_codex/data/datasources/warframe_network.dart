@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:warframe/core/presentation/apis.dart';
 
 import '../../../../export/warframe_ui.dart';
 
@@ -20,9 +21,7 @@ class WarframeNetwork with ChangeNotifier {
 
   /// Gets all Prime and non-prime warframes from the official warframe API
   Future<void> getAllWarframes() async {
-    const String url = 'https://api.warframestat.us/warframes/';
-
-    final http.Response response = await http.get(Uri.parse(url));
+    final http.Response response = await http.get(Uri.parse(API.warframeAPI));
 
     final List<dynamic> _data =
         await json.decode(response.body) as List<dynamic>;

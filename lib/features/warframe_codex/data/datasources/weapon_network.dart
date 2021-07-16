@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
+import 'package:warframe/core/presentation/apis.dart';
 
 import '../models/melee_weapon_model.dart';
 import '../models/primary_weapon_model.dart';
@@ -14,7 +15,6 @@ enum WeaponCategory {
 }
 
 class WeaponNetwork with ChangeNotifier {
-  static const String _baseUrl = 'https://api.warframestat.us/weapons/';
 
   List<Map<String, dynamic>> get data => _weapons;
 
@@ -32,7 +32,7 @@ class WeaponNetwork with ChangeNotifier {
   /// Gets all Prime and non-prime weapons from the official warframe API on
   /// app launch
   Future<void> getWeapons() async {
-    final http.Response response = await http.get(Uri.parse(_baseUrl));
+    final http.Response response = await http.get(Uri.parse(API.weaponAPI));
 
     final List<dynamic> data =
         await json.decode(response.body) as List<dynamic>;
