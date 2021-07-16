@@ -37,16 +37,9 @@ class PrimaryWeaponProfile extends StatelessWidget {
               wikiaThumbnail: primary.wikiaThumbnail,
             ),
           ),
-          StatsTitle(
-            'Mastery Req',
-            data: '${primary.masteryReq}',
-          ),
+          StatsTitle('Mastery Req', data: '${primary.masteryReq}'),
           WeaponStatsContainer(primary: primary),
-          const StatsTitle('DAMAGE'),
-          StatsTitle(
-            'Total Damage',
-            data: '${primary.totalDamage}',
-          ),
+          StatsTitle('Total Damage', data: '${primary.totalDamage}'),
         ],
       ),
     );

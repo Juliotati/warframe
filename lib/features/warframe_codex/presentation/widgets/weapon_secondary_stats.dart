@@ -39,7 +39,6 @@ class SecondaryWeaponProfile extends StatelessWidget {
           ),
           StatsTitle('Mastery Req', data: '${secondary.masteryReq}'),
           WeaponStatsContainer(secondary: secondary),
-          const StatsTitle('DAMAGE'),
         ],
       ),
     );

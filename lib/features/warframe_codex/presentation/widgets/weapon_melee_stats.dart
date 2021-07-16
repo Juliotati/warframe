@@ -47,7 +47,6 @@ class MeleeWeaponProfile extends StatelessWidget {
           ),
           StatsTitle('Mastery Req', data: '${melee.masteryReq}'),
           WeaponStatsContainer(melee: melee),
-          const StatsTitle('DAMAGE'),
           const StatsTitle('HEAVY ATTACK'),
           WeaponStatsContainer(melee: melee, isMeleeHeavyStats: true),
         ],
