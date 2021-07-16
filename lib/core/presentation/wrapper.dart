@@ -31,7 +31,8 @@ class WarframeWrapper extends StatelessWidget {
             const WarframeContainer(
               height: 35,
               width: 35,
-              margin: 10.0,
+              horizontalMargin: 10.0,
+              verticalMargin: 10.0,
               color: Color.fromRGBO(255, 255, 255, 0.4),
               centerChild: true,
               horizontalPadding: 0.0,
@@ -41,7 +42,8 @@ class WarframeWrapper extends StatelessWidget {
             WarframeContainer(
               height: 35,
               width: 35,
-              margin: 10.0,
+              horizontalMargin: 10.0,
+              verticalMargin: 10.0,
               color: const Color.fromRGBO(255, 255, 255, 0.4),
               centerChild: true,
               horizontalPadding: 0.0,

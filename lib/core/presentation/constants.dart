@@ -15,3 +15,4 @@ const List<CodexCategoryModel> kCodexCategories = <CodexCategoryModel>[
   CodexCategoryModel(name: 'Secondary', icon: Icons.waves),
   CodexCategoryModel(name: 'Melee', icon: Icons.kitchen_outlined),
 ];
+

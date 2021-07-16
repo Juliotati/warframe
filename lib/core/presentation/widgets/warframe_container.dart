@@ -10,7 +10,8 @@ class WarframeContainer extends StatelessWidget {
     this.centerChild = false,
     this.verticalPadding = 8.0,
     this.horizontalPadding = 12.0,
-    this.margin = 12.0,
+    this.horizontalMargin = 12.0,
+    this.verticalMargin = 12.0,
     this.radius = 10.0,
     this.color = const Color.fromRGBO(255, 255, 255, 1.0),
     this.showImage = false,
@@ -22,8 +23,9 @@ class WarframeContainer extends StatelessWidget {
   final double? height;
   final double? width;
   final double verticalPadding;
+  final double verticalMargin;
   final double horizontalPadding;
-  final double margin;
+  final double horizontalMargin;
   final bool showImage;
   final double radius;
   final Color? color;
@@ -38,7 +40,10 @@ class WarframeContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     const BorderRadius _radius = BorderRadius.all(Radius.circular(10.0));
     return Container(
-      margin: EdgeInsets.all(margin),
+      margin: EdgeInsets.symmetric(
+        horizontal: horizontalMargin,
+        vertical: verticalMargin,
+      ),
       child: InkWell(
         splashColor: const Color.fromRGBO(0, 0, 0, 1.0),
         onTap: onTap,

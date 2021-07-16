@@ -21,7 +21,8 @@ class DrawerItemList extends StatelessWidget {
           const SizedBox(width: 4.0),
           Expanded(
             child: WarframeContainer(
-              margin: 4.0,
+                              horizontalMargin: 4.0,
+                verticalMargin: 4.0,
               centerChild: true,
               verticalPadding: 0.0,
               horizontalPadding: 0.0,
@@ -38,7 +39,8 @@ class DrawerItemList extends StatelessWidget {
               onTap: onTap,
               color: const Color.fromRGBO(255, 255, 255, 0.8),
               withShadow: true,
-              margin: 4.0,
+                             horizontalMargin: 04.0,
+                verticalMargin: 4.0,
               child: Text(
                 label.toUpperCase(),
                 style: Theme.of(context).textTheme.headline5!.copyWith(
