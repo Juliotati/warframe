@@ -1,6 +1,6 @@
 part of widgets;
 
-List<WeaponStat> secondaryWeaponStat(SecondaryWeaponModel weapon) {
+List<WeaponStat> gunStat(GunModel weapon) {
   return <WeaponStat>[
     WeaponStat(label: 'Accuracy', data: weapon.accuracy),
     WeaponStat(label: 'Fire Rate', data: weapon.fireRate),
@@ -10,36 +10,35 @@ List<WeaponStat> secondaryWeaponStat(SecondaryWeaponModel weapon) {
     WeaponStat(label: 'Noite', data: weapon.noise),
     WeaponStat(label: 'Riven Disposition', data: weapon.disposition),
     WeaponStat(label: 'Reload', data: weapon.reloadTime),
-    const WeaponStat(label: 'Status', data: 'MISSING'),
     WeaponStat(label: 'Trigger', data: weapon.trigger),
   ];
 }
 
-class SecondaryWeaponProfile extends StatelessWidget {
-  const SecondaryWeaponProfile(this.secondary, {Key? key}) : super(key: key);
+class GunProfile extends StatelessWidget {
+  const GunProfile(this.weapon, {Key? key}) : super(key: key);
 
-  static const String route = 'secondary-profile';
-  final SecondaryWeaponModel secondary;
+  static const String route = 'gun-profile';
+  final GunModel weapon;
 
   @override
   Widget build(BuildContext context) {
     return CodexDataScaffold(
-      label: secondary.name,
+      label: weapon.name,
       body: CodexItemDetailsBodyWrapper(
         children: <Widget>[
           WeaponThumbnailAndBio(
             weapon: WeaponModel(
-              name: secondary.name,
-              uniqueName: secondary.uniqueName,
-              type: secondary.type,
-              description: secondary.description,
-              wikiaUrl: secondary.wikiaUrl,
-              wikiaThumbnail: secondary.wikiaThumbnail,
+              name: weapon.name,
+              uniqueName: weapon.uniqueName,
+              type: weapon.type,
+              description: weapon.description,
+              wikiaUrl: weapon.wikiaUrl,
+              wikiaThumbnail: weapon.wikiaThumbnail,
             ),
           ),
-          StatsTitle('Mastery Req', data: '${secondary.masteryReq}'),
-          WeaponStatsContainer(secondary: secondary),
-          StatsTitle('Total Damage', data: '${secondary.totalDamage}'),
+          StatsTitle('Mastery Req', data: '${weapon.masteryReq}'),
+          WeaponStatsContainer(weapon: weapon),
+          StatsTitle('Total Damage', data: '${weapon.totalDamage}'),
         ],
       ),
     );

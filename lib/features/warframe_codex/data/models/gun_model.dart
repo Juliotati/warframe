@@ -1,25 +1,27 @@
 import 'package:json_annotation/json_annotation.dart';
-import '../../domain/entities/secondary_weapon.dart';
+import '../../domain/entities/gun.dart';
 
-part 'secondary_weapon_model.g.dart';
+part 'gun_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class SecondaryWeaponModel extends SecondaryWeapon {
-  const SecondaryWeaponModel({
+class GunModel extends Gun {
+  const GunModel({
     required this.name,
     required this.uniqueName,
     required this.type,
     required this.description,
+    required this.disposition,
+    required this.category,
     required this.wikiaUrl,
     required this.wikiaThumbnail,
     required this.trigger,
-    required this.disposition,
     required this.criticalChance,
     required this.criticalMultiplier,
     required this.fireRate,
     required this.totalDamage,
     required this.masteryReq,
     required this.accuracy,
+    required this.sentinel,
     required this.noise,
     required this.ammo,
     required this.magazineSize,
@@ -31,6 +33,7 @@ class SecondaryWeaponModel extends SecondaryWeapon {
           type: type,
           description: description,
           disposition: disposition,
+          category: category,
           wikiaUrl: wikiaUrl,
           wikiaThumbnail: wikiaThumbnail,
           trigger: trigger,
@@ -40,6 +43,7 @@ class SecondaryWeaponModel extends SecondaryWeapon {
           totalDamage: totalDamage,
           masteryReq: masteryReq,
           accuracy: accuracy,
+          sentinel: sentinel,
           noise: noise,
           ammo: ammo,
           magazineSize: magazineSize,
@@ -47,14 +51,15 @@ class SecondaryWeaponModel extends SecondaryWeapon {
           damageTypes: damageTypes,
         );
 
-  factory SecondaryWeaponModel.fromJson(Map<String, dynamic> json) =>
-      _$SecondaryWeaponModelFromJson(json);
+  factory GunModel.fromJson(Map<String, dynamic> json) =>
+      _$GunModelFromJson(json);
 
   final String name;
   final String uniqueName;
   final String type;
   final String description;
   final int? disposition;
+  final String? category;
   final String? wikiaUrl;
   final String? wikiaThumbnail;
   final String? trigger;
@@ -64,13 +69,14 @@ class SecondaryWeaponModel extends SecondaryWeapon {
   final num? totalDamage;
   final int? masteryReq;
   final num? accuracy;
+  final bool? sentinel;
   final String? noise;
   final num? ammo;
   final int? magazineSize;
   final num? reloadTime;
   final Map<String, dynamic>? damageTypes;
 
-  Map<String, dynamic> toJson() => _$SecondaryWeaponModelToJson(this);
+  Map<String, dynamic> toJson() => _$GunModelToJson(this);
 
   @override
   List<Object?> get props => [
@@ -79,6 +85,7 @@ class SecondaryWeaponModel extends SecondaryWeapon {
         type,
         description,
         disposition,
+        category,
         wikiaUrl,
         wikiaThumbnail,
         trigger,
@@ -89,6 +96,7 @@ class SecondaryWeaponModel extends SecondaryWeapon {
         totalDamage,
         masteryReq,
         accuracy,
+        sentinel,
         noise,
         ammo,
         magazineSize,

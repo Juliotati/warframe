@@ -6,8 +6,10 @@ class CodexCategoryItem extends StatelessWidget {
     Key? key,
     required this.icon,
   }) : super(key: key);
+
   final String category;
   final IconData icon;
+
   void navigateToDataScreen(BuildContext context) {
     Navigator.pushNamed(
       context,

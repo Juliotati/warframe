@@ -4,29 +4,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:warframe/core/presentation/apis.dart';
 
+import '../models/gun_model.dart';
 import '../models/melee_weapon_model.dart';
-import '../models/primary_weapon_model.dart';
-import '../models/secondary_weapon_model.dart';
-
-enum WeaponCategory {
-  primary,
-  secondary,
-  melee,
-}
 
 class WeaponNetwork with ChangeNotifier {
-
-  List<Map<String, dynamic>> get data => _weapons;
-
-  List<PrimaryWeaponModel> get primary => _primary;
-
-  List<SecondaryWeaponModel> get secondary => _secondary;
-
+  List<GunModel> guns(String category) => _guns.where((GunModel gun) {
+        if (category == 'Companions') {
+          
+          return gun.sentinel == true && gun.name.startsWith('A');
+        } else {
+          return gun.category == category && gun.sentinel != true;
+        }
+      }).toList(growable: false);
+      
   List<MeleeWeaponModel> get melee => _melee;
 
-  final List<Map<String, dynamic>> _weapons = <Map<String, dynamic>>[];
-  final List<PrimaryWeaponModel> _primary = <PrimaryWeaponModel>[];
-  final List<SecondaryWeaponModel> _secondary = <SecondaryWeaponModel>[];
+  final List<GunModel> _guns = <GunModel>[];
   final List<MeleeWeaponModel> _melee = <MeleeWeaponModel>[];
 
   /// Gets all Prime and non-prime weapons from the official warframe API on
@@ -45,11 +38,9 @@ class WeaponNetwork with ChangeNotifier {
     for (int i = 0; i < data.length; i++) {
       final Map<String, dynamic> _jsonMap = data[i] as Map<String, dynamic>;
       final String category = _jsonMap['category'] as String;
-
-      if (category == 'Primary') {
-        _primary.add(PrimaryWeaponModel.fromJson(_jsonMap));
-      } else if (category == 'Secondary') {
-        _secondary.add(SecondaryWeaponModel.fromJson(_jsonMap));
+      final bool isGun = category == 'Primary' || category == 'Secondary';
+      if (isGun) {
+        _guns.add(GunModel.fromJson(_jsonMap));
       } else if (category == 'Melee') {
         _melee.add(MeleeWeaponModel.fromJson(_jsonMap));
       }

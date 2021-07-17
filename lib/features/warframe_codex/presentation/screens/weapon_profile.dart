@@ -1,49 +1,33 @@
 import 'package:warframe/export/warframe_ui.dart';
+import 'package:warframe/features/warframe_codex/data/models/gun_model.dart';
 import 'package:warframe/features/warframe_codex/data/models/melee_weapon_model.dart';
-import 'package:warframe/features/warframe_codex/data/models/primary_weapon_model.dart';
-import 'package:warframe/features/warframe_codex/data/models/secondary_weapon_model.dart';
 import 'package:warframe/features/warframe_codex/presentation/widgets/widgets.dart';
 
 class WeaponProfile extends StatelessWidget {
-  const WeaponProfile.primary({
+  const WeaponProfile.gun({
     Key? key,
-    required this.primary,
-    this.secondary,
+    required this.gun,
     this.melee,
-  })  : assert(secondary == null || melee == null,
-            'Use this constructor only for primary weapons category'),
-        super(key: key);
-
-  const WeaponProfile.secondary({
-    Key? key,
-    required this.secondary,
-    this.primary,
-    this.melee,
-  })  : assert(primary == null || melee == null,
-            'Use this constructor only for secondary weapons category'),
+  })  : assert(melee == null, 'Use this constructor only for gun category'),
         super(key: key);
 
   const WeaponProfile.melee({
     Key? key,
-    this.secondary,
-    this.primary,
+    this.gun,
     required this.melee,
-  })  : assert(primary == null || secondary == null,
+  })  : assert(gun == null,
             'Use this constructor only for melee weapons category'),
         super(key: key);
 
   final MeleeWeaponModel? melee;
-  final PrimaryWeaponModel? primary;
-  final SecondaryWeaponModel? secondary;
+  final GunModel? gun;
 
   static const String route = 'weapon-profile';
 
   @override
   Widget build(BuildContext context) {
-    if (primary != null) {
-      return PrimaryWeaponProfile(primary!);
-    } else if (secondary != null) {
-      return SecondaryWeaponProfile(secondary!);
+    if (gun != null) {
+      return GunProfile(gun!);
     } else if (melee != null) {
       return MeleeWeaponProfile(melee!);
     } else {
@@ -57,24 +41,20 @@ class WeaponProfile extends StatelessWidget {
 class WeaponStatsContainer extends StatelessWidget {
   const WeaponStatsContainer({
     Key? key,
-    this.primary,
-    this.secondary,
+    this.weapon,
     this.melee,
     this.isMeleeHeavyStats = false,
   }) : super(key: key);
 
-  final PrimaryWeaponModel? primary;
-  final SecondaryWeaponModel? secondary;
+  final GunModel? weapon;
   final MeleeWeaponModel? melee;
   final bool isMeleeHeavyStats;
 
   @override
   Widget build(BuildContext context) {
     List<Widget> weaponStatsBody() {
-      if (primary != null) {
-        return primaryWeaponStat(primary!);
-      } else if (secondary != null) {
-        return secondaryWeaponStat(secondary!);
+      if (weapon != null) {
+        return gunStat(weapon!);
       } else {
         return isMeleeHeavyStats
             ? meleeWeaponHeavyAttacksStat(melee!)
@@ -107,7 +87,8 @@ class WeaponStat extends StatelessWidget {
       children: <Widget>[
         StatsText(label),
         const Spacer(),
-        if (data is int || data is double) StatsText(double.parse('$data').toStringAsFixed(2)),
+        if (data is int || data is double)
+          StatsText(double.parse('$data').toStringAsFixed(2)),
         if (data is String) StatsText('$data'.toUpperCase()),
       ],
     );
