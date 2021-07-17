@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:warframe/export/warframe_ui.dart';
-import 'package:warframe/service/news_network.dart';
-import 'package:warframe/service/warframe_network.dart';
-import 'package:warframe/service/weapon_network.dart';
+import 'core/presentation/wrapper.dart';
+import 'export/warframe_ui.dart';
+import 'features/warframe_codex/data/datasources/warframe_network.dart';
+import 'features/warframe_codex/data/datasources/weapon_network.dart';
+import 'features/warframe_codex/presentation/screens/codex_categories.dart';
+import 'features/warframe_codex/presentation/screens/codex_category_data.dart';
+import 'features/warframe_news/data/datasources/news_network.dart';
+import 'features/warframe_news/presentation/screens/news.dart';
 
 class App extends StatelessWidget {
   @override
@@ -11,6 +15,7 @@ class App extends StatelessWidget {
     return MultiProvider(
       providers: <ListenableProvider<dynamic>>[
         ListenableProvider<WarframeNetwork>(create: (_) => WarframeNetwork()),
+        ListenableProvider<LayoutHelper>(create: (_) => LayoutHelper()),
         ListenableProvider<NewsNetwork>(create: (_) => NewsNetwork()),
         ListenableProvider<WeaponNetwork>(create: (_) => WeaponNetwork()),
       ],
@@ -21,29 +26,24 @@ class App extends StatelessWidget {
 
 class _App extends StatelessWidget {
   const _App({
-    Key key,
+    Key? key,
   }) : super(key: key);
-
-  Future<void> getDataFromAPI(BuildContext context) async {
-    await Provider.of<WarframeNetwork>(context, listen: false)
-        .getAllWarframes();
-    await Provider.of<WeaponNetwork>(context, listen: false).getWeapons();
-  }
 
   @override
   Widget build(BuildContext context) {
-    getDataFromAPI(context);
+    context.read<WarframeNetwork>().getAllWarframes();
+    context.read<WeaponNetwork>().getWeapons();
     return MaterialApp(
       title: 'Warframe',
       theme: warframeTheme,
       debugShowCheckedModeBanner: false,
-      home: NewsScreen(),
+      home: const WarframeWrapper(),
       routes: <String, Widget Function(BuildContext)>{
-        NewsScreen.route: (BuildContext context) => NewsScreen(),
-        LogIn.route: (BuildContext context) => LogIn(),
-        CodexCategoryData.route: (BuildContext context) => CodexCategoryData(),
-        WarframeProfile.route: (BuildContext context) => WarframeProfile(),
-        CodexCategories.route: (BuildContext context) => CodexCategories(),
+        WarframeWrapper.route: (_) => const WarframeWrapper(),
+        NewsScreen.route: (_) => const NewsScreen(),
+        WarframeProfile.route: (_) => const WarframeProfile(),
+        CodexCategories.route: (_) => const CodexCategories(),
+        CodexCategoryData.route: (_) => const CodexCategoryData(),
       },
     );
   }

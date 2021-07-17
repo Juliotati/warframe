@@ -10,6 +10,8 @@ analyzer:
 linter:
   rules:
 
+    avoid_bool_literals_in_conditional_expressions: false
+
     always_put_required_named_parameters_first: false
 
     avoid_classes_with_only_static_members: false

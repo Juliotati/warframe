@@ -1,7 +1,5 @@
-export 'package:warframe/ui/utilities/theme.dart';
-export 'package:warframe/ui/widgets/drawer/drawer_items.dart';
-export 'package:warframe/ui/screens/codex_categories.dart';
-export 'package:warframe/ui/screens/codex_category_data.dart';
-export 'package:warframe/ui/screens/warframe_profile.dart';
-export 'package:warframe/ui/screens/login.dart';
-export 'package:warframe/ui/screens/news.dart';
+
+export 'package:flutter/material.dart';
+export 'package:warframe/core/presentation/presentation.dart';
+export 'package:warframe/features/warframe_codex/data/models/warframe_model.dart';
+export 'package:warframe/features/warframe_codex/presentation/screens/warframe_profile.dart';
