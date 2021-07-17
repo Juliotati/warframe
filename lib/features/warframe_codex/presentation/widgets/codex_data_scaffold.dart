@@ -15,8 +15,11 @@ class CodexDataScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
+      backgroundColor: Colors.transparent,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: const Color.fromRGBO(255, 255, 255, 0.0),
         automaticallyImplyLeading: false,
         leading: Hero(
           tag: 'app-bar-icon',
@@ -29,7 +32,7 @@ class CodexDataScaffold extends StatelessWidget {
               centerChild: true,
               color: const Color.fromRGBO(255, 255, 255, 0.6),
               onTap: () => Navigator.of(context).pop(),
-              child:   Icon(
+              child: Icon(
                 icon ?? Icons.arrow_back,
                 color: const Color.fromRGBO(255, 255, 255, 1.0),
               ),

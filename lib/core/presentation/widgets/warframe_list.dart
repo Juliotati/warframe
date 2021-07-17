@@ -17,6 +17,7 @@ class WarframeListViewBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      key: key,
       physics: physics,
       scrollDirection: scrollDirection,
       itemCount: itemCount,

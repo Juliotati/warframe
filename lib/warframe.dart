@@ -10,6 +10,7 @@ import 'features/warframe_news/data/datasources/news_network.dart';
 import 'features/warframe_news/presentation/screens/news.dart';
 
 class App extends StatelessWidget {
+  const App();
   @override
   Widget build(BuildContext context) {
     return MultiProvider(

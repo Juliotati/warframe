@@ -1,19 +1,19 @@
 part of widgets;
 
-class PrimaryWeaponCard extends StatelessWidget {
-  const PrimaryWeaponCard({
+class GunCard extends StatelessWidget {
+  const GunCard({
     required Key key,
-    required this.primary,
+    required this.gun,
   }) : super(key: key);
 
-  final PrimaryWeaponModel primary;
+  final GunModel gun;
 
-  Future<void> selectPrimary(BuildContext context) async {
+  Future<void> selectGun(BuildContext context) async {
     Navigator.of(context).push(
       MaterialPageRoute<WeaponProfile>(
         builder: (BuildContext contetxt) {
-          return WeaponProfile.primary(
-            primary: primary,
+          return WeaponProfile.gun(
+            gun: gun,
           );
         },
       ),
@@ -23,43 +23,12 @@ class PrimaryWeaponCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StackedContainer(
-      onTap: () => selectPrimary(context),
-      key: Key(primary.uniqueName),
-      image: primary.wikiaThumbnail,
-      label: primary.name.toUpperCase(),
-      tag: primary.uniqueName,
-      labelTag: primary.description,
-    );
-  }
-}
-
-class SecondaryWeaponCard extends StatelessWidget {
-  const SecondaryWeaponCard({
-    required Key key,
-    required this.secondary,
-  }) : super(key: key);
-
-  final SecondaryWeaponModel secondary;
-
-  Future<void> selectSecondary(BuildContext context) async {
-    Navigator.of(context).push(
-      MaterialPageRoute<WeaponProfile>(
-        builder: (BuildContext contetxt) {
-          return WeaponProfile.secondary(secondary: secondary);
-        },
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return StackedContainer(
-      onTap: () => selectSecondary(context),
-      key: Key(secondary.uniqueName),
-      image: secondary.wikiaThumbnail,
-      label: secondary.name.toUpperCase(),
-      tag: secondary.uniqueName,
-      labelTag: secondary.description,
+      onTap: () => selectGun(context),
+      key: Key(gun.uniqueName),
+      image: gun.wikiaThumbnail,
+      label: gun.name.toUpperCase(),
+      tag: gun.uniqueName,
+      labelTag: gun.description,
     );
   }
 }

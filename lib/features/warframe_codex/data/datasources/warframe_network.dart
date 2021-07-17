@@ -23,8 +23,14 @@ class WarframeNetwork with ChangeNotifier {
   Future<void> getAllWarframes() async {
     final http.Response response = await http.get(Uri.parse(API.warframeAPI));
 
-    final List<dynamic> _data =
-        await json.decode(response.body) as List<dynamic>;
+    if (response.statusCode != 200) return;
+
+    List<dynamic>? _data = await json.decode(response.body) as List<dynamic>;
+
+    if (_warframes.isNotEmpty) {
+      _data = null;
+      return;
+    }
 
     final Iterable<WarframeModel> warframesData = _data.map((dynamic warframe) {
       return WarframeModel.fromJson(warframe as Map<String, dynamic>);

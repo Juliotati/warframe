@@ -1,27 +1,26 @@
 part of widgets;
 
-class CodexMeleeWeapons extends StatelessWidget {
-  const CodexMeleeWeapons({
-    Key? key,
-  }) : super(key: key);
+class CodexGuns extends StatelessWidget {
+  const CodexGuns(this.category, {Key? key}) : super(key: key);
 
-  static const String route = 'codex-melee-weapons';
-
+  static const String route = 'codex-guns';
+  final String category;
+  
   @override
   Widget build(BuildContext context) {
-    final List<MeleeWeaponModel> data = context.read<WeaponNetwork>().melee;
+    final List<GunModel> data = context.read<WeaponNetwork>().guns(category);
 
     return CodexDataScaffold(
-      label: 'Melee',
+      label: category,
       body: data.isEmpty
-          ? const LoadingIndicator('Loading Melee Weapons')
+          ? LoadingIndicator('Loading $category')
           : SafeArea(
             child: WarframeListViewBuilder(
                 itemCount: data.length,
                 itemBuilder: (_, int i) {
-                  return MeleeWeaponCard(
+                  return GunCard(
                     key: Key(data[i].uniqueName),
-                    melee: data[i],
+                    gun: data[i],
                   );
                 },
               ),
