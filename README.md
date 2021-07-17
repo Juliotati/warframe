@@ -8,8 +8,6 @@ Designing my favourite games' mobile app and populating it with data from its AP
 
 # Road Map - Here's the set of features that the app will have overtime.
 
-screenshots of completed screens coming soon
-
 ### 1. News Screen
 ```
 [x] Warframe news
@@ -56,3 +54,11 @@ screenshots of completed screens coming soon
 
 [ ] Syndicates
 ```
+
+# ScreenShots
+
+![News Screen](https://user-images.githubusercontent.com/59662912/126049122-a6d4b8f6-aa20-415e-a492-9f9afc792ab3.png)
+![App Drawer](https://user-images.githubusercontent.com/59662912/126049137-631eafe0-793b-47e6-be9f-1f2bfb88a5bc.png)
+![Warframes](https://user-images.githubusercontent.com/59662912/126049171-2a965de4-8e44-466d-99ab-0fa94947f64f.png)
+![Ash Prime](https://user-images.githubusercontent.com/59662912/126049118-09239471-73b4-4794-8657-292a6729cde2.png)
+![Kuva Hek](https://user-images.githubusercontent.com/59662912/126049140-3c2ee979-2d50-473b-8c75-cf2fbdfee447.png)
