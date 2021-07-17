@@ -34,9 +34,9 @@ screenshots of completed screens coming soon
 
 [ ] Mod Details
 
-[ ] Companions Listing
+[x] Companions Listing
 
-[ ] Companions Profile/Details
+[x] Companions Profile/Details
 ```
 
 ### 3. Activities Screen
