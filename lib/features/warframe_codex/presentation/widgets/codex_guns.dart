@@ -14,15 +14,17 @@ class CodexGuns extends StatelessWidget {
       label: category,
       body: data.isEmpty
           ? LoadingIndicator('Loading $category')
-          : WarframeListViewBuilder(
-              itemCount: data.length,
-              itemBuilder: (_, int i) {
-                return GunCard(
-                  key: Key(data[i].uniqueName),
-                  gun: data[i],
-                );
-              },
-            ),
+          : SafeArea(
+            child: WarframeListViewBuilder(
+                itemCount: data.length,
+                itemBuilder: (_, int i) {
+                  return GunCard(
+                    key: Key(data[i].uniqueName),
+                    gun: data[i],
+                  );
+                },
+              ),
+          ),
     );
   }
 }

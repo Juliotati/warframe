@@ -9,21 +9,23 @@ class CodexMeleeWeapons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<MeleeWeaponModel> data = context.watch<WeaponNetwork>().melee;
+    final List<MeleeWeaponModel> data = context.read<WeaponNetwork>().melee;
 
     return CodexDataScaffold(
       label: 'Melee',
       body: data.isEmpty
           ? const LoadingIndicator('Loading Melee Weapons')
-          : WarframeListViewBuilder(
-              itemCount: data.length,
-              itemBuilder: (_, int i) {
-                return MeleeWeaponCard(
-                  key: ValueKey<String>(data[i].uniqueName),
-                  melee: data[i],
-                );
-              },
-            ),
+          : SafeArea(
+            child: WarframeListViewBuilder(
+                itemCount: data.length,
+                itemBuilder: (_, int i) {
+                  return MeleeWeaponCard(
+                    key: Key(data[i].uniqueName),
+                    melee: data[i],
+                  );
+                },
+              ),
+          ),
     );
   }
 }

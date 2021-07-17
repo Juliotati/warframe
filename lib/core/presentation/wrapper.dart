@@ -18,7 +18,7 @@ class WarframeWrapper extends StatelessWidget {
         return Future<bool>.value(false);
       },
       child: Scaffold(
-        drawerEdgeDragWidth: 50,
+        drawerEdgeDragWidth: 150,
         extendBody: true,
         extendBodyBehindAppBar: true,
         backgroundColor: Colors.transparent,
