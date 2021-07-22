@@ -5,8 +5,8 @@ import '../../../../core/usecases/usecases.dart';
 import '../entities/warframe_news.dart';
 import '../repositories/warframe_news_repository.dart';
 
-class GetWaframeNews implements UseCase<List<WarframeNews>, NoParams> {
-  const GetWaframeNews(this.repository);
+class GetWarframeNews implements UseCase<List<WarframeNews>, NoParams> {
+  const GetWarframeNews(this.repository);
 
   final WarframeNewsRepository repository;
 
