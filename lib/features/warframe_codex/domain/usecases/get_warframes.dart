@@ -5,13 +5,13 @@ import '../../../../core/usecases/usecases.dart';
 import '../entities/warframe.dart';
 import '../repositories/warframe_repository.dart';
 
-class GetWarframe implements UseCase<Warframe, Params> {
-  const GetWarframe(this.repository);
+class GetWarframes implements UseCase<List<Warframe>, NoParams> {
+  const GetWarframes(this.repository);
 
   final WarframeRepository repository;
 
   @override
-  Future<Either<Failure, Warframe>> call(Params params) async {
-    return repository.getWarframe(params.name);
+  Future<Either<Failure, List<Warframe>>> call(NoParams params) async {
+    return repository.getWarframes();
   }
 }

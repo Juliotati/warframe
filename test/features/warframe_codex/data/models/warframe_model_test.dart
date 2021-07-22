@@ -13,7 +13,7 @@ void main() {
     name: 'Ash',
     wikiaThumbnail:
         'https://static.wikia.nocookie.net/warframe/images/1/17/AshNewLook.png/revision/latest?cb=20141124022921',
-    abilities: [
+    abilities: <AbilitiesModel>[
       AbilitiesModel(
         name: 'Shuriken',
         description:

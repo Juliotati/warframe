@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:warframe/core/error/failures.dart';
+import 'package:warframe/core/usecases/usecases.dart';
 import 'package:warframe/export/warframe_ui.dart';
 import 'package:warframe/features/warframe_codex/data/models/warframe_abilities_model.dart';
 import 'package:warframe/features/warframe_codex/domain/entities/warframe.dart';
@@ -61,10 +62,10 @@ void main() {
       when(mockWarframeRepository.getWarframe(tWarframeName))
           .thenAnswer((_) async => const Right(tWarframe));
 
-      final Either<Failure, Warframe> result =
-          await useCase(Params(tWarframeName));
+      final Either<Failure, Warframe> result = await useCase(Params(tWarframeName));
 
       expect(result, const Right(tWarframe));
+
       verify(mockWarframeRepository.getWarframe(tWarframeName));
       verifyNoMoreInteractions(mockWarframeRepository);
     },
