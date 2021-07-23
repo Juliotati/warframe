@@ -7,7 +7,14 @@ import 'package:warframe/core/presentation/apis.dart';
 import '../models/gun_model.dart';
 import '../models/melee_weapon_model.dart';
 
-class WeaponNetwork with ChangeNotifier {
+abstract class WeaponRemoteDatasource {
+  /// Gets all Prime and non-prime weapons from the official warframe API on
+  /// app launch
+  /// Rethrows an [Error] if something goes wrong
+  Future<void> getRemoteWeapons();
+}
+
+class WeaponNetwork extends WeaponRemoteDatasource with ChangeNotifier {
   List<GunModel> guns(String category) {
     return _guns.where((GunModel gun) {
       if (category == 'Companions') {
@@ -23,10 +30,8 @@ class WeaponNetwork with ChangeNotifier {
   final List<GunModel> _guns = <GunModel>[];
   final List<MeleeWeaponModel> _melee = <MeleeWeaponModel>[];
 
-  /// Gets all Prime and non-prime weapons from the official warframe API on
-  /// app launch
-  /// Rethrows an [Error] if something goes wrong
-  Future<void> getWeapons() async {
+  @override
+  Future<void> getRemoteWeapons() async {
     try {
       final http.Response response = await http.get(Uri.parse(API.weaponAPI));
       if (response.statusCode != 200) {

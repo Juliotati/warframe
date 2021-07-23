@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'core/presentation/wrapper.dart';
 import 'export/warframe_ui.dart';
-import 'features/warframe_codex/data/datasources/warframe_network.dart';
-import 'features/warframe_codex/data/datasources/weapon_network.dart';
+import 'features/warframe_codex/data/datasources/warframe_remote_datasource.dart';
+import 'features/warframe_codex/data/datasources/weapon_remote_datasource.dart';
 import 'features/warframe_codex/presentation/screens/codex_categories.dart';
 import 'features/warframe_codex/presentation/screens/codex_category_data.dart';
 import 'features/warframe_news/data/datasources/warframe_news_remote_datasource.dart';
@@ -36,7 +36,7 @@ class _App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.read<WarframeNetwork>().getAllWarframes();
-    context.read<WeaponNetwork>().getWeapons();
+    context.read<WeaponNetwork>().getRemoteWeapons();
     return MaterialApp(
       title: 'Warframe',
       theme: warframeTheme,

@@ -10,8 +10,8 @@ import 'package:warframe/features/warframe_codex/presentation/screens/weapon_pro
 
 import '../../../../core/presentation/presentation.dart';
 import '../../../../export/warframe_ui.dart';
-import '../../data/datasources/warframe_network.dart';
-import '../../data/datasources/weapon_network.dart';
+import '../../data/datasources/warframe_remote_datasource.dart';
+import '../../data/datasources/weapon_remote_datasource.dart';
 import '../../data/models/gun_model.dart';
 import '../../data/models/warframe_abilities_model.dart';
 import '../../data/models/warframe_model.dart';
