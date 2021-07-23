@@ -43,7 +43,7 @@ class WeaponNetwork with ChangeNotifier {
         return;
       }
 
-      await sortWeapons(data);
+      await _sortWeapons(data);
     } catch (e) {
       debugPrint(e.toString());
       rethrow;
@@ -51,7 +51,7 @@ class WeaponNetwork with ChangeNotifier {
   }
 
   /// Adds weapons to their respective category
-  Future<void> sortWeapons(List<dynamic> data) async {
+  Future<void> _sortWeapons(List<dynamic> data) async {
     for (int i = 0; i < data.length; i++) {
       final Map<String, dynamic> _jsonMap = data[i] as Map<String, dynamic>;
       final String category = _jsonMap['category'] as String;
@@ -62,7 +62,6 @@ class WeaponNetwork with ChangeNotifier {
           _guns.add(GunModel.fromJson(_jsonMap));
         } catch (e) {
           debugPrint(e.toString());
-
           rethrow;
         }
       }
