@@ -12,6 +12,6 @@ class GetWarframeNews implements UseCase<List<WarframeNews>, NoParams> {
 
   @override
   Future<Either<Failure, List<WarframeNews>>> call(NoParams params) async {
-    return repository.getNews();
+    return repository.getWarframeNews();
   }
 }

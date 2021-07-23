@@ -1,15 +1,16 @@
 import 'package:dartz/dartz.dart';
-import 'package:mockito/mockito.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
 import 'package:warframe/core/error/failures.dart';
 import 'package:warframe/core/usecases/usecases.dart';
 import 'package:warframe/features/warframe_news/domain/entities/warframe_news.dart';
 import 'package:warframe/features/warframe_news/domain/repositories/warframe_news_repository.dart';
 import 'package:warframe/features/warframe_news/domain/usecases/get_warframe_news.dart';
 
-class MockWarframeNewsRepository extends Mock implements WarframeNewsRepository {}
+class MockWarframeNewsRepository extends Mock
+    implements WarframeNewsRepository {}
 
-void main() {
+Future<void> main() async {
   late GetWarframeNews useCase;
   late MockWarframeNewsRepository mockWarframeNewsRepository;
 
@@ -34,13 +35,14 @@ void main() {
   test(
     'get warframe news from the repository',
     () async {
-      when(await mockWarframeNewsRepository.getNews())
+      when(await mockWarframeNewsRepository.getWarframeNews())
           .thenAnswer((_) => const Right(tWarframeNewsList));
 
-      final Either<Failure, List<WarframeNews>> result = await useCase(NoParams());
+      final Either<Failure, List<WarframeNews>> result =
+          await useCase(NoParams());
 
       expect(result, const Right(tWarframeNewsList));
-      verify(mockWarframeNewsRepository.getNews());
+      verify(mockWarframeNewsRepository.getWarframeNews());
       verifyNoMoreInteractions(mockWarframeNewsRepository);
     },
   );

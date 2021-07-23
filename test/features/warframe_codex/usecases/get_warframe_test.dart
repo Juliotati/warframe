@@ -23,6 +23,14 @@ void main() {
     uniqueName: '/Lotus/Powersuits/Ninja/Ninja',
     name: 'Ash',
     wikiaThumbnail: '',
+    armor: 100,
+    description:
+        'Ash is great for players looking for a stealthier approach to combat. Lethal abilities are complemented by powers of distraction.',
+    category: 'Warframes',
+    health: 150,
+    power: 100,
+    shield: 100,
+    wikiaUrl: 'http://warframe.fandom.com/wiki/Ash',
     abilities: <AbilitiesModel>[
       AbilitiesModel(
         name: 'Shuriken',
@@ -45,14 +53,6 @@ void main() {
             'Project fierce shadow clones of Ash upon groups of distant enemies. Join the fray using Teleport.',
       ),
     ],
-    armor: 100,
-    description:
-        'Ash is great for players looking for a stealthier approach to combat. Lethal abilities are complemented by powers of distraction.',
-    category: 'Warframes',
-    health: 150,
-    power: 100,
-    shield: 100,
-    wikiaUrl: 'http://warframe.fandom.com/wiki/Ash',
   );
   final String tWarframeName = tWarframe.name;
 
@@ -62,7 +62,8 @@ void main() {
       when(mockWarframeRepository.getWarframe(tWarframeName))
           .thenAnswer((_) async => const Right(tWarframe));
 
-      final Either<Failure, Warframe> result = await useCase(Params(tWarframeName));
+      final Either<Failure, Warframe> result =
+          await useCase(Params(tWarframeName));
 
       expect(result, const Right(tWarframe));
 

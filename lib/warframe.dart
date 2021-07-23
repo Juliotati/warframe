@@ -6,11 +6,14 @@ import 'features/warframe_codex/data/datasources/warframe_network.dart';
 import 'features/warframe_codex/data/datasources/weapon_network.dart';
 import 'features/warframe_codex/presentation/screens/codex_categories.dart';
 import 'features/warframe_codex/presentation/screens/codex_category_data.dart';
-import 'features/warframe_news/data/datasources/news_network.dart';
+import 'features/warframe_news/data/datasources/warframe_news_remote_datasource.dart';
 import 'features/warframe_news/presentation/screens/news.dart';
 
 class App extends StatelessWidget {
-  const App();
+  const App({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(

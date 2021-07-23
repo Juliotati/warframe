@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../export/warframe_ui.dart';
-import '../../data/datasources/news_network.dart';
+import '../../data/datasources/warframe_news_remote_datasource.dart';
 import '../../data/models/warframe_news.dart';
 import '../widgets/news_card_item.dart';
 
@@ -30,7 +30,7 @@ class _NewsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<WarframeNewsModel>>(
-      future: context.read<NewsNetwork>().getWarframeNews(),
+      future: context.read<NewsNetwork>().getRemoteWarframeNews(),
       builder: (
         BuildContext context,
         AsyncSnapshot<List<WarframeNewsModel>> snapshot,

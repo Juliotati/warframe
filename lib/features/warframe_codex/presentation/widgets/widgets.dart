@@ -19,7 +19,6 @@ import '../screens/codex_category_data.dart';
 
 part 'codex_category_item.dart';
 part 'codex_data_scaffold.dart';
-part 'codex_grid_item.dart';
 part 'codex_melee_weapons.dart';
 part 'codex_guns.dart';
 part 'codex_warframes.dart';

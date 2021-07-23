@@ -8,3 +8,7 @@ abstract class Failure extends Equatable {
   @override
   List<Object?> get props => <dynamic>[properties];
 }
+
+class ServerFailure extends Failure {}
+
+class LocalFailure extends Failure {}
