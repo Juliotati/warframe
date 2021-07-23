@@ -25,6 +25,7 @@ class WeaponNetwork with ChangeNotifier {
 
   /// Gets all Prime and non-prime weapons from the official warframe API on
   /// app launch
+  /// Rethrows an [Error] if something goes wrong
   Future<void> getWeapons() async {
     try {
       final http.Response response = await http.get(Uri.parse(API.weaponAPI));
@@ -51,6 +52,7 @@ class WeaponNetwork with ChangeNotifier {
   }
 
   /// Adds weapons to their respective category
+  /// Rethrows an [Error] if something goes wrong
   Future<void> _sortWeapons(List<dynamic> data) async {
     for (int i = 0; i < data.length; i++) {
       final Map<String, dynamic> _jsonMap = data[i] as Map<String, dynamic>;
