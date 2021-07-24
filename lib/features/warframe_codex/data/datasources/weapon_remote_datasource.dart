@@ -8,8 +8,7 @@ import '../models/gun_model.dart';
 import '../models/melee_weapon_model.dart';
 
 abstract class WeaponRemoteDatasource {
-  /// Gets all Prime and non-prime weapons from the official warframe API on
-  /// app launch
+  /// Gets all Prime and non-prime weapons from the official warframe API on app launch
   /// Rethrows an [Error] if something goes wrong
   Future<void> getRemoteWeapons();
 }
@@ -39,17 +38,17 @@ class WeaponNetwork extends WeaponRemoteDatasource with ChangeNotifier {
         return;
       }
 
-      List<dynamic>? data = await json.decode(response.body) as List<dynamic>;
+      List<dynamic>? decodedWeapons = await json.decode(response.body) as List<dynamic>;
 
       if (_guns.isNotEmpty) {
         debugPrint('''
-        DISPOSING OF ${data.length} WEAPONS
+        DISPOSING OF ${decodedWeapons.length} WEAPONS
         ${_guns.length + _melee.length} ITEMS ALREADY EXIST''');
-        data = null;
+        decodedWeapons = null;
         return;
       }
 
-      await _sortWeapons(data);
+      await _sortWeapons(decodedWeapons);
     } catch (e) {
       debugPrint(e.toString());
       rethrow;
@@ -58,9 +57,9 @@ class WeaponNetwork extends WeaponRemoteDatasource with ChangeNotifier {
 
   /// Adds weapons to their respective category
   /// Rethrows an [Error] if something goes wrong
-  Future<void> _sortWeapons(List<dynamic> data) async {
-    for (int i = 0; i < data.length; i++) {
-      final Map<String, dynamic> _jsonMap = data[i] as Map<String, dynamic>;
+  Future<void> _sortWeapons(List<dynamic> decodedWeapons) async {
+    for (int i = 0; i < decodedWeapons.length; i++) {
+      final Map<String, dynamic> _jsonMap = decodedWeapons[i] as Map<String, dynamic>;
       final String category = _jsonMap['category'] as String;
       final bool isGunType = category == 'Primary' || category == 'Secondary';
 

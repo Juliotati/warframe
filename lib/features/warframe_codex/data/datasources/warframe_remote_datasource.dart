@@ -33,17 +33,17 @@ class WarframeNetwork extends WarframeRemoteDatasource with ChangeNotifier {
 
     if (response.statusCode != 200) return;
 
-    List<dynamic>? _data = await json.decode(response.body) as List<dynamic>;
+    List<dynamic>? _decodedWarframes = await jsonDecode(response.body) as List<dynamic>;
 
     if (_warframes.isNotEmpty) {
-      _data = null;
+      _decodedWarframes = null;
       return;
     }
 
-    final Iterable<WarframeModel> warframesData = _data.map((dynamic warframe) {
+    final Iterable<WarframeModel> parsedWarframes = _decodedWarframes.map((dynamic warframe) {
       return WarframeModel.fromJson(warframe as Map<String, dynamic>);
     });
 
-    if (_warframes.isEmpty) _warframes.addAll(warframesData);
+    if (_warframes.isEmpty) _warframes.addAll(parsedWarframes);
   }
 }
