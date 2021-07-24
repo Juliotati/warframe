@@ -28,9 +28,9 @@ Designing my favourite games' mobile app and populating it with data from its AP
 ```
 ### 2.1 Codex Screen 
 ```
-[ ] Mods Listing
+[x] Mods Listing
 
-[ ] Mod Details
+[x] Mod Details
 
 [x] Companions Listing
 
