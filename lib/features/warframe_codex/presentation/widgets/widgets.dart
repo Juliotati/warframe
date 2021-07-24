@@ -3,6 +3,7 @@ library widgets;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:animations/animations.dart';
 import 'package:warframe/features/warframe_codex/data/datasources/mods_remote_datasource.dart';
 
 import 'package:warframe/features/warframe_codex/data/models/melee_weapon_model.dart';

@@ -22,17 +22,25 @@ class ModsNetwork extends ModsRemoteDatasource with ChangeNotifier {
 
     if (response.statusCode != 200) return;
 
-    List<dynamic>? decodedMods = await jsonDecode(response.body) as List<dynamic>;
+    List<dynamic>? decodedMods =
+        await jsonDecode(response.body) as List<dynamic>;
 
     if (_mods.isNotEmpty) {
       decodedMods = null;
       return;
     }
 
-    final Iterable<ModModel> parsedMods = decodedMods.map((dynamic mod) {
-      return ModModel.fromJson(mod as Map<String, dynamic>);
-    });
-
-    if (_mods.isEmpty) _mods.addAll(parsedMods);
+    for (int i = 0; i < decodedMods.length; i++) {
+      final Map<String, dynamic> _jsonMap =
+          decodedMods[i] as Map<String, dynamic>;
+      try {
+        if (_jsonMap['name'] != decodedMods[i + 1]['name']) {
+          _mods.add(ModModel.fromJson(_jsonMap));
+        }
+        // ignore: avoid_catching_errors
+      } on RangeError {
+        return;
+      }
+    }
   }
 }
