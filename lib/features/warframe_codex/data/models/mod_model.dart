@@ -9,22 +9,24 @@ class ModModel extends Mod {
     required this.baseDrain,
     required this.category,
     required this.compatName,
-    required this.fufionLimit,
+    required this.fusionLimit,
     required this.name,
     required this.polarity,
     required this.rarity,
     required this.type,
+    required this.uniqueName,
     required this.wikiaThumbnail,
     required this.wikiaUrl,
   }) : super(
           baseDrain: baseDrain,
           category: category,
           compatName: compatName,
-          fufionLimit: fufionLimit,
+          fusionLimit: fusionLimit,
           name: name,
           polarity: polarity,
           rarity: rarity,
           type: type,
+          uniqueName: uniqueName,
           wikiaThumbnail: wikiaThumbnail,
           wikiaUrl: wikiaUrl,
         );
@@ -35,14 +37,30 @@ class ModModel extends Mod {
 
   Map<String, dynamic> toJson() => _$ModModelToJson(this);
 
-  final int? baseDrain;
-  final String? category;
+  final int baseDrain;
+  final String category;
   final String? compatName;
-  final int? fufionLimit;
-  final String? name;
-  final String? polarity;
-  final String? rarity;
-  final String? type;
+  final int? fusionLimit;
+  final String name;
+  final String polarity;
+  final String rarity;
+  final String type;
+  final String uniqueName;
   final String? wikiaThumbnail;
   final String? wikiaUrl;
+
+  @override
+  List<Object?> get props => <dynamic>[
+        baseDrain,
+        category,
+        compatName,
+        fusionLimit,
+        name,
+        polarity,
+        rarity,
+        type,
+        uniqueName,
+        wikiaThumbnail,
+        wikiaUrl,
+      ];
 }

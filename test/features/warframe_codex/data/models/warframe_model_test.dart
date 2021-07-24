@@ -55,10 +55,8 @@ void main() {
     test(
       'first warframe in the List should match',
       () async {
-        final List<dynamic> jsonMap =
-            await jsonDecode(fixture('warframe.json')) as List<dynamic>;
-        final WarframeModel result =
-            WarframeModel.fromJson(jsonMap.first as Map<String, dynamic>);
+        final List<dynamic> jsonMap = await jsonDecode(fixture('warframe.json')) as List<dynamic>;
+        final WarframeModel result = WarframeModel.fromJson(jsonMap.first as Map<String, dynamic>);
         expect(result, equals(tWarframeModel));
       },
     );
