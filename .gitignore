@@ -30,7 +30,6 @@
 .pub-cache/
 .pub/
 /build/
-lib/core/presentation/apis.dart
 
 # Web related
 lib/generated_plugin_registrant.dart
