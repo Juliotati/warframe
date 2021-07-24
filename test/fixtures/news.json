@@ -1,0 +1,50 @@
+[
+    {
+        "id": "1",
+        "message": "This is a sample news 1",
+        "link": "https://new.com/",
+        "date": "2021-07-06 23:03:09.344",
+        "imageLink": "imageLink",
+        "priority": false,
+        "eta": "159d 5h 10m 35s ago",
+        "update": false,
+        "primeAccess": false,
+        "stream": false,
+        "translations": {
+            "en": "Visit Warframe's Player-Run Wiki!"
+        },
+        "asString": "[159d 5h 10m 35s ago] [Visit Warframe's Player-Run Wiki!](https://warframe.fandom.com/wiki/WARFRAME_Wiki)"
+    },
+    {
+        "id": "2",
+        "message": "This is a sample news 2",
+        "link": "https://new.com/",
+        "date": "2021-07-06 23:03:09.344",
+        "imageLink": "imageLink",
+        "priority": false,
+        "eta": "159d 5h 10m 35s ago",
+        "update": false,
+        "primeAccess": false,
+        "stream": false,
+        "translations": {
+            "en": "Visit Warframe's Player-Run Wiki!"
+        },
+        "asString": "[159d 5h 10m 35s ago] [Visit Warframe's Player-Run Wiki!](https://warframe.fandom.com/wiki/WARFRAME_Wiki)"
+    },
+    {
+        "id": "3",
+        "message": "This is a sample news 3",
+        "link": "https://new.com/",
+        "date": "2021-07-06 23:03:09.344",
+        "imageLink": "imageLink",
+        "priority": false,
+        "eta": "159d 5h 10m 35s ago",
+        "update": false,
+        "primeAccess": false,
+        "stream": false,
+        "translations": {
+            "en": "Visit Warframe's Player-Run Wiki!"
+        },
+        "asString": "[159d 5h 10m 35s ago] [Visit Warframe's Player-Run Wiki!](https://warframe.fandom.com/wiki/WARFRAME_Wiki)"
+    }
+]

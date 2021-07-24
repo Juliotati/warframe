@@ -1,0 +1,15 @@
+[
+  {
+    "baseDrain": 4,
+    "category": "Mods",
+    "compatName": "WARFRAME",
+    "fusionLimit": 5,
+    "name": "Flow",
+    "polarity": "Naramon",
+    "rarity": "Rare",
+    "type": "Warframe Mod",
+    "uniqueName": "/Lotus/Upgrades/Mods/Warframe/AvatarPowerMaxMod",
+    "wikiaThumbnail": "https://static.wikia.nocookie.net/warframe/images/d/d2/FlowModU145.png/revision/latest?cb=20171007150510",
+    "wikiaUrl": "http://warframe.fandom.com/wiki/Flow"
+  }
+]
