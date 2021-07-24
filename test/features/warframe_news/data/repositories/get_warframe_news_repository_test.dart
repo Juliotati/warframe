@@ -5,8 +5,7 @@ import 'package:warframe/features/warframe_news/data/datasources/warframe_news_l
 import 'package:warframe/features/warframe_news/data/datasources/warframe_news_remote_datasource.dart';
 import 'package:warframe/features/warframe_news/data/repositories/warframe_news_repository_impl.dart';
 
-class MockRemoteDatasource extends Mock
-    implements WarframeNewsRemoteDatasource {}
+class MockRemoteDatasource extends Mock implements WarframeNewsRemoteDatasource {}
 
 class MockLocalDatasource extends Mock implements WarframeNewsLocalDatasource {}
 

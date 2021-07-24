@@ -9,8 +9,7 @@ import '../../../../fixtures/fixture_reader.dart';
 void main() {
   const AbilitiesModel tAbilitiesModel = AbilitiesModel(
     name: 'Shuriken',
-    description:
-        'Launches a spinning blade of pain, dealing high damage and impaling enemies to walls.',
+    description: 'Launches a spinning blade of pain, dealing high damage and impaling enemies to walls.',
   );
 
   test(
@@ -22,12 +21,10 @@ void main() {
 
   group('fromJson', () {
     test(
-      'first ability in the List should match',
+      'first ability in list should match [$tAbilitiesModel]',
       () async {
-        final List<dynamic> jsonMap =
-            await jsonDecode(fixture('abilities.json')) as List<dynamic>;
-        final AbilitiesModel result =
-            AbilitiesModel.fromJson(jsonMap.first as Map<String, dynamic>);
+        final List<dynamic> jsonMap = await jsonDecode(fixture('abilities.json')) as List<dynamic>;
+        final AbilitiesModel result = AbilitiesModel.fromJson(jsonMap.first as Map<String, dynamic>);
         expect(result, equals(tAbilitiesModel));
       },
     );

@@ -30,7 +30,7 @@ void main() {
 
   group('fromJson', () {
     test(
-      'should return a List of mods data in json format',
+      'first mod in list should match [$tModModel]',
       () async {
         final List<dynamic> jsonMap = await jsonDecode(fixture('mod.json')) as List<dynamic>;
         final ModModel result = ModModel.fromJson(jsonMap.first as Map<String, dynamic>);

@@ -7,7 +7,7 @@ import 'package:warframe/features/warframe_news/domain/entities/warframe_news.da
 import '../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  const WarframeNewsModel tWarframeModel = WarframeNewsModel(
+  const WarframeNewsModel tNewsModel = WarframeNewsModel(
     id: '1',
     message: 'This is a sample news 1',
     link: 'https://new.com/',
@@ -18,19 +18,18 @@ void main() {
   test(
     'WarframeNewsModel should be a subclass of WarframeNews entity',
     () async {
-      expect(tWarframeModel, isA<WarframeNews>());
+      expect(tNewsModel, isA<WarframeNews>());
     },
   );
 
   group('fromJson', () {
     test(
-      'should return a List of news data in json',
+      'first news in list should match [$tNewsModel]',
       () async {
         final List<dynamic> jsonMap =
             await jsonDecode(fixture('news.json')) as List<dynamic>;
-        final WarframeNewsModel result =
-            WarframeNewsModel.fromJson(jsonMap.first as Map<String, dynamic>);
-        expect(result, equals(tWarframeModel));
+        final WarframeNewsModel result = WarframeNewsModel.fromJson(jsonMap.first as Map<String, dynamic>);
+        expect(result, equals(tNewsModel));
       },
     );
   });
