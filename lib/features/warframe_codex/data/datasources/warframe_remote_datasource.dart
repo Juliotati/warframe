@@ -12,7 +12,7 @@ abstract class WarframeRemoteDatasource {
   WarframeModel getWarframe(String warframeName);
 
   /// Gets all Prime and non-prime warframes from the official warframe API
-  Future<void> getAllWarframes();
+  Future<void>getRemoteWarframes();
 }
 
 class WarframeNetwork extends WarframeRemoteDatasource with ChangeNotifier {
@@ -28,7 +28,7 @@ class WarframeNetwork extends WarframeRemoteDatasource with ChangeNotifier {
   }
 
   @override
-  Future<void> getAllWarframes() async {
+  Future<void> getRemoteWarframes() async {
     final http.Response response = await http.get(Uri.parse(API.warframeAPI));
 
     if (response.statusCode != 200) return;

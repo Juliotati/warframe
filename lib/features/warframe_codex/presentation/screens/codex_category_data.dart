@@ -17,10 +17,12 @@ class CodexCategoryData extends StatelessWidget {
         return CodexGuns(_category);
       case 'secondary':
         return CodexGuns(_category);
-      case 'companions':
-        return CodexGuns(_category);
       case 'melee':
         return const CodexMeleeWeapons();
+      case 'companions':
+        return CodexGuns(_category);
+      case 'mods':
+        return const CodexModsListView();
       default:
         return const CodexWarframesListView();
     }

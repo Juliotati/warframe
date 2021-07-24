@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:warframe/features/warframe_codex/data/datasources/mods_remote_datasource.dart';
 import 'core/presentation/wrapper.dart';
 import 'export/warframe_ui.dart';
 import 'features/warframe_codex/data/datasources/warframe_remote_datasource.dart';
@@ -19,6 +20,7 @@ class App extends StatelessWidget {
     return MultiProvider(
       providers: <ListenableProvider<dynamic>>[
         ListenableProvider<WarframeNetwork>(create: (_) => WarframeNetwork()),
+        ListenableProvider<ModsNetwork>(create: (_) => ModsNetwork()),
         ListenableProvider<LayoutHelper>(create: (_) => LayoutHelper()),
         ListenableProvider<NewsNetwork>(create: (_) => NewsNetwork()),
         ListenableProvider<WeaponNetwork>(create: (_) => WeaponNetwork()),
@@ -35,7 +37,8 @@ class _App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<WarframeNetwork>().getAllWarframes();
+    context.read<WarframeNetwork>().getRemoteWarframes();
+    context.read<ModsNetwork>().getRemoteMods();
     context.read<WeaponNetwork>().getRemoteWeapons();
     return MaterialApp(
       title: 'Warframe',

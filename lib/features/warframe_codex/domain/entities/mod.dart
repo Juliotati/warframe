@@ -12,14 +12,14 @@ abstract class Mod {
     required this.wikiaUrl,
   });
 
-  final int baseDrain;
-  final String category;
-  final String compatName;
-  final int fufionLimit;
-  final String name;
-  final String polarity;
-  final String rarity;
-  final String type;
-  final String wikiaThumbnail;
-  final String wikiaUrl;
+  final int? baseDrain;
+  final String? category;
+  final String? compatName;
+  final int? fufionLimit;
+  final String? name;
+  final String? polarity;
+  final String? rarity;
+  final String? type;
+  final String? wikiaThumbnail;
+  final String? wikiaUrl;
 }

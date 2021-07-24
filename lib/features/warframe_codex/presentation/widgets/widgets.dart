@@ -3,8 +3,10 @@ library widgets;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:warframe/features/warframe_codex/data/datasources/mods_remote_datasource.dart';
 
 import 'package:warframe/features/warframe_codex/data/models/melee_weapon_model.dart';
+import 'package:warframe/features/warframe_codex/data/models/mod_model.dart';
 import 'package:warframe/features/warframe_codex/data/models/weapon_model.dart';
 import 'package:warframe/features/warframe_codex/presentation/screens/weapon_profile.dart';
 
@@ -21,6 +23,7 @@ part 'codex_category_item.dart';
 part 'codex_data_scaffold.dart';
 part 'codex_melee_weapons.dart';
 part 'codex_guns.dart';
+part 'codex_mods.dart';
 part 'codex_warframes.dart';
 part 'codex_warframes_list_item.dart';
 part 'details_body_wrapper.dart';

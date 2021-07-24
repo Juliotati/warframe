@@ -8,16 +8,16 @@ part of 'mod_model.dart';
 
 ModModel _$ModModelFromJson(Map<String, dynamic> json) {
   return ModModel(
-    baseDrain: json['baseDrain'] as int,
-    category: json['category'] as String,
-    compatName: json['compatName'] as String,
-    fufionLimit: json['fufionLimit'] as int,
-    name: json['name'] as String,
-    polarity: json['polarity'] as String,
-    rarity: json['rarity'] as String,
-    type: json['type'] as String,
-    wikiaThumbnail: json['wikiaThumbnail'] as String,
-    wikiaUrl: json['wikiaUrl'] as String,
+    baseDrain: json['baseDrain'] as int?,
+    category: json['category'] as String?,
+    compatName: json['compatName'] as String?,
+    fufionLimit: json['fufionLimit'] as int?,
+    name: json['name'] as String?,
+    polarity: json['polarity'] as String?,
+    rarity: json['rarity'] as String?,
+    type: json['type'] as String?,
+    wikiaThumbnail: json['wikiaThumbnail'] as String?,
+    wikiaUrl: json['wikiaUrl'] as String?,
   );
 }
 
