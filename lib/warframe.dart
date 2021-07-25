@@ -30,16 +30,30 @@ class App extends StatelessWidget {
   }
 }
 
-class _App extends StatelessWidget {
+class _App extends StatefulWidget {
   const _App({
     Key? key,
   }) : super(key: key);
 
   @override
+  __AppState createState() => __AppState();
+}
+
+class __AppState extends State<_App> {
+  Future<void> loadGameData(BuildContext context) async {
+    await context.read<WarframeNetwork>().getRemoteWarframes();
+    await context.read<ModsNetwork>().getRemoteMods();
+    await context.read<WeaponNetwork>().getRemoteWeapons();
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance!.addPostFrameCallback((_) => loadGameData(context));
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    context.read<WarframeNetwork>().getRemoteWarframes();
-    context.read<ModsNetwork>().getRemoteMods();
-    context.read<WeaponNetwork>().getRemoteWeapons();
     return MaterialApp(
       title: 'Warframe',
       theme: warframeTheme,
