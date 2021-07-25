@@ -38,7 +38,8 @@ class WeaponNetwork extends WeaponRemoteDatasource with ChangeNotifier {
         return;
       }
 
-      List<dynamic>? decodedWeapons = await json.decode(response.body) as List<dynamic>;
+      List<dynamic>? decodedWeapons =
+          await json.decode(response.body) as List<dynamic>;
 
       if (_guns.isNotEmpty) {
         debugPrint('''
@@ -49,6 +50,7 @@ class WeaponNetwork extends WeaponRemoteDatasource with ChangeNotifier {
       }
 
       await _sortWeapons(decodedWeapons);
+      notifyListeners();
     } catch (e) {
       debugPrint(e.toString());
       rethrow;
@@ -59,7 +61,8 @@ class WeaponNetwork extends WeaponRemoteDatasource with ChangeNotifier {
   /// Rethrows an [Error] if something goes wrong
   Future<void> _sortWeapons(List<dynamic> decodedWeapons) async {
     for (int i = 0; i < decodedWeapons.length; i++) {
-      final Map<String, dynamic> _jsonMap = decodedWeapons[i] as Map<String, dynamic>;
+      final Map<String, dynamic> _jsonMap =
+          decodedWeapons[i] as Map<String, dynamic>;
       final String category = _jsonMap['category'] as String;
       final bool isGunType = category == 'Primary' || category == 'Secondary';
 

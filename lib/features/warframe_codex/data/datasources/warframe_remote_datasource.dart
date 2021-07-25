@@ -12,7 +12,7 @@ abstract class WarframeRemoteDatasource {
   WarframeModel getWarframe(String warframeName);
 
   /// Gets all Prime and non-prime warframes from the official warframe API
-  Future<void>getRemoteWarframes();
+  Future<void> getRemoteWarframes();
 }
 
 class WarframeNetwork extends WarframeRemoteDatasource with ChangeNotifier {
@@ -29,21 +29,26 @@ class WarframeNetwork extends WarframeRemoteDatasource with ChangeNotifier {
 
   @override
   Future<void> getRemoteWarframes() async {
-    final http.Response response = await http.get(Uri.parse(API.warframeAPI));
+    try {
+      final http.Response response = await http.get(Uri.parse(API.warframeAPI));
 
-    if (response.statusCode != 200) return;
+      if (response.statusCode != 200) return;
 
-    List<dynamic>? _decodedWarframes = await jsonDecode(response.body) as List<dynamic>;
+      List<dynamic>? _decodedWarframes = await jsonDecode(response.body) as List<dynamic>;
 
-    if (_warframes.isNotEmpty) {
-      _decodedWarframes = null;
-      return;
+      if (_warframes.isNotEmpty) {
+        _decodedWarframes = null;
+        return;
+      }
+
+      final Iterable<WarframeModel> parsedWarframes =
+          _decodedWarframes.map((dynamic warframe) {
+        return WarframeModel.fromJson(warframe as Map<String, dynamic>);
+      });
+
+      if (_warframes.isEmpty) _warframes.addAll(parsedWarframes);
+    } catch (e) {
+      debugPrint('''Could Not Load Warframes | ${e.toString()}''');
     }
-
-    final Iterable<WarframeModel> parsedWarframes = _decodedWarframes.map((dynamic warframe) {
-      return WarframeModel.fromJson(warframe as Map<String, dynamic>);
-    });
-
-    if (_warframes.isEmpty) _warframes.addAll(parsedWarframes);
   }
 }

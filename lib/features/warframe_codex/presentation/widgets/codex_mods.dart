@@ -67,7 +67,7 @@ class ModItems extends StatelessWidget {
     if (mod.rarity == 'Uncommon') return const Color.fromRGBO(178, 180, 182, 1.0);
     if (mod.rarity == 'Common') return const Color.fromRGBO(156, 96, 52, 1.0);
 
-   return const Color.fromRGBO(156, 96, 52, 1.0);
+   return const Color.fromRGBO(255, 255, 255, 0.0);
   }
 
   @override
@@ -77,6 +77,7 @@ class ModItems extends StatelessWidget {
           ? showThumbnail(context)
           : noPreviewAvailable(context),
       verticalMargin: 4.0,
+      color:  const Color.fromRGBO(255, 255, 255, 0.9),
       child: Row(
         children: <Widget>[
           WarframeContainer(
@@ -89,12 +90,19 @@ class ModItems extends StatelessWidget {
             color: rarityColor(),
           ),
           const SizedBox(width: 7.0),
-          Expanded(
-            child: Text(
-              mod.name,
-              style: const TextStyle(
-                color: Color.fromRGBO(0, 0, 0, 1.0),
-              ),
+          Text(
+            mod.name,
+            style: const TextStyle(
+              fontSize: 15.0,
+              color: Color.fromRGBO(0, 0, 0, 1.0),
+            ),
+          ),   
+          const Spacer(),
+          Text(
+            mod.polarity,
+            style: const TextStyle(
+              fontSize: 11.0,
+              color: Color.fromRGBO(0, 0, 0, 0.3),
             ),
           ),
         ],

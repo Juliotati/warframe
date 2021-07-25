@@ -41,6 +41,7 @@ class ModsNetwork extends ModsRemoteDatasource with ChangeNotifier {
       } on RangeError {
         return;
       }
+      notifyListeners();
     }
   }
 }
