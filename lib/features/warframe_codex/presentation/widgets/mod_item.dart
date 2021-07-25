@@ -1,6 +1,5 @@
 part of widgets;
 
-
 class ModItems extends StatelessWidget {
   const ModItems(this.mod, {Key? key}) : super(key: key);
   final ModModel mod;
