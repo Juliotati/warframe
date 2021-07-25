@@ -1,3 +1,4 @@
 {
-    "editor.fontSize": 15
+    "editor.fontSize": 15,
+    "dart.flutterSdkPath": "C:\\Users\\user\\fvm\\versions\\2.2.2"
 }
