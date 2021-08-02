@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 import 'package:warframe/core/error/failures.dart';
 import 'package:warframe/core/usecases/usecases.dart';
 import 'package:warframe/export/warframe_ui.dart';
@@ -12,13 +12,9 @@ import 'package:warframe/features/warframe_codex/domain/usecases/get_warframe.da
 class MockWarframeRepository extends Mock implements WarframeRepository {}
 
 void main() {
-  late GetWarframe useCase;
-  late MockWarframeRepository mockWarframeRepository;
+  final MockWarframeRepository mockWarframeRepository = MockWarframeRepository();
+  final GetWarframe useCase = GetWarframe(mockWarframeRepository);
 
-  setUp(() {
-    mockWarframeRepository = MockWarframeRepository();
-    useCase = GetWarframe(mockWarframeRepository);
-  });
   const WarframeModel tWarframe = WarframeModel(
     uniqueName: '/Lotus/Powersuits/Ninja/Ninja',
     name: 'Ash',
@@ -57,17 +53,16 @@ void main() {
   final String tWarframeName = tWarframe.name;
 
   test(
-    'get warframe from the repository',
+    'should get a single warframe from the repository by name',
     () async {
-      when(mockWarframeRepository.getWarframe(tWarframeName))
+      when(() => mockWarframeRepository.getWarframe(tWarframeName))
           .thenAnswer((_) async => const Right(tWarframe));
 
-      final Either<Failure, Warframe> result =
-          await useCase(Params(tWarframeName));
+      final Either<Failure, Warframe> result = await useCase(Params(tWarframeName));
 
       expect(result, const Right(tWarframe));
 
-      verify(mockWarframeRepository.getWarframe(tWarframeName));
+      verify(() => mockWarframeRepository.getWarframe(tWarframeName));
       verifyNoMoreInteractions(mockWarframeRepository);
     },
   );
