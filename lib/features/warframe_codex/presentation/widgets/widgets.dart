@@ -28,6 +28,7 @@ part 'codex_mods.dart';
 part 'codex_warframes.dart';
 part 'codex_warframes_list_item.dart';
 part 'details_body_wrapper.dart';
+part 'mod_item.dart';
 part 'profile_thumbnails_and_bios.dart';
 part 'warframe_profile_abilities.dart';
 part 'warframe_profile_attributes.dart';

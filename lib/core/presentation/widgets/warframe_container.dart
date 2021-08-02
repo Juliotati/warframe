@@ -38,7 +38,7 @@ class WarframeContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const BorderRadius _radius = BorderRadius.all(Radius.circular(10.0));
+    final BorderRadius _radius = BorderRadius.all(Radius.circular(radius));
     return Container(
       margin: EdgeInsets.symmetric(
         horizontal: horizontalMargin,
