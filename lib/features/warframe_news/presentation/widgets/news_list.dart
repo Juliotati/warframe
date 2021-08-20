@@ -8,9 +8,9 @@ class _NewsList extends StatelessWidget {
     return FutureBuilder<List<WarframeNewsModel>>(
       future: context.read<NewsNetwork>().getRemoteWarframeNews(),
       builder: (
-          BuildContext context,
-          AsyncSnapshot<List<WarframeNewsModel>> snapshot,
-          ) {
+        BuildContext context,
+        AsyncSnapshot<List<WarframeNewsModel>> snapshot,
+      ) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const LoadingIndicator('GETTING NEWS');
         }
