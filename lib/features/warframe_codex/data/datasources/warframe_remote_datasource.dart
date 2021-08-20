@@ -3,8 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:warframe/core/keys/apis.dart';
-
-import '../../../../export/warframe_ui.dart';
+import 'package:warframe/features/warframe_codex/data/models/warframe_model.dart';
 
 abstract class WarframeRemoteDatasource {
   /// Gets the data about the warframe provided as a parameter from the local
@@ -34,7 +33,8 @@ class WarframeNetwork extends WarframeRemoteDatasource with ChangeNotifier {
 
       if (response.statusCode != 200) return;
 
-      List<dynamic>? _decodedWarframes = await jsonDecode(response.body) as List<dynamic>;
+      List<dynamic>? _decodedWarframes =
+          await jsonDecode(response.body) as List<dynamic>;
 
       if (_warframes.isNotEmpty) {
         _decodedWarframes = null;

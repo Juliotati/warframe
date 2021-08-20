@@ -1,4 +1,4 @@
-part of widgets;
+part of warframe_codex;
 
 class CodexDataScaffold extends StatelessWidget {
   const CodexDataScaffold({

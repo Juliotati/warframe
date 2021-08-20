@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../../export/warframe_ui.dart';
-import '../../features/warframe_codex/presentation/screens/codex_categories.dart';
-import '../../features/warframe_news/presentation/screens/news.dart';
+import 'package:warframe/core/presentation/presentation.dart';
+import 'package:warframe/features/warframe_codex/warframe_codex.dart';
+import 'package:warframe/features/warframe_news/warframe_news.dart';
 
 class WarframeWrapper extends StatelessWidget {
   const WarframeWrapper();

@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import '../../../../core/presentation/presentation.dart';
-import '../../data/models/codex_model.dart';
-import '../widgets/widgets.dart';
+part of warframe_codex;
 
 class CodexCategories extends StatelessWidget {
   const CodexCategories();

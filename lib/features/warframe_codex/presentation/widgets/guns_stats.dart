@@ -1,4 +1,4 @@
-part of widgets;
+part of warframe_codex;
 
 List<WeaponStat> gunStat(GunModel weapon) {
   return <WeaponStat>[

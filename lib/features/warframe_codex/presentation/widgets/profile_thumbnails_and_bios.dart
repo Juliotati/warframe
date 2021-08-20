@@ -1,4 +1,4 @@
-part of widgets;
+part of warframe_codex;
 
 class WarframeThumbnailAndBio extends StatelessWidget {
   const WarframeThumbnailAndBio({

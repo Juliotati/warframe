@@ -1,7 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:warframe/core/keys/apis.dart';
-import 'package:warframe/export/warframe_ui.dart';
 import 'package:warframe/features/warframe_codex/data/models/mod_model.dart';
 import 'package:http/http.dart' as http;
 
