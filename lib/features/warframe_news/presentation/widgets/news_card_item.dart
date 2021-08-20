@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-
-import '../../../../export/warframe_ui.dart';
-import '../../data/models/warframe_news.dart';
+part of warframe_news;
 
 class NewsCardItem extends StatelessWidget {
   const NewsCardItem({
@@ -30,7 +26,7 @@ class NewsCardItem extends StatelessWidget {
       labelTag: newsItem.message,
       maxLines: 2,
       fontSize: 13,
-      fit:  BoxFit.cover,
+      fit: BoxFit.cover,
     );
   }
 }

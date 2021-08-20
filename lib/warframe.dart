@@ -8,7 +8,7 @@ import 'features/warframe_codex/data/datasources/weapon_remote_datasource.dart';
 import 'features/warframe_codex/presentation/screens/codex_categories.dart';
 import 'features/warframe_codex/presentation/screens/codex_category_data.dart';
 import 'features/warframe_news/data/datasources/warframe_news_remote_datasource.dart';
-import 'features/warframe_news/presentation/screens/news.dart';
+import 'features/warframe_news/warframe_news.dart';
 
 class App extends StatelessWidget {
   const App({
