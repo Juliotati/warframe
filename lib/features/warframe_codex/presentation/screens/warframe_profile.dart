@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import '../../data/models/warframe_model.dart';
-
-import '../widgets/widgets.dart';
+part of warframe_codex;
 
 class WarframeProfile extends StatelessWidget {
   const WarframeProfile();

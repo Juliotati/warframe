@@ -1,7 +1,4 @@
-import 'package:warframe/export/warframe_ui.dart';
-import 'package:warframe/features/warframe_codex/data/models/gun_model.dart';
-import 'package:warframe/features/warframe_codex/data/models/melee_weapon_model.dart';
-import 'package:warframe/features/warframe_codex/presentation/widgets/widgets.dart';
+part of warframe_codex;
 
 class WeaponProfile extends StatelessWidget {
   const WeaponProfile.gun({

@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-import '../widgets/widgets.dart';
+part of warframe_codex;
 
 class CodexCategoryData extends StatelessWidget {
   const CodexCategoryData();

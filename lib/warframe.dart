@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:warframe/core/presentation/presentation.dart';
 import 'package:warframe/features/warframe_codex/data/datasources/mods_remote_datasource.dart';
 import 'core/presentation/wrapper.dart';
-import 'export/warframe_ui.dart';
 import 'features/warframe_codex/data/datasources/warframe_remote_datasource.dart';
 import 'features/warframe_codex/data/datasources/weapon_remote_datasource.dart';
-import 'features/warframe_codex/presentation/screens/codex_categories.dart';
-import 'features/warframe_codex/presentation/screens/codex_category_data.dart';
+import 'features/warframe_codex/warframe_codex.dart';
 import 'features/warframe_news/data/datasources/warframe_news_remote_datasource.dart';
-import 'features/warframe_news/presentation/screens/news.dart';
+import 'features/warframe_news/warframe_news.dart';
 
 class App extends StatelessWidget {
   const App({
