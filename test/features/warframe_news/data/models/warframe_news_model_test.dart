@@ -24,11 +24,13 @@ void main() {
 
   group('fromJson', () {
     test(
-      'first news in list should match [$tNewsModel]',
+      'first news in list should match [tNewsModel]',
       () async {
         final List<dynamic> jsonMap =
             await jsonDecode(fixture('news.json')) as List<dynamic>;
-        final WarframeNewsModel result = WarframeNewsModel.fromJson(jsonMap.first as Map<String, dynamic>);
+
+        final WarframeNewsModel result =
+            WarframeNewsModel.fromJson(jsonMap.first as Map<String, dynamic>);
         expect(result, equals(tNewsModel));
       },
     );
