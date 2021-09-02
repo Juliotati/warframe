@@ -20,6 +20,6 @@ class WarframeNewsRepositoryImpl implements WarframeNewsRepository {
   @override
   Future<Either<Failure, List<WarframeNewsModel>>> getWarframeNews() async {
     networkInfo.isConnected;
-    return Right(await remoteDatasource.getRemoteWarframeNews());
+    return Right( await remoteDatasource.getRemoteWarframeNews());
   }
 }

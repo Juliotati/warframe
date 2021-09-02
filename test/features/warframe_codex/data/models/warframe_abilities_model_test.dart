@@ -21,7 +21,7 @@ void main() {
 
   group('fromJson', () {
     test(
-      'first ability in list should match [$tAbilitiesModel]',
+      'first ability in list should match [tAbilitiesModel]',
       () async {
         final List<dynamic> jsonMap = await jsonDecode(fixture('abilities.json')) as List<dynamic>;
         final AbilitiesModel result = AbilitiesModel.fromJson(jsonMap.first as Map<String, dynamic>);

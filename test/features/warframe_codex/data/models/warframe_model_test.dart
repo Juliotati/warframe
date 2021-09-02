@@ -53,7 +53,7 @@ void main() {
 
   group('fromJson', () {
     test(
-      'first warframe in list should match [$tWarframeModel]',
+      'first warframe in list should match [tWarframeModel]',
 
       () async {
         final List<dynamic> jsonMap = await jsonDecode(fixture('warframe.json')) as List<dynamic>;
