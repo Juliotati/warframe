@@ -6,6 +6,5 @@ abstract class WarframeNewsLocalDatasource {
   /// on last app launch
   Future<List<WarframeNewsModel>> getLocalWarframeNews();
   
-  
   Future<void> cacheWarframesNews(List<WarframeNews> newsList);
 }
