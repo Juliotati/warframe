@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:warframe/core/presentation/presentation.dart';
 import 'package:warframe/features/warframe_codex/warframe_codex.dart';
+import 'package:warframe/features/warframe_news/data/datasources/warframe_news_remote_datasource.dart';
 import 'package:warframe/features/warframe_news/warframe_news.dart';
 
 class WarframeWrapper extends StatelessWidget {
@@ -48,6 +49,11 @@ class WarframeWrapper extends StatelessWidget {
               centerChild: true,
               horizontalPadding: 0.0,
               verticalPadding: 0.0,
+              onTap: (){
+                if(isNewsScreen) {
+                  context.read<WarframeNewsRemoteDatasourceImpl>().refresh();
+                }
+              },
               child: Icon(isNewsScreen ? Icons.refresh : Icons.chat_bubble),
             ),
           ],

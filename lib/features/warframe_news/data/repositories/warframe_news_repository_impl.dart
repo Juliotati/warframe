@@ -3,7 +3,6 @@ import 'package:warframe/core/error/failures.dart';
 import 'package:warframe/core/platform/network_info.dart';
 import 'package:warframe/features/warframe_news/data/datasources/warframe_news_local_datasource.dart';
 import 'package:warframe/features/warframe_news/data/datasources/warframe_news_remote_datasource.dart';
-import 'package:warframe/features/warframe_news/data/models/warframe_news.dart';
 import 'package:warframe/features/warframe_news/domain/repositories/warframe_news_repository.dart';
 
 class WarframeNewsRepositoryImpl implements WarframeNewsRepository {
@@ -18,8 +17,8 @@ class WarframeNewsRepositoryImpl implements WarframeNewsRepository {
   final NetworkInfo networkInfo;
 
   @override
-  Future<Either<Failure, List<WarframeNewsModel>>> getWarframeNews() async {
+  Future<Either<Failure, void>> getWarframeNews() async {
     networkInfo.isConnected;
-    return Right( await remoteDatasource.getRemoteWarframeNews());
+    return Right(await remoteDatasource.getRemoteWarframeNews());
   }
 }

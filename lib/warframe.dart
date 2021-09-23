@@ -21,7 +21,9 @@ class App extends StatelessWidget {
         ListenableProvider<WarframeNetwork>(create: (_) => WarframeNetwork()),
         ListenableProvider<ModsNetwork>(create: (_) => ModsNetwork()),
         ListenableProvider<LayoutHelper>(create: (_) => LayoutHelper()),
-        ListenableProvider<NewsNetwork>(create: (_) => NewsNetwork()),
+        ListenableProvider<WarframeNewsRemoteDatasourceImpl>(
+          create: (_) => WarframeNewsRemoteDatasourceImpl(),
+        ),
         ListenableProvider<WeaponNetwork>(create: (_) => WeaponNetwork()),
       ],
       child: const _App(),
@@ -40,6 +42,7 @@ class _App extends StatefulWidget {
 
 class __AppState extends State<_App> {
   Future<void> loadGameData(BuildContext context) async {
+    await context.read<WarframeNewsRemoteDatasourceImpl>().getRemoteWarframeNews();
     await context.read<WarframeNetwork>().getRemoteWarframes();
     await context.read<ModsNetwork>().getRemoteMods();
     await context.read<WeaponNetwork>().getRemoteWeapons();

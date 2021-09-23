@@ -7,21 +7,66 @@ import 'package:warframe/core/keys/apis.dart';
 import '../models/warframe_news.dart';
 
 abstract class WarframeNewsRemoteDatasource {
-  /// Calls the official warframe news API endPoint
-  Future<List<WarframeNewsModel>> getRemoteWarframeNews();
+  Future<void> getRemoteWarframeNews();
+
+  Future<void> refresh();
 }
 
-class NewsNetwork extends WarframeNewsRemoteDatasource with ChangeNotifier {
+enum NewsState{
+  loaded,
+  loading,
+}
+
+class WarframeNewsRemoteDatasourceImpl extends WarframeNewsRemoteDatasource with ChangeNotifier {
+  List<WarframeNewsModel>? data;
+  NewsState state = NewsState.loading;
+
   @override
-  Future<List<WarframeNewsModel>> getRemoteWarframeNews() async {
+  Future<void> getRemoteWarframeNews() async {
     final http.Response response = await http.get(Uri.parse(API.newsAPI));
+    final List<dynamic> _decodedData = await jsonDecode(response.body) as List<dynamic>;
 
-    final List<dynamic> _data = await jsonDecode(response.body) as List<dynamic>;
+    if(_decodedData.isEmpty) getRemoteWarframeNews();
 
-    final Iterable<WarframeNewsModel> _news = _data.map((dynamic news) {
+    final List<WarframeNewsModel> newsList = await _newsList(_decodedData);
+    data ??= newsList;
+
+    if (data!.isNotEmpty) {
+      await _addNewData(newsList);
+    }
+    state = NewsState.loaded;
+    notifyListeners();
+  }
+
+  Future<List<WarframeNewsModel>> _newsList(List<dynamic> data) async {
+    return data.map((dynamic news) {
       return WarframeNewsModel.fromJson(news as Map<String, dynamic>);
-    }).toList();
+    }).toList().reversed.toList();
+  }
 
-    return _news.toList().reversed.toList();
+  Future<void> _addNewData(List<WarframeNewsModel> newsList) async {
+     for (final WarframeNewsModel news in newsList) {
+      if (!_itemExist(news)) data!.insert(0, news);
+    }
+  }
+
+  bool _itemExist(WarframeNewsModel news) {
+    try {
+      final WarframeNewsModel existingNews =
+          data!.firstWhere((WarframeNewsModel element) {
+        return element.id == news.id;
+      });
+      if (existingNews.id == news.id) return true;
+      return false;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  @override
+  Future<void> refresh() async {
+    state = NewsState.loading;
+    notifyListeners();
+    await getRemoteWarframeNews();
   }
 }

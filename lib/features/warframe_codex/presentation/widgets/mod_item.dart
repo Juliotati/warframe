@@ -6,11 +6,21 @@ class ModItems extends StatelessWidget {
 
   Future<dynamic> showThumbnail(BuildContext context) {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    return showModal(
+    return showDialog(
       context: context,
-      builder: (_) => Image.network(
-        mod.wikiaThumbnail!,
-        height: 200,
+      builder: (_) => AlertDialog(
+        titlePadding: EdgeInsets.zero,
+        contentPadding: EdgeInsets.zero,
+        buttonPadding: EdgeInsets.zero,
+        elevation: 0.0,
+        backgroundColor: const Color.fromRGBO(0, 0, 0, 0.0),
+        content: SizedBox(
+          height: 550,
+          child: Image.network(
+            mod.wikiaThumbnail!,
+            fit: BoxFit.contain,
+          ),
+        ),
       ),
     );
   }
@@ -38,7 +48,7 @@ class ModItems extends StatelessWidget {
     if (rarity == 'Uncommon') return const Color.fromRGBO(178, 180, 182, 1.0);
     if (rarity == 'Common') return const Color.fromRGBO(156, 96, 52, 1.0);
 
-    return const Color.fromRGBO(255, 255, 255, 0.0);
+    return const Color.fromRGBO(155, 155, 155, 1.0);
   }
 
   @override
