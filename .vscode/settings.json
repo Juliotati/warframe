@@ -1,4 +1,8 @@
 {
     "editor.fontSize": 15,
-    "dart.flutterSdkPath": "C:\\Users\\user\\fvm\\versions\\2.2.2"
+    "workbench.editor.enablePreview": false,
+    "workbench.activityBar.visible": false,
+    "workbench.activityBar.iconClickBehavior": "focus",
+    "workbench.sideBar.location": "right",
+    "editor.minimap.enabled": false
 }
