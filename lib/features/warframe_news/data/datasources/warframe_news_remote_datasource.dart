@@ -12,21 +12,36 @@ abstract class WarframeNewsRemoteDatasource {
   Future<void> refresh();
 }
 
-enum NewsState{
+enum NewsState {
   loaded,
   loading,
+  empty,
 }
 
 class WarframeNewsRemoteDatasourceImpl extends WarframeNewsRemoteDatasource with ChangeNotifier {
   List<WarframeNewsModel>? data;
+
   NewsState state = NewsState.loading;
+
+  int _retryCount = 0;
+  static const int _threshold = 5;
 
   @override
   Future<void> getRemoteWarframeNews() async {
     final http.Response response = await http.get(Uri.parse(API.newsAPI));
     final List<dynamic> _decodedData = await jsonDecode(response.body) as List<dynamic>;
 
-    if(_decodedData.isEmpty) getRemoteWarframeNews();
+    if (_decodedData.isEmpty) {
+      if (_timedOut()) {
+        _endProcessWithEmptyState();
+        return;
+      }
+
+      state = NewsState.loading;
+      _retryCount++;
+      getRemoteWarframeNews();
+      return;
+    }
 
     final List<WarframeNewsModel> newsList = await _newsList(_decodedData);
     data ??= newsList;
@@ -35,6 +50,15 @@ class WarframeNewsRemoteDatasourceImpl extends WarframeNewsRemoteDatasource with
       await _addNewData(newsList);
     }
     state = NewsState.loaded;
+    notifyListeners();
+  }
+
+  bool _timedOut() {
+    return _retryCount >= _threshold;
+  }
+
+  void _endProcessWithEmptyState(){
+    state = NewsState.empty;
     notifyListeners();
   }
 
@@ -66,6 +90,7 @@ class WarframeNewsRemoteDatasourceImpl extends WarframeNewsRemoteDatasource with
   @override
   Future<void> refresh() async {
     state = NewsState.loading;
+    _retryCount = 0;
     notifyListeners();
     await getRemoteWarframeNews();
   }

@@ -12,7 +12,11 @@ class NewsScreen extends StatelessWidget {
       child: SizedBox(
         height: screen.height,
         width: screen.width,
-        child: const _NewsList(),
+        child: RefreshIndicator(
+            onRefresh: () async {
+              await context.read<WarframeNewsRemoteDatasourceImpl>().refresh();
+            },
+            child: const _NewsList()),
       ),
     );
   }
