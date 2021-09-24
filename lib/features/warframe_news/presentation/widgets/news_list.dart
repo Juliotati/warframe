@@ -18,7 +18,7 @@ class _NewsList extends StatelessWidget {
             itemCount: data.length,
             itemBuilder: (_, int i) {
               return NewsCardItem(
-                key: ValueKey<int>(i),
+                key: ValueKey<String>(data[i].id),
                 newsItem: data[i],
               );
             },
