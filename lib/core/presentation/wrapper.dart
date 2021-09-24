@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:warframe/core/helpers/layout_helper.dart';
 import 'package:warframe/core/presentation/presentation.dart';
-import 'package:warframe/features/warframe_codex/warframe_codex.dart';
 import 'package:warframe/features/warframe_news/data/datasources/warframe_news_remote_datasource.dart';
-import 'package:warframe/features/warframe_news/warframe_news.dart';
 
 class WarframeWrapper extends StatelessWidget {
   const WarframeWrapper();
@@ -74,36 +73,5 @@ class WarframeWrapper extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-enum Screen {
-  activities,
-  news,
-  codex,
-  inventory,
-  companions,
-  arsenal,
-  voidRelics,
-  foundry,
-  settings,
-}
-
-class LayoutHelper with ChangeNotifier {
-  Screen screen = Screen.news;
-  String label = 'News';
-
-  void updateScreen(Screen screen, String label) {
-    this.screen = screen;
-    this.label = label;
-    notifyListeners();
-  }
-
-  Widget currentScreen() {
-    if (screen == Screen.codex) {
-      return const CodexCategories();
-    } else {
-      return const NewsScreen();
-    }
   }
 }

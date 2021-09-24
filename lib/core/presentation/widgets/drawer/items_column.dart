@@ -11,16 +11,15 @@ class ItemsColumn extends StatelessWidget {
         child: Column(
           children: drawerItems
               .map((DrawerItemModel item) => DrawerItemList(
-                    leadingIcon: item.leadingIcon,
-                    label: item.label,
-                    onTap: () {
-                      Navigator.of(context).pop();
-                      return context.read<LayoutHelper>().updateScreen(
-                            item.screen,
-                            item.label,
-                          );
-                    },
-                  ))
+                  leadingIcon: item.leadingIcon,
+                  label: item.label,
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    return context.read<LayoutHelper>().updateScreen(
+                          item.screen,
+                          item.label,
+                        );
+                  }))
               .toList(),
         ),
       ),
