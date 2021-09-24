@@ -24,7 +24,7 @@ class WarframeNewsRemoteDatasourceImpl extends WarframeNewsRemoteDatasource with
   NewsState state = NewsState.loading;
 
   int _retryCount = 0;
-  static const int _threshold = 5;
+  static const int _thresholdLimit = 5;
 
   @override
   Future<void> getRemoteWarframeNews() async {
@@ -54,7 +54,7 @@ class WarframeNewsRemoteDatasourceImpl extends WarframeNewsRemoteDatasource with
   }
 
   bool _timedOut() {
-    return _retryCount >= _threshold;
+    return _retryCount >= _thresholdLimit;
   }
 
   void _endProcessWithEmptyState(){
