@@ -10,7 +10,7 @@ class NewsCardItem extends StatelessWidget {
 
   Future<void> launchWebPage() async {
     if (await canLaunch(newsItem.link)) {
-      launch(newsItem.link);
+      await launch(newsItem.link);
     }
     return;
   }
