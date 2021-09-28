@@ -7,20 +7,14 @@ class LoadingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const SizedBox(
-            height: 20,
-            width: 20,
-            child: CircularProgressIndicator(
-              backgroundColor: Color.fromRGBO(255, 255, 255, 0.6),
-            ),
-          ),
-          const SizedBox(height: 15),
-          Text(label),
-        ],
+    return const Center(
+      child: SizedBox(
+        height: 23,
+        width: 23,
+        child: CircularProgressIndicator(
+          color: Color.fromRGBO(255, 255, 255, 0.9),
+          backgroundColor: Color.fromRGBO(255, 255, 255, 0.4),
+        ),
       ),
     );
   }
