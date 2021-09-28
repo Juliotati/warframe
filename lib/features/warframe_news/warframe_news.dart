@@ -9,6 +9,5 @@ import 'package:warframe/features/warframe_news/data/datasources/warframe_news_r
 import 'data/models/warframe_news.dart';
 
 part 'presentation/screens/news.dart';
-
-part 'presentation/widgets/news_list.dart';
 part 'presentation/widgets/news_card_item.dart';
+part 'presentation/widgets/news_list.dart';
