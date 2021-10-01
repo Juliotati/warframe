@@ -20,7 +20,7 @@ Future<void> main() async {
       when(() => mockWarframeNewsRepository.getWarframeNews())
           .thenAnswer((_) async => const Right(<WarframeNews>[]));
 
-      final Either<Failure, List<WarframeNews>> result =
+      final Either<Failure, void> result =
           await useCase(NoParams());
 
       expect(result.isRight(), true);
