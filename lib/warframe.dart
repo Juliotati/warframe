@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:warframe/core/data/warframe.dart';
 import 'package:warframe/core/helpers/layout_helper.dart';
 import 'package:warframe/core/presentation/presentation.dart';
 import 'package:warframe/features/warframe_codex/data/datasources/mods_remote_datasource.dart';
@@ -43,16 +44,11 @@ class _App extends StatefulWidget {
 }
 
 class __AppState extends State<_App> {
-  Future<void> loadGameData(BuildContext context) async {
-    await context.read<WarframeNewsRemoteDatasourceImpl>().getRemoteWarframeNews();
-    await context.read<WarframeNetwork>().getRemoteWarframes();
-    await context.read<ModsNetwork>().getRemoteMods();
-    await context.read<WeaponNetwork>().getRemoteWeapons();
-  }
-
   @override
   void initState() {
-    WidgetsBinding.instance!.addPostFrameCallback((_) => loadGameData(context));
+    WidgetsBinding.instance!.addPostFrameCallback(
+      (_) async => WarframeApp.instance.initialize(context),
+    );
     super.initState();
   }
 

@@ -1,13 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:warframe/core/helpers/layout_helper.dart';
+import 'package:warframe/core/platform/network_info.dart';
 import 'package:warframe/core/presentation/presentation.dart';
 import 'package:warframe/features/warframe_news/data/datasources/warframe_news_remote_datasource.dart';
 
-class WarframeWrapper extends StatelessWidget {
+import 'widgets/snack_bar.dart';
+
+class WarframeWrapper extends StatefulWidget {
   const WarframeWrapper();
 
   static const String route = 'main';
+
+  @override
+  _WarframeWrapperState createState() => _WarframeWrapperState();
+}
+
+class _WarframeWrapperState extends State<WarframeWrapper> {
+  Future<void> getConnection() async {
+    if (!(await NetWorkInfoImpl.instance.isConnected)) {
+      warframeErrorSnackBar(context, 'No connection found');
+      return;
+    }
+    warframeSuccessSnackBar(context, 'Connected');
+  }
+
+  @override
+  void initState() {
+    getConnection();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final LayoutHelper layout = context.watch<LayoutHelper>();
@@ -48,8 +71,8 @@ class WarframeWrapper extends StatelessWidget {
               centerChild: true,
               horizontalPadding: 0.0,
               verticalPadding: 0.0,
-              onTap: (){
-                if(isNewsScreen) {
+              onTap: () {
+                if (isNewsScreen) {
                   context.read<WarframeNewsRemoteDatasourceImpl>().refresh();
                 }
               },

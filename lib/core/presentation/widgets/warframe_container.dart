@@ -1,6 +1,6 @@
 part of presentation;
 
-class WarframeContainer extends StatelessWidget {
+class WarframeContainer extends StatefulWidget {
   const WarframeContainer({
     Key? key,
     this.withShadow = false,
@@ -37,45 +37,61 @@ class WarframeContainer extends StatelessWidget {
   final void Function()? onTap;
 
   @override
+  _WarframeContainerState createState() => _WarframeContainerState();
+}
+
+class _WarframeContainerState extends State<WarframeContainer> {
+  @override
   Widget build(BuildContext context) {
-    final BorderRadius _radius = BorderRadius.all(Radius.circular(radius));
+    final BorderRadius _radius = BorderRadius.all(
+      Radius.circular(widget.radius),
+    );
+    String? _backgroundImage() {
+      if (widget.showImage &&
+          widget.backgroundImage!.startsWith(DeadLink.baseUrl,)) {
+        return kImagePlaceholder;
+      }
+      return widget.backgroundImage;
+    }
+
     return Container(
       margin: EdgeInsets.symmetric(
-        horizontal: horizontalMargin,
-        vertical: verticalMargin,
+        horizontal: widget.horizontalMargin,
+        vertical: widget.verticalMargin,
       ),
       child: InkWell(
         splashColor: const Color.fromRGBO(0, 0, 0, 1.0),
-        onTap: onTap,
+        onTap: widget.onTap,
         borderRadius: _radius,
         child: Container(
-          height: height,
-          width: width,
+          height: widget.height,
+          width: widget.width,
           padding: EdgeInsets.symmetric(
-            horizontal: horizontalPadding,
-            vertical: verticalPadding,
+            horizontal: widget.horizontalPadding,
+            vertical: widget.verticalPadding,
           ),
           decoration: BoxDecoration(
-            color: color,
+            color: widget.color,
             borderRadius: _radius,
-            image: showImage
-                ? DecorationImage(
-                    image: NetworkImage(backgroundImage!),
-                    fit: fit,
-                  )
-                : null,
-            boxShadow: withShadow
-                ? const <BoxShadow>[
+            image: !widget.showImage
+                ? null
+                : DecorationImage(
+                    image: NetworkImage(_backgroundImage()!),
+                    fit: widget.fit,
+                  ),
+            boxShadow: !widget.withShadow
+                ? null
+                : const <BoxShadow>[
                     BoxShadow(
                       color: Color.fromRGBO(0, 0, 0, 0.10),
                       blurRadius: 10.0,
                     ),
-                  ]
-                : null,
+                  ],
           ),
           child: Align(
-            alignment: centerChild ? Alignment.center : Alignment.centerLeft,
-            child: child,
+            alignment: widget.centerChild ? Alignment.center : Alignment
+                .centerLeft,
+            child: widget.child,
           ),
         ),
       ),
