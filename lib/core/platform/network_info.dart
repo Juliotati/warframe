@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/widgets.dart' show BuildContext;
+import 'package:warframe/core/presentation/widgets/snack_bar.dart';
 
 abstract class NetworkInfo {
   Future<bool> get isConnected;
@@ -13,6 +15,13 @@ class NetWorkInfoImpl implements NetworkInfo {
 
   @override
   Future<bool> get isConnected => _isConnected();
+
+  Future<void> noConnectionWarning(BuildContext context) async {
+    if (await _hasNoNetwork()) {
+      warframeErrorSnackBar(context, 'No connection found');
+      return;
+    }
+  }
 
   Future<bool> _isConnected() async {
     if (await _hasNoNetwork()) return false;
