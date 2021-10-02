@@ -22,7 +22,6 @@ class _WarframeWrapperState extends State<WarframeWrapper> {
       warframeErrorSnackBar(context, 'No connection found');
       return;
     }
-    warframeSuccessSnackBar(context, 'Connected');
   }
 
   @override
