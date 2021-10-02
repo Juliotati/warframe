@@ -15,11 +15,17 @@ class NewsCardItem extends StatelessWidget {
     return;
   }
 
+  void _openWebview(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute<void>(
+      builder: (_) => NewsWebview(newsItem.link),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return StackedContainer(
       key: Key(newsItem.id),
-      onTap: launchWebPage,
+      onTap: () => _openWebview(context),
       image: newsItem.imageLink,
       label: newsItem.message.toUpperCase(),
       tag: newsItem.imageLink,
