@@ -1,9 +1,9 @@
 part of warframe_codex;
 
 class CodexCategoryItem extends StatelessWidget {
-  const CodexCategoryItem(
-    this.category, {
+  const CodexCategoryItem({
     Key? key,
+    required this.category,
     required this.icon,
   }) : super(key: key);
 
@@ -22,6 +22,7 @@ class CodexCategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size _screen = MediaQuery.of(context).size;
     return SizedBox(
+      key: key,
       height: 55,
       width: _screen.width,
       child: Row(
