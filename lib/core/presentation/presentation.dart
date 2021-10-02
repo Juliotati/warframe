@@ -20,7 +20,7 @@ part 'widgets/drawer/drawer_items.dart';
 part 'widgets/drawer/drawer_items_list.dart';
 part 'widgets/drawer/items_column.dart';
 part 'widgets/drawer/warframe_drawer.dart';
-part 'widgets/loading_indicator.dart';
+part 'widgets/state_indicators.dart';
 part 'widgets/stacked_container.dart';
 part 'widgets/stats_text.dart';
 part 'widgets/warframe_container.dart';

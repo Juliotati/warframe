@@ -19,3 +19,20 @@ class LoadingIndicator extends StatelessWidget {
     );
   }
 }
+
+class NoData extends StatelessWidget {
+  const NoData([this.label = 'NO DATA']);
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+        child: Text(
+      label,
+      style: const TextStyle(
+        color: Color.fromRGBO(255, 255, 255, 0.9),
+      ),
+    ));
+  }
+}
