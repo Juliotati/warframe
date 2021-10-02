@@ -6,28 +6,30 @@ class CodexGuns extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  static const String route = 'codex-guns';
+  static const String route = '/codex-guns';
   final String category;
 
   @override
   Widget build(BuildContext context) {
-    final List<GunModel> data = context.read<WeaponNetwork>().guns(category);
-
     return CodexDataScaffold(
       label: category,
-      body: data.isEmpty
-          ? const LoadingIndicator()
-          : SafeArea(
-              child: WarframeListViewBuilder(
-                itemCount: data.length,
-                itemBuilder: (_, int i) {
-                  return GunCard(
-                    key: Key(data[i].uniqueName),
-                    gun: data[i],
-                  );
-                },
-              ),
-            ),
+      body: SafeArea(
+        child: Consumer<WeaponNetwork>(
+          builder: (_, WeaponNetwork snapshot, __) {
+            final List<GunModel> data = snapshot.guns(category);
+            if (data.isEmpty) return const LoadingIndicator();
+            return WarframeListViewBuilder(
+              itemCount: data.length,
+              itemBuilder: (_, int i) {
+                return GunCard(
+                  key: Key(data[i].uniqueName),
+                  gun: data[i],
+                );
+              },
+            );
+          },
+        ),
+      ),
     );
   }
 }
