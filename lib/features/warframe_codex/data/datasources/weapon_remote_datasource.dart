@@ -14,20 +14,18 @@ abstract class WeaponRemoteDatasource {
 }
 
 class WeaponNetwork extends WeaponRemoteDatasource with ChangeNotifier {
-  List<GunModel> guns(String category) {
-    return _guns.where((GunModel gun) {
-      if (category == 'Companions') {
-        return gun.sentinel == true;
-      } else {
-        return gun.category == category && gun.sentinel != true;
-      }
-    }).toList(growable: false);
-  }
 
   List<MeleeWeaponModel> get melee => _melee;
 
   final List<GunModel> _guns = <GunModel>[];
   final List<MeleeWeaponModel> _melee = <MeleeWeaponModel>[];
+
+  List<GunModel> guns(String category) {
+    return _guns.where((GunModel gun) {
+      if (category == 'Companions') return gun.sentinel == true;
+      return gun.category == category && (gun.sentinel == null || gun.sentinel != true);
+    }).toList();
+  }
 
   @override
   Future<void> getRemoteWeapons() async {
