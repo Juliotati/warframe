@@ -22,7 +22,7 @@ class WeaponNetwork extends WeaponRemoteDatasource with ChangeNotifier {
 
   List<GunModel> guns(String category) {
     return _guns.where((GunModel gun) {
-      if (category == 'Companions') return gun.sentinel == true;
+      if (category.toLowerCase() == 'companions') return gun.sentinel == true;
       return gun.category == category && (gun.sentinel == null || gun.sentinel != true);
     }).toList();
   }
