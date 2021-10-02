@@ -16,7 +16,7 @@ class CodexGuns extends StatelessWidget {
     return CodexDataScaffold(
       label: category,
       body: data.isEmpty
-          ? LoadingIndicator('Loading $category')
+          ? const LoadingIndicator()
           : SafeArea(
               child: WarframeListViewBuilder(
                 itemCount: data.length,
