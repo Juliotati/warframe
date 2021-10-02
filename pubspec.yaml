@@ -30,6 +30,8 @@ dependencies:
 
   url_launcher: ^6.0.8
 
+  webview_flutter: ^2.1.1
+
   webview_windows: ^0.0.8
 
 dev_dependencies:
