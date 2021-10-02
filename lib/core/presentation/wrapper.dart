@@ -5,12 +5,10 @@ import 'package:warframe/core/platform/network_info.dart';
 import 'package:warframe/core/presentation/presentation.dart';
 import 'package:warframe/features/warframe_news/data/datasources/warframe_news_remote_datasource.dart';
 
-import 'widgets/snack_bar.dart';
-
 class WarframeWrapper extends StatefulWidget {
   const WarframeWrapper();
 
-  static const String route = 'main';
+  static const String route = '/main';
 
   @override
   _WarframeWrapperState createState() => _WarframeWrapperState();
@@ -20,19 +18,12 @@ class _WarframeWrapperState extends State<WarframeWrapper> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   void _openEndDrawer() {
-    _scaffoldKey.currentState!.openEndDrawer();
-  }
-
-  Future<void> getConnection() async {
-    if (!(await NetWorkInfoImpl.instance.isConnected)) {
-      warframeErrorSnackBar(context, 'No connection found');
-      return;
-    }
+    _scaffoldKey.currentState!.openDrawer();
   }
 
   @override
   void initState() {
-    getConnection();
+    NetWorkInfoImpl.instance.noConnectionWarning(context);
     super.initState();
   }
 
@@ -42,6 +33,7 @@ class _WarframeWrapperState extends State<WarframeWrapper> {
     final bool isNewsScreen = layout.screen == Screen.news;
 
     return WillPopScope(
+      key: const ValueKey<String>('warframe-wrapper'),
       onWillPop: () {
         _openEndDrawer();
         return Future<bool>.value(false);
