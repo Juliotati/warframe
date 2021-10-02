@@ -17,6 +17,12 @@ class WarframeWrapper extends StatefulWidget {
 }
 
 class _WarframeWrapperState extends State<WarframeWrapper> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  void _openEndDrawer() {
+    _scaffoldKey.currentState!.openEndDrawer();
+  }
+
   Future<void> getConnection() async {
     if (!(await NetWorkInfoImpl.instance.isConnected)) {
       warframeErrorSnackBar(context, 'No connection found');
@@ -37,6 +43,7 @@ class _WarframeWrapperState extends State<WarframeWrapper> {
 
     return WillPopScope(
       onWillPop: () {
+        _openEndDrawer();
         return Future<bool>.value(false);
       },
       child: Scaffold(
