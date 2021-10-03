@@ -8,6 +8,7 @@ class StackedContainer extends StatelessWidget {
     this.onTap,
     this.fontSize = 16,
     this.height = 197,
+    this.desktopHeight = 300,
     this.maxLines,
     this.isBodyText2 = false,
     this.bottom = -8.0,
@@ -21,6 +22,7 @@ class StackedContainer extends StatelessWidget {
   final String? image;
   final double fontSize;
   final double height;
+  final double desktopHeight;
   final double bottom;
   final int? maxLines;
   final void Function()? onTap;
@@ -33,6 +35,16 @@ class StackedContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const Color bgColor = Color.fromRGBO(255, 255, 255, 0.65);
+
+    final TextStyle bodyText1 = Theme.of(context).textTheme.bodyText1!.copyWith(
+          fontSize: fontSize,
+          color: const Color.fromRGBO(0, 0, 0, 1.0),
+        );
+
+    final TextStyle bodyText2 = Theme.of(context).textTheme.bodyText2!.copyWith(
+          fontSize: fontSize,
+          color: const Color.fromRGBO(0, 0, 0, 1.0),
+        );
     return Padding(
       key: key,
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
@@ -43,7 +55,7 @@ class StackedContainer extends StatelessWidget {
             WarframeContainer(
               onTap: onTap,
               withShadow: true,
-              height: height,
+              height: WarframePlatform.isMobile ? height : desktopHeight,
               horizontalMargin: 0.0,
               verticalMargin: 0.0,
               width: double.infinity,
@@ -58,7 +70,7 @@ class StackedContainer extends StatelessWidget {
               child: WarframeContainer(
                 onTap: onTap,
                 withShadow: true,
-                height: height,
+                height: WarframePlatform.isMobile ? height : desktopHeight,
                 horizontalMargin: 0.0,
                 verticalMargin: 0.0,
                 width: double.infinity,
@@ -88,15 +100,7 @@ class StackedContainer extends StatelessWidget {
                     softWrap: true,
                     maxLines: maxLines,
                     overflow: TextOverflow.ellipsis,
-                    style: isBodyText2
-                        ? Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: fontSize,
-                              color: const Color.fromRGBO(0, 0, 0, 1.0),
-                            )
-                        : Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: fontSize,
-                              color: const Color.fromRGBO(0, 0, 0, 1.0),
-                            ),
+                    style: isBodyText2 ? bodyText2 : bodyText1,
                   ),
                 ),
               ),

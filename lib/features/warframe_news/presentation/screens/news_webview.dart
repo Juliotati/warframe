@@ -57,7 +57,6 @@ class __PCWebviewState extends State<_PCWebview> {
 
   Future<void> _initialize() async {
     await _controller.initialize();
-    await _controller.setBackgroundColor(Colors.blue);
     await _controller.loadUrl(widget.url);
   }
 

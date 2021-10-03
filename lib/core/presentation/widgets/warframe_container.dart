@@ -48,7 +48,9 @@ class _WarframeContainerState extends State<WarframeContainer> {
     );
     String? _backgroundImage() {
       if (widget.showImage &&
-          widget.backgroundImage!.startsWith(DeadLink.baseUrl,)) {
+          widget.backgroundImage!.startsWith(
+            DeadLink.baseUrl,
+          )) {
         return kImagePlaceholder;
       }
       return widget.backgroundImage;
@@ -89,8 +91,8 @@ class _WarframeContainerState extends State<WarframeContainer> {
                   ],
           ),
           child: Align(
-            alignment: widget.centerChild ? Alignment.center : Alignment
-                .centerLeft,
+            alignment:
+                widget.centerChild ? Alignment.center : Alignment.centerLeft,
             child: widget.child,
           ),
         ),

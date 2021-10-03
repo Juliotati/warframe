@@ -11,9 +11,11 @@ class CodexModsListView extends StatelessWidget {
         child: Consumer<ModsNetwork>(
           builder: (BuildContext context, ModsNetwork _network, _) {
             final List<ModModel> data = _network.data;
+            if (data.isEmpty) return const LoadingIndicator();
+
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4.0),
-              child: WarframeListViewBuilder(
+              child: WarframeGridViewBuilder(
                 itemCount: data.length,
                 itemBuilder: (_, int i) {
                   return ModItems(

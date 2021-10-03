@@ -7,11 +7,12 @@ class LoadingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    const double size = 23.0;
+    return Center(
       child: SizedBox(
-        height: 23,
-        width: 23,
-        child: CircularProgressIndicator(
+        height: WarframePlatform.isMobile ? size : size * 2,
+        width: WarframePlatform.isMobile ? size : size * 2,
+        child: const CircularProgressIndicator(
           color: Color.fromRGBO(255, 255, 255, 0.9),
           backgroundColor: Color.fromRGBO(255, 255, 255, 0.4),
         ),
@@ -28,11 +29,15 @@ class NoData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Text(
-      label,
-      style: const TextStyle(
-        color: Color.fromRGBO(255, 255, 255, 0.9),
+      child: Text(
+        label,
+        softWrap: true,
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          fontSize: 30,
+          color: Color.fromRGBO(255, 255, 255, 0.9),
+        ),
       ),
-    ));
+    );
   }
 }
