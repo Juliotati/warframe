@@ -31,11 +31,17 @@ class WarframeGridViewBuilder extends StatelessWidget {
     Key? key,
     required this.itemCount,
     this.scrollDirection = Axis.vertical,
+    this.desktopMaxCrossAxisExtent = 570,
+    this.desktopMainAxisExtent = 290,
+    this.mobileMainAxisExtent = 195,
     required this.itemBuilder,
     this.physics = const BouncingScrollPhysics(),
   }) : super(key: key);
 
   final int itemCount;
+  final double desktopMaxCrossAxisExtent;
+  final double desktopMainAxisExtent;
+  final double mobileMainAxisExtent;
   final ScrollPhysics physics;
   final Axis scrollDirection;
   final Widget Function(BuildContext, int) itemBuilder;
@@ -44,19 +50,22 @@ class WarframeGridViewBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
       key: key,
+      padding: WarframePlatform.isDesktop
+          ? const EdgeInsets.only(right: 5, bottom: 30)
+          : null,
       physics: physics,
       scrollDirection: scrollDirection,
       itemCount: itemCount,
       itemBuilder: itemBuilder,
       gridDelegate: WarframePlatform.isMobile
-          ? const SliverGridDelegateWithMaxCrossAxisExtent(
+          ? SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 400,
-              mainAxisExtent: 195,
+              mainAxisExtent: mobileMainAxisExtent,
               childAspectRatio: 2,
             )
-          : const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 570,
-              mainAxisExtent: 290,
+          : SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: desktopMaxCrossAxisExtent,
+              mainAxisExtent: desktopMainAxisExtent,
               childAspectRatio: 3,
             ),
     );
