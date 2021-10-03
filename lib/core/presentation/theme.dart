@@ -8,7 +8,6 @@ final ThemeData warframeTheme = ThemeData(
       TargetPlatform.iOS: CustomPageTransitionBuilder(),
     },
   ),
-  brightness: getBrightness(),
   canvasColor: Colors.transparent,
   appBarTheme: const AppBarTheme(color: Colors.transparent, elevation: 0),
   snackBarTheme: const SnackBarThemeData(
@@ -18,9 +17,3 @@ final ThemeData warframeTheme = ThemeData(
     secondary: Colors.black,
   ),
 );
-
-Brightness? getBrightness(){
-  if(kIsWeb) return null;
-  if(Platform.isWindows) return null;
-  return Brightness.dark;
-}
