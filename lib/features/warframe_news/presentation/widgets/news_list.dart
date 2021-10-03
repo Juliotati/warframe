@@ -10,11 +10,12 @@ class _NewsList extends StatelessWidget {
           (BuildContext context, WarframeNewsRemoteDatasourceImpl snapshot, _) {
         if (snapshot.state == NewsState.loading) {
           return const LoadingIndicator('LOADING NEWS');
-        } if (snapshot.state == NewsState.empty) {
+        }
+        if (snapshot.state == NewsState.empty) {
           return const WarframeError('THERE ARE NO NEWS AVAILABLE');
         } else {
           final List<WarframeNewsModel> data = snapshot.data!.toList();
-          return WarframeListViewBuilder(
+          return WarframeGridViewBuilder(
             itemCount: data.length,
             itemBuilder: (_, int i) {
               return NewsCardItem(

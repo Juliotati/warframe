@@ -61,26 +61,9 @@ class ModItems extends StatelessWidget {
               : noPreviewAvailable(context),
           verticalMargin: 5.0,
           color: const Color.fromRGBO(255, 255, 255, 0.9),
-          child: Row(
-            children: <Widget>[
-              const SizedBox(width: 10.0),
-              Text(
-                mod.name,
-                style: const TextStyle(
-                  fontSize: 15.0,
-                  color: Color.fromRGBO(0, 0, 0, 1.0),
-                ),
-              ),
-              const Spacer(),
-              Text(
-                mod.polarity,
-                style: const TextStyle(
-                  fontSize: 11.0,
-                  color: Color.fromRGBO(0, 0, 0, 0.3),
-                ),
-              ),
-            ],
-          ),
+          child: WarframePlatform.isMobile
+              ? _MobileModLabels(mod: mod)
+              : _DesktopModLabels(mod: mod),
         ),
         Positioned(
           top: 5.0,
@@ -91,12 +74,84 @@ class ModItems extends StatelessWidget {
             verticalPadding: 0.0,
             horizontalPadding: 0.0,
             horizontalMargin: 0.0,
-            width: 15,
+            width: WarframePlatform.isMobile ? 15 : 20,
             height: 5,
             color: rarityColor(),
           ),
         ),
+        if (WarframePlatform.isDesktop)
+          Positioned(
+            top: 10.0,
+            right: 25.0,
+            child: Text(
+              mod.polarity,
+              style: const TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.w500,
+                color: Color.fromRGBO(0, 0, 0, 0.2),
+              ),
+            ),
+          ),
       ],
+    );
+  }
+}
+
+class _MobileModLabels extends StatelessWidget {
+  const _MobileModLabels({
+    Key? key,
+    required this.mod,
+  }) : super(key: key);
+
+  final ModModel mod;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        const SizedBox(width: 10.0),
+        if (WarframePlatform.isDesktop) const SizedBox(width: 20.0),
+        Text(
+          mod.name,
+          style: const TextStyle(
+            fontSize: 15.0,
+            color: Color.fromRGBO(0, 0, 0, 1.0),
+          ),
+        ),
+        const Spacer(),
+        Text(
+          mod.polarity,
+          style: const TextStyle(
+            fontSize: 11.0,
+            color: Color.fromRGBO(0, 0, 0, 0.3),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _DesktopModLabels extends StatelessWidget {
+  const _DesktopModLabels({
+    Key? key,
+    required this.mod,
+  }) : super(key: key);
+
+  final ModModel mod;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 25.0),
+      child: Text(
+        mod.name,
+        softWrap: true,
+        style: const TextStyle(
+          fontSize: 36.0,
+          fontWeight: FontWeight.bold,
+          color: Color.fromRGBO(0, 0, 0, 1.0),
+        ),
+      ),
     );
   }
 }

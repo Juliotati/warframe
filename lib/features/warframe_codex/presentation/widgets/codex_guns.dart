@@ -17,9 +17,9 @@ class CodexGuns extends StatelessWidget {
         child: Consumer<WeaponNetwork>(
           builder: (_, WeaponNetwork snapshot, __) {
             final List<GunModel>? data = snapshot.guns(category);
-            if (data == null) return NoData('$category not available 😬');
+            if (data == null) return NoData('$category are not available 😬');
             if (data.isEmpty) return const LoadingIndicator();
-            return WarframeListViewBuilder(
+            return WarframeGridViewBuilder(
               itemCount: data.length,
               itemBuilder: (_, int i) {
                 return GunCard(

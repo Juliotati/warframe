@@ -9,14 +9,16 @@ class CodexMeleeWeapons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<MeleeWeaponModel> data = context.read<WeaponNetwork>().melee;
-
     return CodexDataScaffold(
       label: 'Melee',
-      body: data.isEmpty
-          ? const LoadingIndicator('Loading Melee Weapons')
-          : SafeArea(
-            child: WarframeListViewBuilder(
+      body: SafeArea(
+        child: Consumer<WeaponNetwork>(
+          builder: (BuildContext context, WeaponNetwork _network, _) {
+            final List<MeleeWeaponModel> data = _network.melee;
+            if (data.isEmpty) return const LoadingIndicator();
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4.0),
+              child: WarframeGridViewBuilder(
                 itemCount: data.length,
                 itemBuilder: (_, int i) {
                   return MeleeWeaponCard(
@@ -25,7 +27,10 @@ class CodexMeleeWeapons extends StatelessWidget {
                   );
                 },
               ),
-          ),
+            );
+          },
+        ),
+      ),
     );
   }
 }
