@@ -8,11 +8,24 @@ class NewsCardItem extends StatelessWidget {
 
   final WarframeNewsModel newsItem;
 
-  Future<void> launchWebPage() async {
-    if (await canLaunch(newsItem.link)) {
-      await launch(newsItem.link);
+  Future<void> _openWebPage(BuildContext context) async {
+    if (kIsWeb) {
+      await _openDefaultBrowser(context);
+      return;
     }
-    return;
+    _openWebview(context);
+  }
+
+  Future<void> _openDefaultBrowser(BuildContext context) async {
+    try {
+      if (await canLaunch(newsItem.link)) {
+        await launch(newsItem.link);
+        return;
+      }
+    } catch (_) {
+      warframeErrorSnackBar(context, 'Could not open link');
+      return;
+    }
   }
 
   void _openWebview(BuildContext context) {
@@ -25,7 +38,7 @@ class NewsCardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return StackedContainer(
       key: Key(newsItem.id),
-      onTap: () => _openWebview(context),
+      onTap: () => _openWebPage(context),
       image: newsItem.imageLink,
       label: newsItem.message.toUpperCase(),
       tag: newsItem.imageLink,
