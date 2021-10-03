@@ -5,7 +5,7 @@ import 'package:warframe/core/helpers/layout_helper.dart';
 import 'package:warframe/core/presentation/presentation.dart';
 import 'package:warframe/features/warframe_codex/data/datasources/mods_remote_datasource.dart';
 
-import 'core/presentation/wrapper.dart';
+import 'core/presentation/screens/wrapper.dart';
 import 'features/warframe_codex/data/datasources/warframe_remote_datasource.dart';
 import 'features/warframe_codex/data/datasources/weapon_remote_datasource.dart';
 import 'features/warframe_codex/warframe_codex.dart';

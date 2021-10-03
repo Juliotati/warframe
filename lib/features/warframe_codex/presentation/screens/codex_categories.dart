@@ -7,16 +7,21 @@ class CodexCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      key: const ValueKey<String>('warframe-codex-categories-screen'),
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: kCodexCategories.map((CodexCategoryModel category) {
-        return CodexCategoryItem(
-          key: ValueKey<String>('codex-${category.name}-category'),
-          category:category.name,
-          icon: category.icon,
-        );
-      }).toList(),
+    return SafeArea(
+      child: WarframeGridViewBuilder(
+        key: const ValueKey<String>('warframe-codex-categories-screen'),
+        itemCount: kCodexCategories.length,
+        desktopMaxCrossAxisExtent: 700,
+        desktopMainAxisExtent: 70,
+        mobileMainAxisExtent: 50,
+        itemBuilder: (_, int i) {
+          return CodexCategoryItem(
+            key: ValueKey<String>('codex-${kCodexCategories[i].name}-category'),
+            icon: kCodexCategories[i].icon,
+            category: kCodexCategories[i].name,
+          );
+        },
+      ),
     );
   }
 }

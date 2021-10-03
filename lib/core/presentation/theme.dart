@@ -13,6 +13,16 @@ final ThemeData warframeTheme = ThemeData(
   snackBarTheme: const SnackBarThemeData(
     behavior: SnackBarBehavior.floating,
   ),
+  scrollbarTheme: ScrollbarThemeData(
+    showTrackOnHover: true,
+    radius: const Radius.circular(6),
+    thumbColor: MaterialStateProperty.resolveWith((Set<MaterialState> states) {
+      if (states.contains(MaterialState.hovered)) {
+        return const Color.fromRGBO(255, 255, 255, 0.4);
+      }
+      return const Color.fromRGBO(255, 255, 255, 0.2);
+    }),
+  ),
   colorScheme: ColorScheme.fromSwatch().copyWith(
     secondary: Colors.black,
   ),

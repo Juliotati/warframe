@@ -18,7 +18,7 @@ class _WarframeWrapperState extends State<WarframeWrapper> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   void _openEndDrawer() {
-    _scaffoldKey.currentState!.openDrawer();
+    _scaffoldKey.currentState?.openDrawer();
   }
 
   @override
@@ -39,6 +39,7 @@ class _WarframeWrapperState extends State<WarframeWrapper> {
         return Future<bool>.value(false);
       },
       child: Scaffold(
+        key: _scaffoldKey,
         drawerEdgeDragWidth: 150,
         extendBody: true,
         extendBodyBehindAppBar: true,
