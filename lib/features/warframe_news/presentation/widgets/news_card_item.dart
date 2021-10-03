@@ -30,7 +30,7 @@ class NewsCardItem extends StatelessWidget {
 
   void _openWebview(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute<void>(
-      builder: (_) => NewsWebview(newsItem.link),
+      builder: (_) => NewsPlatformWebview(newsItem.link),
     ));
   }
 
