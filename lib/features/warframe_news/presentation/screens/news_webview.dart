@@ -1,7 +1,7 @@
 part of warframe_news;
 
-class NewsWebview extends StatelessWidget {
-  const NewsWebview(this.url);
+class NewsPlatformWebview extends StatelessWidget {
+  const NewsPlatformWebview(this.url);
 
   static const String route = '/news-webview';
 
@@ -9,22 +9,22 @@ class NewsWebview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (Platform.isAndroid || Platform.isIOS) return MobileWebview(url);
+    if (Platform.isAndroid || Platform.isIOS) return _MobileWebview(url);
 
-    return PCWebview(url);
+    return _PCWebview(url);
   }
 }
 
-class MobileWebview extends StatefulWidget {
-  const MobileWebview(this.url);
+class _MobileWebview extends StatefulWidget {
+  const _MobileWebview(this.url);
 
   final String url;
 
   @override
-  State<MobileWebview> createState() => _MobileWebviewState();
+  State<_MobileWebview> createState() => __MobileWebviewState();
 }
 
-class _MobileWebviewState extends State<MobileWebview> {
+class __MobileWebviewState extends State<_MobileWebview> {
   @override
   void initState() {
     super.initState();
@@ -33,24 +33,26 @@ class _MobileWebviewState extends State<MobileWebview> {
 
   @override
   Widget build(BuildContext context) {
-    return WebView(
-      initialUrl: widget.url,
-      gestureNavigationEnabled: true,
-      javascriptMode: JavascriptMode.unrestricted,
+    return SafeArea(
+      child: WebView(
+        initialUrl: widget.url,
+        gestureNavigationEnabled: true,
+        javascriptMode: JavascriptMode.unrestricted,
+      ),
     );
   }
 }
 
-class PCWebview extends StatefulWidget {
-  const PCWebview(this.url);
+class _PCWebview extends StatefulWidget {
+  const _PCWebview(this.url);
 
   final String url;
 
   @override
-  _PCWebviewState createState() => _PCWebviewState();
+  __PCWebviewState createState() => __PCWebviewState();
 }
 
-class _PCWebviewState extends State<PCWebview> {
+class __PCWebviewState extends State<_PCWebview> {
   final win.WebviewController _controller = win.WebviewController();
 
   Future<void> _initialize() async {
@@ -88,9 +90,9 @@ class _PCWebviewState extends State<PCWebview> {
             label: 'Cache',
           ),
           WebviewControl(
-              onTap: () => _controller.clearCookies(),
-              icon: Icons.delete_sweep,
-              label: 'Cookies',
+            onTap: () => _controller.clearCookies(),
+            icon: Icons.delete_sweep,
+            label: 'Cookies',
           ),
           WebviewControl(
             onTap: () => _controller.reload(),
