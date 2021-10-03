@@ -9,7 +9,11 @@ class NewsCardItem extends StatelessWidget {
   final WarframeNewsModel newsItem;
 
   Future<void> _openWebPage(BuildContext context) async {
-    if (kIsWeb) {
+    if (WarframePlatform.isWeb) {
+      await _openDefaultBrowser(context);
+      return;
+    }
+    if (WarframePlatform.isDesktop) {
       await _openDefaultBrowser(context);
       return;
     }

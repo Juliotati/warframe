@@ -33,6 +33,16 @@ class StackedContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const Color bgColor = Color.fromRGBO(255, 255, 255, 0.65);
+
+    final TextStyle bodyText1 = Theme.of(context).textTheme.bodyText1!.copyWith(
+          fontSize: fontSize,
+          color: const Color.fromRGBO(0, 0, 0, 1.0),
+        );
+
+    final TextStyle bodyText2 = Theme.of(context).textTheme.bodyText2!.copyWith(
+          fontSize: fontSize,
+          color: const Color.fromRGBO(0, 0, 0, 1.0),
+        );
     return Padding(
       key: key,
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
@@ -88,15 +98,7 @@ class StackedContainer extends StatelessWidget {
                     softWrap: true,
                     maxLines: maxLines,
                     overflow: TextOverflow.ellipsis,
-                    style: isBodyText2
-                        ? Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: fontSize,
-                              color: const Color.fromRGBO(0, 0, 0, 1.0),
-                            )
-                        : Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: fontSize,
-                              color: const Color.fromRGBO(0, 0, 0, 1.0),
-                            ),
+                    style: isBodyText2 ? bodyText2 : bodyText1,
                   ),
                 ),
               ),
