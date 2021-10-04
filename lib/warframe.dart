@@ -9,7 +9,7 @@ import 'core/presentation/screens/wrapper.dart';
 import 'features/warframe_codex/data/datasources/warframe_remote_datasource.dart';
 import 'features/warframe_codex/data/datasources/weapon_remote_datasource.dart';
 import 'features/warframe_codex/warframe_codex.dart';
-import 'features/warframe_news/data/datasources/warframe_news_remote_datasource.dart';
+import 'features/warframe_news/data/datasources/news_remote_datasource.dart';
 import 'features/warframe_news/warframe_news.dart';
 
 class App extends StatelessWidget {
@@ -21,12 +21,14 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: <ListenableProvider<dynamic>>[
-        ListenableProvider<WarframeNetwork>(create: (_) => WarframeNetwork()),
-        ListenableProvider<ModsNetwork>(create: (_) => ModsNetwork()),
         ListenableProvider<LayoutHelper>(create: (_) => LayoutHelper()),
-        ListenableProvider<WarframeNewsRemoteDatasourceImpl>(
-          create: (_) => WarframeNewsRemoteDatasourceImpl(),
+        ListenableProvider<NewsRemoteDatasourceImpl>(
+          create: (_) => NewsRemoteDatasourceImpl(),
         ),
+        ListenableProvider<WarframeRemoteDatasourceImpl>(
+          create: (_) => WarframeRemoteDatasourceImpl(),
+        ),
+        ListenableProvider<ModsNetwork>(create: (_) => ModsNetwork()),
         ListenableProvider<WeaponNetwork>(create: (_) => WeaponNetwork()),
       ],
       child: const _App(),

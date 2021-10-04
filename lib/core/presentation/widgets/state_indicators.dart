@@ -22,7 +22,7 @@ class LoadingIndicator extends StatelessWidget {
 }
 
 class NoData extends StatelessWidget {
-  const NoData([this.label = 'NO DATA']);
+  const NoData([this.label = 'NO DATA AVAILABLE']);
 
   final String label;
 
@@ -37,6 +37,45 @@ class NoData extends StatelessWidget {
           fontSize: 30,
           color: Color.fromRGBO(255, 255, 255, 0.9),
         ),
+      ),
+    );
+  }
+}
+
+class RetryButton extends StatelessWidget {
+  const RetryButton({
+    this.buttonLabel = 'Retry',
+    this.message = 'No data available for display',
+    required this.onTap,
+  });
+
+  final String buttonLabel;
+  final String message;
+  final void Function() onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          NoData(message),
+          const SizedBox(height: 10),
+          WarframeContainer(
+            onTap: onTap,
+            width: 140,
+            centerChild: true,
+            withShadow: true,
+            color: const Color.fromRGBO(255, 255, 255, 0.7),
+            child: Text(
+              buttonLabel,
+              style: const TextStyle(
+                fontSize: 24,
+                color: Color.fromRGBO(0, 0, 0, 1.0),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

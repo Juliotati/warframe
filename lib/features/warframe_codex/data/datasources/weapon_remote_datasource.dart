@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:warframe/core/keys/apis.dart';
+import 'package:warframe/core/platform/network_info.dart';
 
 import '../models/gun_model.dart';
 import '../models/melee_weapon_model.dart';
@@ -46,6 +47,9 @@ class WeaponNetwork extends WeaponRemoteDatasource with ChangeNotifier {
 
   @override
   Future<void> getRemoteWeapons() async {
+    final bool isConnected = await NetWorkInfoImpl.instance.isConnected;
+
+    if (!isConnected)   return;
     try {
       final http.Response response = await http.get(Uri.parse(API.weaponsAPI));
       if (response.statusCode != 200) {
