@@ -24,14 +24,13 @@ enum NewsState {
 class WarframeNewsRemoteDatasourceImpl extends WarframeNewsRemoteDatasource with ChangeNotifier {
   List<WarframeNewsModel>? data;
 
-  NewsState state = NewsState.loading;
+  NewsState state = NewsState.empty;
 
   static int _retryCount = 0;
   static const int _thresholdLimit = 5;
 
   @override
   Future<void> getRemoteWarframeNews() async {
-
     /// Get connection state form NetWorkInfoImpl class
     final bool isConnected = await NetWorkInfoImpl.instance.isConnected;
 
