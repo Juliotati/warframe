@@ -5,9 +5,34 @@ class _NewsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<WarframeNewsRemoteDatasourceImpl>(
-      builder:
-          (BuildContext context, WarframeNewsRemoteDatasourceImpl snapshot, _) {
+    return _NewsConsumer(
+      builder: (BuildContext context, List<WarframeNewsModel> data) {
+        return WarframeGridViewBuilder(
+          itemCount: data.length,
+          itemBuilder: (_, int i) {
+            return NewsCardItem(
+              key: ValueKey<String>(data[i].id),
+              newsItem: data[i],
+            );
+          },
+        );
+      },
+    );
+  }
+}
+
+class _NewsConsumer extends StatelessWidget {
+  const _NewsConsumer({
+    Key? key,
+    required this.builder,
+  }) : super(key: key);
+
+  final Widget Function(BuildContext, List<WarframeNewsModel>) builder;
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<NewsRemoteDatasourceImpl>(
+      builder: (BuildContext context, NewsRemoteDatasourceImpl snapshot, __) {
         if (snapshot.state == NewsState.loading) {
           return const LoadingIndicator();
         }
@@ -15,15 +40,7 @@ class _NewsList extends StatelessWidget {
           return RetryButton(onTap: () => snapshot.refresh());
         } else {
           final List<WarframeNewsModel> data = snapshot.data!.toList();
-          return WarframeGridViewBuilder(
-            itemCount: data.length,
-            itemBuilder: (_, int i) {
-              return NewsCardItem(
-                key: ValueKey<String>(data[i].id),
-                newsItem: data[i],
-              );
-            },
-          );
+          return builder(context, data);
         }
       },
     );

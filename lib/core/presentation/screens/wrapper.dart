@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:warframe/core/helpers/layout_helper.dart';
 import 'package:warframe/core/platform/network_info.dart';
 import 'package:warframe/core/presentation/presentation.dart';
-import 'package:warframe/features/warframe_news/data/datasources/warframe_news_remote_datasource.dart';
+import 'package:warframe/features/warframe_news/data/datasources/news_remote_datasource.dart';
 
 class WarframeWrapper extends StatefulWidget {
   const WarframeWrapper();
@@ -72,7 +72,7 @@ class _WarframeWrapperState extends State<WarframeWrapper> {
               verticalPadding: 0.0,
               onTap: () {
                 if (isNewsScreen) {
-                  context.read<WarframeNewsRemoteDatasourceImpl>().refresh();
+                  context.read<NewsRemoteDatasourceImpl>().refresh();
                 }
               },
               child: Icon(isNewsScreen ? Icons.refresh : Icons.chat_bubble),

@@ -6,7 +6,7 @@ import 'package:warframe/core/platform/network_info.dart';
 
 import '../models/warframe_news.dart';
 
-abstract class WarframeNewsRemoteDatasource {
+abstract class NewsRemoteDatasource {
 
   /// Get the latest news from the API about the warframe game or community.
   Future<void> getRemoteWarframeNews();
@@ -21,7 +21,7 @@ enum NewsState {
   empty,
 }
 
-class WarframeNewsRemoteDatasourceImpl extends WarframeNewsRemoteDatasource with ChangeNotifier {
+class NewsRemoteDatasourceImpl extends NewsRemoteDatasource with ChangeNotifier {
   List<WarframeNewsModel>? data;
 
   NewsState state = NewsState.empty;
@@ -31,20 +31,22 @@ class WarframeNewsRemoteDatasourceImpl extends WarframeNewsRemoteDatasource with
 
   @override
   Future<void> getRemoteWarframeNews() async {
+    _setStateAsLoading();
+
     /// Get connection state form NetWorkInfoImpl class
     final bool isConnected = await NetWorkInfoImpl.instance.isConnected;
 
     /// Check whether the device has connection or not.
     /// If no connection is detected, the method is existed.
     if (!isConnected) {
-      _endProcessWithEmptyState();
+      _setStateAsEmpty();
       return;
     }
 
     final http.Response response = await DatasourceHelper.get(API.newsAPI);
 
     if (response.statusCode != 200) {
-      _endProcessWithEmptyState();
+      _setStateAsEmpty();
       return;
     }
 
@@ -58,7 +60,7 @@ class WarframeNewsRemoteDatasourceImpl extends WarframeNewsRemoteDatasource with
     /// will exits too.
     if (_decodedData.isEmpty) {
       if (_timedOut()) {
-        _endProcessWithEmptyState();
+        _setStateAsEmpty();
         return;
       }
 
@@ -72,7 +74,7 @@ class WarframeNewsRemoteDatasourceImpl extends WarframeNewsRemoteDatasource with
 
     if (data == null) {
       data = _news;
-      _endProcessWithLoadedState();
+      _setStateAsLoaded();
       return;
     }
 
@@ -81,7 +83,7 @@ class WarframeNewsRemoteDatasourceImpl extends WarframeNewsRemoteDatasource with
       _news = null;
     }
 
-    _endProcessWithLoadedState();
+    _setStateAsLoaded();
   }
 
   /// Should return whether the method has ran out of tries count or not
@@ -94,15 +96,22 @@ class WarframeNewsRemoteDatasourceImpl extends WarframeNewsRemoteDatasource with
   }
 
   /// Called when [getRemoteWarframeNews] is exiting which, was unsuccessful and
-  /// [NewsState] needs/has to be set to loaded state
-  void _endProcessWithEmptyState() {
+  /// [NewsState] needs/has to be set to empty state
+  void _setStateAsEmpty() {
     state = NewsState.empty;
+    notifyListeners();
+  }
+
+  /// Called when [getRemoteWarframeNews] is running and [NewsState] needs/has
+  /// to be set to loaded state
+  void _setStateAsLoading() {
+    state = NewsState.loading;
     notifyListeners();
   }
 
   /// Called when [getRemoteWarframeNews] is exiting which, was successful and
   /// [NewsState] needs/has to be set to loaded state
-  void _endProcessWithLoadedState() {
+  void _setStateAsLoaded() {
     state = NewsState.loaded;
     notifyListeners();
   }
@@ -128,9 +137,7 @@ class WarframeNewsRemoteDatasourceImpl extends WarframeNewsRemoteDatasource with
 
   @override
   Future<void> refresh() async {
-    state = NewsState.loading;
     _retryCount = 0;
-    notifyListeners();
     await getRemoteWarframeNews();
   }
 }
