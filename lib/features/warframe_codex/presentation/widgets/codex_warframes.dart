@@ -1,17 +1,15 @@
 part of warframe_codex;
 
-class CodexWarframesListView extends StatelessWidget {
-  const CodexWarframesListView();
+class _CodexWarframeList extends StatelessWidget {
+  const _CodexWarframeList();
 
   @override
   Widget build(BuildContext context) {
     return CodexDataScaffold(
       label: 'Warframes',
       body: SafeArea(
-        child: Consumer<WarframeNetwork>(
-          builder: (BuildContext context, WarframeNetwork _network, _) {
-            final List<WarframeModel> data = _network.data;
-            if (data.isEmpty) return const LoadingIndicator();
+        child: _WarframeConsumer(
+          builder: (BuildContext context, List<WarframeModel> data) {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4.0),
               child: WarframeGridViewBuilder(
@@ -27,6 +25,32 @@ class CodexWarframesListView extends StatelessWidget {
           },
         ),
       ),
+    );
+  }
+}
+
+class _WarframeConsumer extends StatelessWidget {
+  const _WarframeConsumer({
+    Key? key,
+    required this.builder,
+  }) : super(key: key);
+
+  final Widget Function(BuildContext, List<WarframeModel>) builder;
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<WarframeRemoteDatasourceImpl>(
+      builder: (BuildContext ctx, WarframeRemoteDatasourceImpl snapshot, _) {
+        if (snapshot.state == WarframeState.loading) {
+          return const LoadingIndicator();
+        }
+        if (snapshot.state == WarframeState.empty) {
+          return RetryButton(onTap: () => snapshot.refresh());
+        } else {
+          final List<WarframeModel> data = snapshot.data!.toList();
+          return builder(ctx, data);
+        }
+      },
     );
   }
 }

@@ -10,7 +10,7 @@ class CodexCategoryData extends StatelessWidget {
     final String category = _category.toLowerCase();
     switch (category) {
       case 'warframe':
-        return const CodexWarframesListView();
+        return const _CodexWarframeList();
       case 'primary':
         return CodexGuns(_category);
       case 'secondary':
@@ -22,7 +22,7 @@ class CodexCategoryData extends StatelessWidget {
       case 'mods':
         return const CodexModsListView();
       default:
-        return const CodexWarframesListView();
+        return const _CodexWarframeList();
     }
   }
 }
