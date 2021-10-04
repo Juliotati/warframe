@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:warframe/core/keys/apis.dart';
+import 'package:warframe/core/platform/network_info.dart';
 import 'package:warframe/features/warframe_codex/data/models/mod_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -18,6 +19,10 @@ class ModsNetwork extends ModsRemoteDatasource with ChangeNotifier {
 
   @override
   Future<void> getRemoteMods() async {
+    final bool isConnected = await NetWorkInfoImpl.instance.isConnected;
+
+    if (!isConnected)   return;
+
     final http.Response response = await http.get(Uri.parse(API.modsAPI));
 
     if (response.statusCode != 200) return;
