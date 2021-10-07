@@ -117,13 +117,9 @@ class NewsRemoteDatasourceImpl extends NewsRemoteDatasource with ChangeNotifier 
 
   /// Transform the decoded data into dart objects as [WarframeNewsModel].
   Future<List<WarframeNewsModel>> _newsList(List<dynamic> data) async {
-    return data
-        .map((dynamic news) {
-          return WarframeNewsModel.fromJson(news as Map<String, dynamic>);
-        })
-        .toList()
-        .reversed
-        .toList();
+    return data.map((dynamic news) {
+      return WarframeNewsModel.fromJson(news as Map<String, dynamic>);
+    }).toList();
   }
 
   Future<void> _addNewData(List<WarframeNewsModel> newsList) async {
