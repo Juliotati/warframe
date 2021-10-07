@@ -11,7 +11,8 @@ abstract class NewsRemoteDatasource {
   /// Get the latest news from the API about the warframe game or community.
   Future<void> getRemoteWarframeNews();
 
-  /// Refresh news data in the app to get updated news if there happens to be.
+  /// Refresh news data in the app to get updated news if there happens to be
+  /// any fresh ones available.
   Future<void> refresh();
 }
 
