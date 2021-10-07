@@ -95,15 +95,15 @@ class NewsRemoteDatasourceImpl extends NewsRemoteDatasource with ChangeNotifier 
     return _retryCount >= _thresholdLimit;
   }
 
-  /// Call when [getRemoteWarframeNews] is unsuccessful and [NewsState] needs
-  /// or has to be set to an empty state before exiting.
+  /// Call when [getRemoteWarframeNews] is unsuccessful and [NewsState] needs or
+  /// has to be set to an empty state before exiting.
   void _setStateAsEmpty() {
     state = NewsState.empty;
     notifyListeners();
   }
 
-  /// Call when [getRemoteWarframeNews] is running and [NewsState] needs/has to
-  /// be set to a loading state.
+  /// Call when [getRemoteWarframeNews] is running and [NewsState] needs or has
+  /// to be set to a loading state.
   void _setStateAsLoading() {
     state = NewsState.loading;
     notifyListeners();
