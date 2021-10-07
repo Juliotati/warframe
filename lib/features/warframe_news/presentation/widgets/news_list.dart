@@ -39,7 +39,7 @@ class _NewsConsumer extends StatelessWidget {
         if (snapshot.state == NewsState.empty) {
           return RetryButton(onTap: () => snapshot.refreshNews());
         } else {
-          final List<NewsModel> data = snapshot.data!.toList();
+          final List<NewsModel> data = snapshot.data!.reversed.toList();
           return builder(context, data);
         }
       },
