@@ -46,7 +46,7 @@ class WarframeRemoteDatasourceImpl extends WarframeRemoteDatasource with ChangeN
     final bool isConnected = await NetWorkInfoImpl.instance.isConnected;
 
     /// Check whether the device has connection or not.
-    /// If no connection is detected, the method is existed.
+    /// If no connection is detected, the method should not continue.
     if (!isConnected) {
       _setStateAsEmpty();
       return;
@@ -60,13 +60,13 @@ class WarframeRemoteDatasourceImpl extends WarframeRemoteDatasource with ChangeN
         return;
       }
 
-      final List<dynamic> _decodedData = await DatasourceHelper.decodeData(response.body);
+      /// Decode the response body with the help of DatasourceHelper class.
+      final List<dynamic> _decodedData = await DatasourceHelper.decode(response.body);
 
-      /// If _decodedData list comes in empty, the method whole method should
-      /// re-run.
+      /// If _decodedData comes in empty, the whole method should re-run.
       ///
-      /// If the there happens to be many tries after re-running the method whole
-      /// will exits too.
+      /// If the there happens to be many tries after re-running, the method
+      /// should exit to avoid an infinity loop.
       if (_decodedData.isEmpty) {
         if (_timedOut()) {
           _setStateAsEmpty();
@@ -98,31 +98,31 @@ class WarframeRemoteDatasourceImpl extends WarframeRemoteDatasource with ChangeN
     }
   }
 
-  /// Should return whether the method has ran out of tries count or not
+  /// Should return whether the method has ran out of re-try count or not.
   ///
   /// Everytime [getRemoteWarframes] re-runs, [_retryCount] increments, if
   /// [_retryCount] happens to be equal to or, exceed [_thresholdLimit] the
-  /// method call should exit to avoid infinity loops
+  /// method call should exit to avoid infinity loops.
   bool _timedOut() {
     return _retryCount >= _thresholdLimit;
   }
 
-  /// Called when [getRemoteWarframes] is exiting which, was unsuccessful and
-  /// [WarframeState] needs/has to be set to empty state
+  /// Call when [getRemoteWarframes] is unsuccessful and [WarframeState] needs
+  /// or has to be set to an empty state before exiting.
   void _setStateAsEmpty() {
     state = WarframeState.empty;
     notifyListeners();
   }
 
-  /// Called when [getRemoteWarframeNews] is running and [NewsState] needs/has
-  /// to be set to loaded state
+  /// Call when [getRemoteWarframes] is running and [WarframeState] needs/has to
+  /// be set to a loading state.
   void _setStateAsLoading() {
     state = WarframeState.loading;
     notifyListeners();
   }
 
-  /// Called when [getRemoteWarframeNews] is exiting which, was successful and
-  /// [NewsState] needs/has to be set to loaded state
+  /// Call when [getRemoteWarframes] is successfully and [WarframeState] needs
+  /// or has to be set to loaded state before exiting.
   void _setStateAsLoaded() {
     state = WarframeState.loaded;
     notifyListeners();

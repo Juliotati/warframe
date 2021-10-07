@@ -33,11 +33,11 @@ class NewsRemoteDatasourceImpl extends NewsRemoteDatasource with ChangeNotifier 
   Future<void> getRemoteWarframeNews() async {
     _setStateAsLoading();
 
-    /// Get connection state form NetWorkInfoImpl class
+    /// Get connection state from NetWorkInfoImpl class
     final bool isConnected = await NetWorkInfoImpl.instance.isConnected;
 
     /// Check whether the device has connection or not.
-    /// If no connection is detected, the method is existed.
+    /// If no connection is detected, the method should not continue.
     if (!isConnected) {
       _setStateAsEmpty();
       return;
@@ -50,14 +50,13 @@ class NewsRemoteDatasourceImpl extends NewsRemoteDatasource with ChangeNotifier 
       return;
     }
 
-    /// Decode the response body from the HTTP GET
-    final List<dynamic> _decodedData = await DatasourceHelper.decodeData(response.body);
+    /// Decode the response body with the help of DatasourceHelper class.
+    final List<dynamic> _decodedData = await DatasourceHelper.decode(response.body);
 
-    /// If _decodedData list comes in empty, the method whole method should
-    /// re-run.
+    /// If _decodedData comes in empty, the whole method should re-run.
     ///
-    /// If the there happens to be many tries after re-running the method whole
-    /// will exits too.
+    /// If the there happens to be many tries after re-running, the method
+    /// should exit to avoid an infinity loop.
     if (_decodedData.isEmpty) {
       if (_timedOut()) {
         _setStateAsEmpty();
@@ -86,37 +85,37 @@ class NewsRemoteDatasourceImpl extends NewsRemoteDatasource with ChangeNotifier 
     _setStateAsLoaded();
   }
 
-  /// Should return whether the method has ran out of tries count or not
+  /// Should return whether the method has ran out of re-try count or not.
   ///
   /// Everytime [getRemoteWarframeNews] re-runs, [_retryCount] increments, if
   /// [_retryCount] happens to be equal to or, exceed [_thresholdLimit] the
-  /// method call should exit to avoid infinity loops
+  /// method call should exit to avoid infinity loops.
   bool _timedOut() {
     return _retryCount >= _thresholdLimit;
   }
 
-  /// Called when [getRemoteWarframeNews] is exiting which, was unsuccessful and
-  /// [NewsState] needs/has to be set to empty state
+  /// Call when [getRemoteWarframeNews] is unsuccessful and [NewsState] needs
+  /// or has to be set to an empty state before exiting.
   void _setStateAsEmpty() {
     state = NewsState.empty;
     notifyListeners();
   }
 
-  /// Called when [getRemoteWarframeNews] is running and [NewsState] needs/has
-  /// to be set to loaded state
+  /// Call when [getRemoteWarframeNews] is running and [NewsState] needs/has to
+  /// be set to a loading state.
   void _setStateAsLoading() {
     state = NewsState.loading;
     notifyListeners();
   }
 
-  /// Called when [getRemoteWarframeNews] is exiting which, was successful and
-  /// [NewsState] needs/has to be set to loaded state
+  /// Call when [getRemoteWarframeNews] is successfully and [NewsState] needs
+  /// or has to be set to loaded state before exiting.
   void _setStateAsLoaded() {
     state = NewsState.loaded;
     notifyListeners();
   }
 
-  /// Transform the decoded data into dart objects as [WarframeNewsModel]
+  /// Transform the decoded data into dart objects as [WarframeNewsModel].
   Future<List<WarframeNewsModel>> _newsList(List<dynamic> data) async {
     return data
         .map((dynamic news) {
