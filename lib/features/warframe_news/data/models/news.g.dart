@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'warframe_news.dart';
+part of 'news.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-WarframeNewsModel _$WarframeNewsModelFromJson(Map<String, dynamic> json) {
-  return WarframeNewsModel(
+NewsModel _$WarframeNewsModelFromJson(Map<String, dynamic> json) {
+  return NewsModel(
     id: json['id'] as String,
     message: json['message'] as String,
     link: json['link'] as String,
@@ -16,7 +16,7 @@ WarframeNewsModel _$WarframeNewsModelFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$WarframeNewsModelToJson(WarframeNews instance) =>
+Map<String, dynamic> _$WarframeNewsModelToJson(News instance) =>
     <String, dynamic>{
       'id': instance.id,
       'message': instance.message,

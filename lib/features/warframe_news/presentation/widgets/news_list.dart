@@ -6,7 +6,7 @@ class _NewsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _NewsConsumer(
-      builder: (BuildContext context, List<WarframeNewsModel> data) {
+      builder: (BuildContext context, List<NewsModel> data) {
         return WarframeGridViewBuilder(
           itemCount: data.length,
           itemBuilder: (_, int i) {
@@ -27,7 +27,7 @@ class _NewsConsumer extends StatelessWidget {
     required this.builder,
   }) : super(key: key);
 
-  final Widget Function(BuildContext, List<WarframeNewsModel>) builder;
+  final Widget Function(BuildContext, List<NewsModel>) builder;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class _NewsConsumer extends StatelessWidget {
         if (snapshot.state == NewsState.empty) {
           return RetryButton(onTap: () => snapshot.refresh());
         } else {
-          final List<WarframeNewsModel> data = snapshot.data!.toList();
+          final List<NewsModel> data = snapshot.data!.toList();
           return builder(context, data);
         }
       },

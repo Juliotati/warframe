@@ -1,11 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
-import '../../domain/entities/warframe_news.dart';
+import '../../domain/entities/news.dart';
 
-part 'warframe_news.g.dart';
+part 'news.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class WarframeNewsModel extends WarframeNews {
-  const WarframeNewsModel({
+class NewsModel extends News {
+  const NewsModel({
     required this.id,
     required this.message,
     required this.link,
@@ -19,7 +19,7 @@ class WarframeNewsModel extends WarframeNews {
           imageLink: imageLink,
         );
 
-  factory WarframeNewsModel.fromJson(Map<String, dynamic> json) {
+  factory NewsModel.fromJson(Map<String, dynamic> json) {
     return _$WarframeNewsModelFromJson(json);
   }
 

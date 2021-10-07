@@ -6,7 +6,7 @@ class NewsCardItem extends StatelessWidget {
     required this.newsItem,
   }) : super(key: key);
 
-  final WarframeNewsModel newsItem;
+  final NewsModel newsItem;
 
   Future<void> _openWebPage(BuildContext context) async {
     if (WarframePlatform.isWeb) {

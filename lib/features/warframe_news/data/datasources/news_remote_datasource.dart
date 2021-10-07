@@ -4,7 +4,7 @@ import 'package:warframe/core/helpers/datasource_helper.dart';
 import 'package:warframe/core/keys/apis.dart';
 import 'package:warframe/core/platform/network_info.dart';
 
-import '../models/warframe_news.dart';
+import '../models/news.dart';
 
 abstract class NewsRemoteDatasource {
 
@@ -23,7 +23,7 @@ enum NewsState {
 }
 
 class NewsRemoteDatasourceImpl extends NewsRemoteDatasource with ChangeNotifier {
-  List<WarframeNewsModel>? data;
+  List<NewsModel>? data;
 
   NewsState state = NewsState.empty;
 
@@ -70,7 +70,7 @@ class NewsRemoteDatasourceImpl extends NewsRemoteDatasource with ChangeNotifier 
       return;
     }
 
-    List<WarframeNewsModel>? _news = await _newsList(_decodedData);
+    List<NewsModel>? _news = await _newsList(_decodedData);
 
     if (data == null) {
       data = _news;
@@ -116,17 +116,17 @@ class NewsRemoteDatasourceImpl extends NewsRemoteDatasource with ChangeNotifier 
     notifyListeners();
   }
 
-  /// Transform the decoded data into dart objects as [WarframeNewsModel].
-  Future<List<WarframeNewsModel>> _newsList(List<dynamic> data) async {
+  /// Transform the decoded data into dart objects as [NewsModel].
+  Future<List<NewsModel>> _newsList(List<dynamic> data) async {
     return data.map((dynamic news) {
-      return WarframeNewsModel.fromJson(news as Map<String, dynamic>);
+      return NewsModel.fromJson(news as Map<String, dynamic>);
     }).toList();
   }
 
   /// If the [data] list is not empty, new items from [newsList] should be
   /// added to [data] if there's no item with the same id.
-  Future<void> _addNewData(List<WarframeNewsModel> newsList) async {
-    for (final WarframeNewsModel _item in newsList) {
+  Future<void> _addNewData(List<NewsModel> newsList) async {
+    for (final NewsModel _item in newsList) {
       if (!DatasourceHelper.idExists(data!, _item)) {
         data!.insert(0, _item);
       }

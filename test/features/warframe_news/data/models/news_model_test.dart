@@ -1,13 +1,13 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:warframe/features/warframe_news/data/models/warframe_news.dart';
-import 'package:warframe/features/warframe_news/domain/entities/warframe_news.dart';
+import 'package:warframe/features/warframe_news/data/models/news.dart';
+import 'package:warframe/features/warframe_news/domain/entities/news.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  const WarframeNewsModel tNewsModel = WarframeNewsModel(
+  const NewsModel tNewsModel = NewsModel(
     id: '1',
     message: 'This is a sample news 1',
     link: 'https://new.com/',
@@ -18,7 +18,7 @@ void main() {
   test(
     'WarframeNewsModel should be a subclass of WarframeNews entity',
     () async {
-      expect(tNewsModel, isA<WarframeNews>());
+      expect(tNewsModel, isA<News>());
     },
   );
 
@@ -29,8 +29,8 @@ void main() {
         final List<dynamic> jsonMap =
             await jsonDecode(fixture('news.json')) as List<dynamic>;
 
-        final WarframeNewsModel result =
-            WarframeNewsModel.fromJson(jsonMap.first as Map<String, dynamic>);
+        final NewsModel result =
+            NewsModel.fromJson(jsonMap.first as Map<String, dynamic>);
         expect(result, equals(tNewsModel));
       },
     );
