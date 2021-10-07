@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart' show debugPrint;
 import 'package:http/http.dart'as http;
 
 class DatasourceHelper {
-  /// Get the decoded json data as List<dynamic>
-  static Future<List<dynamic>> decodeData(String body) async {
+  /// Get the decoded response body as List<dynamic>
+  static Future<List<dynamic>> decode(String body) async {
     return await jsonDecode(body) as List<dynamic>;
   }
 
