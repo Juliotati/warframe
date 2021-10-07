@@ -123,8 +123,8 @@ class NewsRemoteDatasourceImpl extends NewsRemoteDatasource with ChangeNotifier 
     }).toList();
   }
 
-  /// If the [data] list is not be empty, new items from [newsList] should be
-  /// added to [data] if there happens to be no item with the same id.
+  /// If the [data] list is not empty, new items from [newsList] should be
+  /// added to [data] if there's no item with the same id.
   Future<void> _addNewData(List<WarframeNewsModel> newsList) async {
     for (final WarframeNewsModel _item in newsList) {
       if (!DatasourceHelper.idExists(data!, _item)) {
