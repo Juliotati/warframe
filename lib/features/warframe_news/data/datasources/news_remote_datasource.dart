@@ -9,11 +9,11 @@ import '../models/news.dart';
 abstract class NewsRemoteDatasource {
 
   /// Get the latest news from the API about the warframe game or community.
-  Future<void> getRemoteWarframeNews();
+  Future<void> getRemoteNews();
 
   /// Refresh news data in the app to get updated news if there happens to be
   /// any fresh ones available.
-  Future<void> refresh();
+  Future<void> refreshNews();
 }
 
 enum NewsState {
@@ -31,7 +31,7 @@ class NewsRemoteDatasourceImpl extends NewsRemoteDatasource with ChangeNotifier 
   static const int _thresholdLimit = 5;
 
   @override
-  Future<void> getRemoteWarframeNews() async {
+  Future<void> getRemoteNews() async {
     _setStateAsLoading();
 
     /// Get connection state from NetWorkInfoImpl class
@@ -66,7 +66,7 @@ class NewsRemoteDatasourceImpl extends NewsRemoteDatasource with ChangeNotifier 
 
       state = NewsState.loading;
       _retryCount++;
-      getRemoteWarframeNews();
+      getRemoteNews();
       return;
     }
 
@@ -88,28 +88,28 @@ class NewsRemoteDatasourceImpl extends NewsRemoteDatasource with ChangeNotifier 
 
   /// Should return whether the method has ran out of re-try count or not.
   ///
-  /// Everytime [getRemoteWarframeNews] re-runs, [_retryCount] increments, if
+  /// Everytime [getRemoteNews] re-runs, [_retryCount] increments, if
   /// [_retryCount] happens to be equal to or, exceed [_thresholdLimit] the
   /// method call should exit to avoid infinity loops.
   bool _timedOut() {
     return _retryCount >= _thresholdLimit;
   }
 
-  /// Call when [getRemoteWarframeNews] is unsuccessful and [NewsState] needs or
+  /// Call when [getRemoteNews] is unsuccessful and [NewsState] needs or
   /// has to be set to an empty state before exiting.
   void _setStateAsEmpty() {
     state = NewsState.empty;
     notifyListeners();
   }
 
-  /// Call when [getRemoteWarframeNews] is running and [NewsState] needs or has
+  /// Call when [getRemoteNews] is running and [NewsState] needs or has
   /// to be set to a loading state.
   void _setStateAsLoading() {
     state = NewsState.loading;
     notifyListeners();
   }
 
-  /// Call when [getRemoteWarframeNews] is successfully and [NewsState] needs
+  /// Call when [getRemoteNews] is successfully and [NewsState] needs
   /// or has to be set to loaded state before exiting.
   void _setStateAsLoaded() {
     state = NewsState.loaded;
@@ -134,8 +134,8 @@ class NewsRemoteDatasourceImpl extends NewsRemoteDatasource with ChangeNotifier 
   }
 
   @override
-  Future<void> refresh() async {
+  Future<void> refreshNews() async {
     _retryCount = 0;
-    await getRemoteWarframeNews();
+    await getRemoteNews();
   }
 }

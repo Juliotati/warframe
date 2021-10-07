@@ -4,24 +4,24 @@ import 'package:mocktail/mocktail.dart';
 import 'package:warframe/core/error/failures.dart';
 import 'package:warframe/core/usecases/usecases.dart';
 import 'package:warframe/features/warframe_news/domain/repositories/news_repository.dart';
-import 'package:warframe/features/warframe_news/domain/usecases/get_news.dart';
+import 'package:warframe/features/warframe_news/domain/usecases/refresh_news.dart';
 
 class MockNewsRepository extends Mock implements NewsRepository {}
 
 Future<void> main() async {
   final MockNewsRepository mockNewsRepository = MockNewsRepository();
-  final GetNews useCase = GetNews(mockNewsRepository);
+  final RefreshNews useCase = RefreshNews(mockNewsRepository);
 
   test(
-    'verify if getNews is actually called from the repository',
+    'should check if refreshNews is called from the repository.',
     () async {
-      when(() => mockNewsRepository.getNews())
+      when(() => mockNewsRepository.refreshNews())
           .thenAnswer((_) async => const Right(null));
 
       final Either<Failure, void> result = await useCase(NoParams());
 
       expect(result.isRight(), true);
-      verify(() => mockNewsRepository.getNews());
+      verify(() => mockNewsRepository.refreshNews());
       verifyNoMoreInteractions(mockNewsRepository);
     },
   );
