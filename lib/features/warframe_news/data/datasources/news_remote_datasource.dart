@@ -4,15 +4,16 @@ import 'package:warframe/core/helpers/datasource_helper.dart';
 import 'package:warframe/core/keys/apis.dart';
 import 'package:warframe/core/platform/network_info.dart';
 
-import '../models/warframe_news.dart';
+import '../models/news.dart';
 
 abstract class NewsRemoteDatasource {
 
   /// Get the latest news from the API about the warframe game or community.
-  Future<void> getRemoteWarframeNews();
+  Future<void> getRemoteNews();
 
-  /// Refresh news data in the app to get updated news if there happens to be.
-  Future<void> refresh();
+  /// Refresh news data in the app to get updated news if there happens to be
+  /// any fresh ones available.
+  Future<void> refreshNews();
 }
 
 enum NewsState {
@@ -22,7 +23,7 @@ enum NewsState {
 }
 
 class NewsRemoteDatasourceImpl extends NewsRemoteDatasource with ChangeNotifier {
-  List<WarframeNewsModel>? data;
+  List<NewsModel>? data;
 
   NewsState state = NewsState.empty;
 
@@ -30,7 +31,7 @@ class NewsRemoteDatasourceImpl extends NewsRemoteDatasource with ChangeNotifier 
   static const int _thresholdLimit = 5;
 
   @override
-  Future<void> getRemoteWarframeNews() async {
+  Future<void> getRemoteNews() async {
     _setStateAsLoading();
 
     /// Get connection state from NetWorkInfoImpl class
@@ -65,11 +66,11 @@ class NewsRemoteDatasourceImpl extends NewsRemoteDatasource with ChangeNotifier 
 
       state = NewsState.loading;
       _retryCount++;
-      getRemoteWarframeNews();
+      getRemoteNews();
       return;
     }
 
-    List<WarframeNewsModel>? _news = await _newsList(_decodedData);
+    List<NewsModel>? _news = await _newsList(_decodedData);
 
     if (data == null) {
       data = _news;
@@ -87,47 +88,45 @@ class NewsRemoteDatasourceImpl extends NewsRemoteDatasource with ChangeNotifier 
 
   /// Should return whether the method has ran out of re-try count or not.
   ///
-  /// Everytime [getRemoteWarframeNews] re-runs, [_retryCount] increments, if
+  /// Everytime [getRemoteNews] re-runs, [_retryCount] increments, if
   /// [_retryCount] happens to be equal to or, exceed [_thresholdLimit] the
   /// method call should exit to avoid infinity loops.
   bool _timedOut() {
     return _retryCount >= _thresholdLimit;
   }
 
-  /// Call when [getRemoteWarframeNews] is unsuccessful and [NewsState] needs
-  /// or has to be set to an empty state before exiting.
+  /// Call when [getRemoteNews] is unsuccessful and [NewsState] needs or
+  /// has to be set to an empty state before exiting.
   void _setStateAsEmpty() {
     state = NewsState.empty;
     notifyListeners();
   }
 
-  /// Call when [getRemoteWarframeNews] is running and [NewsState] needs/has to
-  /// be set to a loading state.
+  /// Call when [getRemoteNews] is running and [NewsState] needs or has
+  /// to be set to a loading state.
   void _setStateAsLoading() {
     state = NewsState.loading;
     notifyListeners();
   }
 
-  /// Call when [getRemoteWarframeNews] is successfully and [NewsState] needs
+  /// Call when [getRemoteNews] is successfully and [NewsState] needs
   /// or has to be set to loaded state before exiting.
   void _setStateAsLoaded() {
     state = NewsState.loaded;
     notifyListeners();
   }
 
-  /// Transform the decoded data into dart objects as [WarframeNewsModel].
-  Future<List<WarframeNewsModel>> _newsList(List<dynamic> data) async {
-    return data
-        .map((dynamic news) {
-          return WarframeNewsModel.fromJson(news as Map<String, dynamic>);
-        })
-        .toList()
-        .reversed
-        .toList();
+  /// Transform the decoded data into dart objects as [NewsModel].
+  Future<List<NewsModel>> _newsList(List<dynamic> data) async {
+    return data.map((dynamic news) {
+      return NewsModel.fromJson(news as Map<String, dynamic>);
+    }).toList();
   }
 
-  Future<void> _addNewData(List<WarframeNewsModel> newsList) async {
-    for (final WarframeNewsModel _item in newsList) {
+  /// If the [data] list is not empty, new items from [newsList] should be
+  /// added to [data] if there's no item with the same id.
+  Future<void> _addNewData(List<NewsModel> newsList) async {
+    for (final NewsModel _item in newsList) {
       if (!DatasourceHelper.idExists(data!, _item)) {
         data!.insert(0, _item);
       }
@@ -135,8 +134,8 @@ class NewsRemoteDatasourceImpl extends NewsRemoteDatasource with ChangeNotifier 
   }
 
   @override
-  Future<void> refresh() async {
+  Future<void> refreshNews() async {
     _retryCount = 0;
-    await getRemoteWarframeNews();
+    await getRemoteNews();
   }
 }

@@ -13,7 +13,7 @@ import 'package:warframe/features/warframe_news/data/datasources/news_remote_dat
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_windows/webview_windows.dart' as win;
 
-import 'data/models/warframe_news.dart';
+import 'data/models/news.dart';
 
 part 'presentation/screens/news.dart';
 part 'presentation/screens/news_webview.dart';

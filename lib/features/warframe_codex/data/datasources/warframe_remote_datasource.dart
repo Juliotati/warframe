@@ -13,7 +13,8 @@ abstract class WarframeRemoteDatasource {
   /// Gets all Prime and non-prime warframes from the official warframe API
   Future<void> getRemoteWarframes();
 
-  /// Refresh news data in the app to get updated news if there happens to be.
+  /// Refresh warframes data in the app to get updated warframes if there
+  /// happens to be any new warframe.
   Future<void> refresh();
 }
 
@@ -114,8 +115,8 @@ class WarframeRemoteDatasourceImpl extends WarframeRemoteDatasource with ChangeN
     notifyListeners();
   }
 
-  /// Call when [getRemoteWarframes] is running and [WarframeState] needs/has to
-  /// be set to a loading state.
+  /// Call when [getRemoteWarframes] is running and [WarframeState] needs or has
+  /// to be set to a loading state.
   void _setStateAsLoading() {
     state = WarframeState.loading;
     notifyListeners();
@@ -135,6 +136,8 @@ class WarframeRemoteDatasourceImpl extends WarframeRemoteDatasource with ChangeN
     }).toList();
   }
 
+  /// If the [data] list is not empty, new items from [newsList] should be
+  /// added to [data] if there's no item with the same id.
   Future<void> _addNewData(List<WarframeModel> warframeList) async {
     for (final WarframeModel warframe in warframeList) {
       if (!DatasourceHelper.uniqueNameExists(data!, warframe)) {

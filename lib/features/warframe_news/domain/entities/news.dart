@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-class WarframeNews extends Equatable {
-  const WarframeNews({
+class News extends Equatable {
+  const News({
     required this.id,
     required this.message,
     required this.link,

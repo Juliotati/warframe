@@ -11,7 +11,7 @@ class WarframeApp {
   static const WarframeApp instance = WarframeApp._();
 
   Future<void> initialize(BuildContext context) async {
-    await context.read<NewsRemoteDatasourceImpl>().getRemoteWarframeNews();
+    await context.read<NewsRemoteDatasourceImpl>().getRemoteNews();
     await context.read<WarframeRemoteDatasourceImpl>().getRemoteWarframes();
     await context.read<ModsNetwork>().getRemoteMods();
     await context.read<WeaponNetwork>().getRemoteWeapons();
