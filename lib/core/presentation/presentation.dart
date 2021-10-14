@@ -1,7 +1,5 @@
 library presentation;
 
-import 'dart:io';
-
 import 'package:animations/animations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

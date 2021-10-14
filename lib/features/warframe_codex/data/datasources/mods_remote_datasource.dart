@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
 import 'package:warframe/core/keys/apis.dart';
 import 'package:warframe/core/platform/network_info.dart';
 import 'package:warframe/features/warframe_codex/data/models/mod_model.dart';
-import 'package:http/http.dart' as http;
 
 abstract class ModsRemoteDatasource {
   /// Gets all Prime and non-prime mods from the official warframe API on app launch

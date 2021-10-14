@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:warframe/features/warframe_codex/data/models/warframe_model.dart';
 import 'package:warframe/features/warframe_codex/data/models/warframe_abilities_model.dart';
+import 'package:warframe/features/warframe_codex/data/models/warframe_model.dart';
 import 'package:warframe/features/warframe_codex/domain/entities/warframe.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
