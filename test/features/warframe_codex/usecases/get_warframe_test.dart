@@ -56,11 +56,11 @@ void main() {
     'should get a single warframe from the repository by name',
     () async {
       when(() => mockWarframeRepository.getWarframe(tWarframeName))
-          .thenAnswer((_) async => const Right(tWarframe));
+          .thenAnswer((_) async => const Right<Failure, Warframe>(tWarframe));
 
       final Either<Failure, Warframe> result = await useCase(Params(tWarframeName));
 
-      expect(result, const Right(tWarframe));
+      expect(result, const Right<Failure, Warframe>(tWarframe));
 
       verify(() => mockWarframeRepository.getWarframe(tWarframeName));
       verifyNoMoreInteractions(mockWarframeRepository);

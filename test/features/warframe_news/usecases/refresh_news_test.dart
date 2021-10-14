@@ -16,7 +16,7 @@ Future<void> main() async {
     'should check if refreshNews is called from the repository.',
     () async {
       when(() => mockNewsRepository.refreshNews())
-          .thenAnswer((_) async => const Right(null));
+          .thenAnswer((_) async => const Right<Failure, void>(null));
 
       final Either<Failure, void> result = await useCase(NoParams());
 

@@ -19,12 +19,12 @@ class NewsRepositoryImpl implements NewsRepository {
   @override
   Future<Either<Failure, void>> getNews() async {
     networkInfo.isConnected;
-    return Right(await remoteDatasource.getRemoteNews());
+    return Right<Failure, void>(await remoteDatasource.getRemoteNews());
   }
 
   @override
   Future<Either<Failure, void>> refreshNews() async {
     networkInfo.isConnected;
-    return Right(await remoteDatasource.refreshNews());
+    return Right<Failure, void>(await remoteDatasource.refreshNews());
   }
 }
