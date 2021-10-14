@@ -29,16 +29,14 @@ class NetWorkInfoImpl implements NetworkInfo {
     return false;
   }
 
-  final Future<ConnectivityResult> _result = Connectivity().checkConnectivity();
-
   Future<bool> _hasNetwork() async {
-    final ConnectivityResult result = await _result;
+    final ConnectivityResult result = await Connectivity().checkConnectivity();
     return result == ConnectivityResult.mobile ||
         result == ConnectivityResult.wifi;
   }
 
   Future<bool> _hasNoNetwork() async {
-    final ConnectivityResult result = await _result;
+    final ConnectivityResult result = await Connectivity().checkConnectivity();
     return result == ConnectivityResult.none || !(await _hasNetwork());
   }
 
