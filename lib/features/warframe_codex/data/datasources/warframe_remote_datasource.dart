@@ -24,7 +24,8 @@ enum WarframeState {
   empty,
 }
 
-class WarframeRemoteDatasourceImpl extends WarframeRemoteDatasource with ChangeNotifier {
+class WarframeRemoteDatasourceImpl extends WarframeRemoteDatasource
+    with ChangeNotifier {
   List<WarframeModel>? data;
 
   WarframeState state = WarframeState.empty;
@@ -54,7 +55,8 @@ class WarframeRemoteDatasourceImpl extends WarframeRemoteDatasource with ChangeN
     }
 
     try {
-      final http.Response response = await DatasourceHelper.get(API.warframeAPI);
+      final http.Response response =
+          await DatasourceHelper.get(API.warframeAPI);
 
       if (response.statusCode != 200) {
         _setStateAsEmpty();
@@ -62,7 +64,8 @@ class WarframeRemoteDatasourceImpl extends WarframeRemoteDatasource with ChangeN
       }
 
       /// Decode the response body with the help of DatasourceHelper class.
-      final List<dynamic> _decodedData = await DatasourceHelper.decode(response.body);
+      final List<dynamic> _decodedData =
+          await DatasourceHelper.decode(response.body);
 
       /// If _decodedData comes in empty, the whole method should re-run.
       ///
@@ -94,7 +97,9 @@ class WarframeRemoteDatasourceImpl extends WarframeRemoteDatasource with ChangeN
       }
 
       _setStateAsLoaded();
+      return;
     } catch (_) {
+      _setStateAsEmpty();
       rethrow;
     }
   }

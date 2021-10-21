@@ -7,7 +7,6 @@ import 'package:warframe/core/platform/network_info.dart';
 import '../models/news.dart';
 
 abstract class NewsRemoteDatasource {
-
   /// Get the latest news from the API about the warframe game or community.
   Future<void> getRemoteNews();
 
@@ -22,7 +21,8 @@ enum NewsState {
   empty,
 }
 
-class NewsRemoteDatasourceImpl extends NewsRemoteDatasource with ChangeNotifier {
+class NewsRemoteDatasourceImpl extends NewsRemoteDatasource
+    with ChangeNotifier {
   List<NewsModel>? data;
 
   NewsState state = NewsState.empty;
@@ -43,47 +43,53 @@ class NewsRemoteDatasourceImpl extends NewsRemoteDatasource with ChangeNotifier 
       _setStateAsEmpty();
       return;
     }
+    try {
+      final http.Response response = await DatasourceHelper.get(API.newsAPI);
 
-    final http.Response response = await DatasourceHelper.get(API.newsAPI);
-
-    if (response.statusCode != 200) {
-      _setStateAsEmpty();
-      return;
-    }
-
-    /// Decode the response body with the help of DatasourceHelper class.
-    final List<dynamic> _decodedData = await DatasourceHelper.decode(response.body);
-
-    /// If _decodedData comes in empty, the whole method should re-run.
-    ///
-    /// If the there happens to be many tries after re-running, the method
-    /// should exit to avoid an infinity loop.
-    if (_decodedData.isEmpty) {
-      if (_timedOut()) {
+      if (response.statusCode != 200) {
         _setStateAsEmpty();
         return;
       }
 
-      state = NewsState.loading;
-      _retryCount++;
-      getRemoteNews();
-      return;
-    }
+      /// Decode the response body with the help of DatasourceHelper class.
+      final List<dynamic> _decodedData =
+          await DatasourceHelper.decode(response.body);
 
-    List<NewsModel>? _news = await _newsList(_decodedData);
+      /// If _decodedData comes in empty, the whole method should re-run.
+      ///
+      /// If the there happens to be many tries after re-running, the method
+      /// should exit to avoid an infinity loop.
+      if (_decodedData.isEmpty) {
+        if (_timedOut()) {
+          _setStateAsEmpty();
+          return;
+        }
 
-    if (data == null) {
-      data = _news;
+        state = NewsState.loading;
+        _retryCount++;
+        getRemoteNews();
+        return;
+      }
+
+      List<NewsModel>? _news = await _newsList(_decodedData);
+
+      if (data == null) {
+        data = _news;
+        _setStateAsLoaded();
+        return;
+      }
+
+      if (data!.isNotEmpty) {
+        await _addNewData(_news);
+        _news = null;
+      }
+
       _setStateAsLoaded();
       return;
+    } catch (_) {
+      _setStateAsEmpty();
+      rethrow;
     }
-
-    if (data!.isNotEmpty) {
-      await _addNewData(_news);
-      _news = null;
-    }
-
-    _setStateAsLoaded();
   }
 
   /// Should return whether the method has ran out of re-try count or not.
