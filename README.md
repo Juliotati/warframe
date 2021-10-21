@@ -9,7 +9,7 @@
 
 # warframe
 
-Designing my favourite games' mobile app and populating it with data from its API.
+This is a minor remake of the Warframe companion app that players can use to quickly check in game avatars and tools stats. Warframe is a video game by Digital Extremes (DE)
 
 ### Link
 
