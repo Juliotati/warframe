@@ -1,3 +1,12 @@
+[![GitHub branches](https://badgen.net/github/branches/Juliotati/warframe)](https://github.com/Juliotati/warframe/)
+[![GitHub opened issues](https://badgen.net/github/open-issues/juliotati/warframe)](https://GitHub.com/Juliotati/warframe/open-issues/)
+[![GitHub closed issues](https://badgen.net/github/closed-issues/juliotati/warframe)](https://GitHub.com/Juliotati/warframe/closed-issues/)
+[![GitHub pull-requests merged](https://badgen.net/github/open-prs/Juliotati/warframe)](https://github.com/Juliotati/warframe/pulls?q=is%3Amerged)
+[![GitHub pull-requests merged](https://badgen.net/github/closed-prs/Juliotati/warframe)](https://github.com/Juliotati/warframe/pulls?q=is%3Amerged)
+[![GitHub pull-requests merged](https://badgen.net/github/merged-prs/Juliotati/warframe)](https://github.com/Juliotati/warframe/pulls?q=is%3Amerged)
+[![Only Size](https://badge-size.herokuapp.com/Juliotati/warframe/master/min.js)](https://github.com/Juliotati/warframe/blob/main/min.js)
+[![GitHub license](https://img.shields.io/github/license/Juliotati/warframe.svg)](https://github.com/Juliotati/warframe/blob/master/LICENSE)
+
 # warframe
 
 Designing my favourite games' mobile app and populating it with data from its API.
