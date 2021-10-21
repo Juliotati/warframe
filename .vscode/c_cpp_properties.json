@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${default}",
+                "${workspaceFolder}/windows/flutter/ephemeral/cpp_client_wrapper/include",
+                "${workspaceFolder}/windows/flutter/ephemeral",
+                "C:/Users/user/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/connectivity_plus_windows-1.1.0/windows/include",
+                "C:/Users/user/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/url_launcher_windows-2.0.0/windows/include",
+                "C:/Users/user/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/webview_windows-0.0.8/windows/include"
+            ],
+            "windowsSdkVersion": "10.0.19041.0",
+            "compilerPath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\Hostx64\\x64\\cl.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-msvc-x64",
+            "configurationProvider": "ms-vscode.cmake-tools"
+        }
+    ],
+    "version": 4
+}
