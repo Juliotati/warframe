@@ -4,5 +4,7 @@
     "workbench.activityBar.visible": false,
     "workbench.activityBar.iconClickBehavior": "focus",
     "workbench.sideBar.location": "right",
-    "editor.minimap.enabled": false
+    "editor.minimap.enabled": false,
+    "cmake.configureOnOpen": true,
+    "cmake.sourceDirectory": "${workspaceFolder}/windows/flutter"
 }
