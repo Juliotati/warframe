@@ -5,7 +5,6 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   connectivity_plus_windows
   url_launcher_windows
-  webview_windows
 )
 
 set(PLUGIN_BUNDLED_LIBRARIES)

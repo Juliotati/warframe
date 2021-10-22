@@ -9,9 +9,11 @@ class NewsPlatformWebview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (Platform.isAndroid || Platform.isIOS) return _MobileWebview(url);
+    if (WarframePlatform.isMobile) return _MobileWebview(url);
 
-    return _PCWebview(url);
+    return const Center(
+      child: Text('Webview is only available on mobile'),
+    );
   }
 }
 
@@ -38,80 +40,6 @@ class __MobileWebviewState extends State<_MobileWebview> {
         initialUrl: widget.url,
         gestureNavigationEnabled: true,
         javascriptMode: JavascriptMode.unrestricted,
-      ),
-    );
-  }
-}
-
-class _PCWebview extends StatefulWidget {
-  const _PCWebview(this.url);
-
-  final String url;
-
-  @override
-  __PCWebviewState createState() => __PCWebviewState();
-}
-
-class __PCWebviewState extends State<_PCWebview> {
-  final win.WebviewController _controller = win.WebviewController();
-
-  Future<void> _initialize() async {
-    await _controller.initialize();
-    await _controller.loadUrl(widget.url);
-  }
-
-  @override
-  void initState() {
-    _initialize();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: StreamBuilder<String>(
-          stream: _controller.title,
-          builder: (_, AsyncSnapshot<String> snapshot) {
-            return Text(snapshot.data ?? '');
-          },
-        ),
-        actions: <WebviewControl>[
-          WebviewControl(
-            onTap: () => _controller.clearCache(),
-            icon: Icons.delete_forever,
-            label: 'Cache',
-          ),
-          WebviewControl(
-            onTap: () => _controller.clearCookies(),
-            icon: Icons.delete_sweep,
-            label: 'Cookies',
-          ),
-          WebviewControl(
-            onTap: () => _controller.reload(),
-            icon: Icons.refresh,
-            label: 'Refresh',
-          ),
-        ],
-      ),
-      body: StreamBuilder<win.LoadingState>(
-        stream: _controller.loadingState,
-        builder: (_, AsyncSnapshot<win.LoadingState> snapshot) {
-          if (snapshot.data == win.LoadingState.loading) {
-            return const LoadingIndicator();
-          } else {
-            return SizedBox(
-                height: double.infinity,
-                width: double.infinity,
-                child: win.Webview(_controller));
-          }
-        },
       ),
     );
   }
