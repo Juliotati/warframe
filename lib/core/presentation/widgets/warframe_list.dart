@@ -52,7 +52,7 @@ class WarframeGridViewBuilder extends StatelessWidget {
       key: key,
       padding: WarframePlatform.isDesktop
           ? const EdgeInsets.only(right: 5, bottom: 30)
-          : null,
+          : const EdgeInsets.only(bottom: 20),
       physics: physics,
       scrollDirection: scrollDirection,
       itemCount: itemCount,

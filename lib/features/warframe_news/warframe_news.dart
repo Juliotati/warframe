@@ -11,7 +11,6 @@ import 'package:warframe/core/presentation/widgets/snack_bar.dart';
 import 'package:warframe/core/utilities/platform.dart';
 import 'package:warframe/features/warframe_news/data/datasources/news_remote_datasource.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:webview_windows/webview_windows.dart' as win;
 
 import 'data/models/news.dart';
 
