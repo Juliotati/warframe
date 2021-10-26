@@ -6,6 +6,7 @@
 [![Pull-requests merged](https://badgen.net/github/merged-prs/Juliotati/warframe)](https://github.com/Juliotati/warframe/pulls?q=is%3Amerged)
 [![Only Size](https://badge-size.herokuapp.com/Juliotati/warframe/main/min.js)](https://github.com/Juliotati/warframe/blob/main/min.js)
 [![License](https://img.shields.io/github/license/Juliotati/warframe.svg)](https://github.com/Juliotati/warframe/blob/main/LICENSE)
+[![wakatime](https://wakatime.com/badge/github/Juliotati/warframe.svg)](https://wakatime.com/badge/github/Juliotati/warframe)
 
 # warframe
 
