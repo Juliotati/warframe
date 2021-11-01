@@ -5,7 +5,7 @@ class _NewsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _NewsConsumer(
+    return _NewsBuilder(
       builder: (BuildContext context, List<NewsModel> data) {
         return WarframeGridViewBuilder(
           itemCount: data.length,
@@ -21,8 +21,8 @@ class _NewsList extends StatelessWidget {
   }
 }
 
-class _NewsConsumer extends StatelessWidget {
-  const _NewsConsumer({
+class _NewsBuilder extends StatelessWidget {
+  const _NewsBuilder({
     Key? key,
     required this.builder,
   }) : super(key: key);
