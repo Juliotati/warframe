@@ -10,6 +10,7 @@ import 'package:warframe/core/presentation/presentation.dart';
 import 'package:warframe/core/presentation/widgets/snack_bar.dart';
 import 'package:warframe/core/utilities/platform.dart';
 import 'package:warframe/features/warframe_news/data/datasources/news_remote_datasource.dart';
+import 'package:warframe/features/warframe_news/presentation/provider/news_provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'data/models/news.dart';

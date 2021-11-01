@@ -31,15 +31,18 @@ class _NewsConsumer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<NewsRemoteDatasourceImpl>(
-      builder: (BuildContext context, NewsRemoteDatasourceImpl snapshot, __) {
+    return Consumer<NewsProvider>(
+      builder: (BuildContext context, NewsProvider snapshot, __) {
         if (snapshot.state == NewsState.loading) {
           return const LoadingIndicator();
         }
         if (snapshot.state == NewsState.empty) {
-          return RetryButton(onTap: () => snapshot.refreshNews());
+          return RetryButton(onTap: () => snapshot.refreshNews(context));
+        }
+        if (snapshot.data() == null) {
+          return RetryButton(onTap: () => snapshot.refreshNews(context));
         } else {
-          final List<NewsModel> data = snapshot.data!.reversed.toList();
+          final List<NewsModel> data = snapshot.data()!.toList();
           return builder(context, data);
         }
       },

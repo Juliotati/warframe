@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
 import 'package:warframe/core/data/warframe.dart';
 import 'package:warframe/core/helpers/layout_helper.dart';
 import 'package:warframe/core/presentation/presentation.dart';
 import 'package:warframe/features/warframe_codex/data/datasources/mods_remote_datasource.dart';
+import 'package:warframe/features/warframe_news/presentation/provider/news_provider.dart';
 
 import 'core/presentation/screens/wrapper.dart';
 import 'features/warframe_codex/data/datasources/warframe_remote_datasource.dart';
@@ -20,11 +22,15 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: <ListenableProvider<dynamic>>[
+      providers: <SingleChildWidget>[
         ListenableProvider<LayoutHelper>(create: (_) => LayoutHelper()),
         ListenableProvider<NewsRemoteDatasourceImpl>(
           create: (_) => NewsRemoteDatasourceImpl(),
         ),
+        ListenableProxyProvider<NewsRemoteDatasourceImpl, NewsProvider>(
+            update: (_, NewsRemoteDatasourceImpl remoteDatasourceImpl, __) {
+          return NewsProvider(remoteDatasourceImpl);
+        }),
         ListenableProvider<WarframeRemoteDatasourceImpl>(
           create: (_) => WarframeRemoteDatasourceImpl(),
         ),
