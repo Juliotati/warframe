@@ -16,7 +16,7 @@ class CodexCategories extends StatelessWidget {
         mobileMainAxisExtent: 50,
         itemBuilder: (_, int i) {
           return CodexCategoryItem(
-            key: ValueKey<String>('codex-${kCodexCategories[i].name}-category'),
+            key: Key('codex-${kCodexCategories[i].name}-category'),
             icon: kCodexCategories[i].icon,
             category: kCodexCategories[i].name,
           );

@@ -9,11 +9,7 @@ class NewsCardItem extends StatelessWidget {
   final NewsModel newsItem;
 
   Future<void> _openWebPage(BuildContext context) async {
-    if (WarframePlatform.isWeb) {
-      await _openDefaultBrowser(context);
-      return;
-    }
-    if (WarframePlatform.isDesktop) {
+    if (WarframePlatform.isWebOrDesktop) {
       await _openDefaultBrowser(context);
       return;
     }
@@ -33,9 +29,11 @@ class NewsCardItem extends StatelessWidget {
   }
 
   void _openWebview(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute<void>(
-      builder: (_) => NewsPlatformWebview(newsItem.link),
-    ));
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => NewsPlatformWebview(newsItem.link),
+      ),
+    );
   }
 
   @override

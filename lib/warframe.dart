@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:warframe/core/data/warframe.dart';
-import 'package:warframe/core/helpers/layout_helper.dart';
+import 'package:warframe/core/helpers/screen_delegate.dart';
 import 'package:warframe/core/presentation/presentation.dart';
 import 'package:warframe/features/warframe_codex/data/datasources/mods_remote_datasource.dart';
 import 'package:warframe/features/warframe_news/presentation/provider/news_provider.dart';
@@ -23,14 +23,18 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: <SingleChildWidget>[
-        ListenableProvider<LayoutHelper>(create: (_) => LayoutHelper()),
-        ListenableProvider<NewsRemoteDatasourceImpl>(
+        ListenableProvider<ScreenDelegate>(create: (_) => ScreenDelegate()),
+        Provider<WarframeApp>(
+          create: (_) => WarframeApp.instance,
+        ),
+        Provider<NewsRemoteDatasourceImpl>(
           create: (_) => NewsRemoteDatasourceImpl(),
         ),
         ListenableProxyProvider<NewsRemoteDatasourceImpl, NewsProvider>(
-            update: (_, NewsRemoteDatasourceImpl remoteDatasourceImpl, __) {
-          return NewsProvider(remoteDatasourceImpl);
-        }),
+          update: (_, NewsRemoteDatasourceImpl remoteSource, __) {
+            return NewsProvider(remoteSource);
+          },
+        ),
         ListenableProvider<WarframeRemoteDatasourceImpl>(
           create: (_) => WarframeRemoteDatasourceImpl(),
         ),
@@ -52,11 +56,13 @@ class _App extends StatefulWidget {
 }
 
 class __AppState extends State<_App> {
+  Future<void> _init() async {
+    await WarframeApp.instance.initialize(context);
+  }
+
   @override
   void initState() {
-    WidgetsBinding.instance!.addPostFrameCallback(
-      (_) async => WarframeApp.instance.initialize(context),
-    );
+    _init();
     super.initState();
   }
 

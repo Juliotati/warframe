@@ -36,13 +36,10 @@ class _NewsBuilder extends StatelessWidget {
         if (snapshot.state == NewsState.loading) {
           return const LoadingIndicator();
         }
-        if (snapshot.state == NewsState.empty) {
-          return RetryButton(onTap: () => snapshot.refreshNews(context));
-        }
-        if (snapshot.data() == null) {
+        if (snapshot.state == NewsState.empty || snapshot.data == null) {
           return RetryButton(onTap: () => snapshot.refreshNews(context));
         } else {
-          final List<NewsModel> data = snapshot.data()!.toList();
+          final List<NewsModel> data = snapshot.data!.toList();
           return builder(context, data);
         }
       },

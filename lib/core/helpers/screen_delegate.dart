@@ -14,7 +14,7 @@ enum Screen {
   settings,
 }
 
-class LayoutHelper with ChangeNotifier {
+class ScreenDelegate with ChangeNotifier {
   Screen screen = Screen.news;
   String label = 'News';
 

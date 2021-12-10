@@ -32,7 +32,7 @@ class CodexCategoryItem extends StatelessWidget {
             onTap: () => navigateToDataScreen(context),
             horizontalMargin: 4.0,
             verticalMargin: 4.0,
-            width: WarframePlatform.isDesktop ? 70 : 50,
+            width: WarframePlatform.isWebOrDesktop ? 70 : 50,
             centerChild: true,
             horizontalPadding: 0.0,
             verticalPadding: 0.0,
@@ -43,8 +43,8 @@ class CodexCategoryItem extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 8.0),
-         Expanded(
-           child: WarframeContainer(
+          Expanded(
+            child: WarframeContainer(
               onTap: () => navigateToDataScreen(context),
               withShadow: true,
               horizontalMargin: 4.0,
@@ -56,7 +56,7 @@ class CodexCategoryItem extends StatelessWidget {
                     ),
               ),
             ),
-         ),
+          ),
         ],
       ),
     );

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart' show debugPrint;
-import 'package:http/http.dart'as http;
+import 'package:http/http.dart' as http;
 
 class DatasourceHelper {
   /// Get the decoded response body as List<dynamic>
@@ -41,7 +41,8 @@ class DatasourceHelper {
       if (existingElement.id == element.id) {
         if (showLog) {
           debugPrint(
-              'id: ${element.id} MATCHES EXISTING id: ${existingElement.id}');
+            'id: ${element.id} MATCHES EXISTING id: ${existingElement.id}',
+          );
         }
         existingElement = null;
         return true;
@@ -68,7 +69,8 @@ class DatasourceHelper {
       if (existingElement.uniqueName == element.uniqueName) {
         if (showLog) {
           debugPrint(
-              'uniqueName: ${element.uniqueName} MATCHES EXISTING uniqueName: ${existingElement.uniqueName}');
+            'uniqueName: ${element.uniqueName} MATCHES EXISTING uniqueName: ${existingElement.uniqueName}',
+          );
         }
         existingElement = null;
         return true;
