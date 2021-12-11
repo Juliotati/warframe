@@ -4,7 +4,7 @@ import 'package:animations/animations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:warframe/core/helpers/layout_helper.dart';
+import 'package:warframe/core/helpers/screen_delegate.dart';
 import 'package:warframe/core/models/drawer_items.dart';
 import 'package:warframe/core/utilities/dead_links.dart';
 import 'package:warframe/core/utilities/platform.dart';

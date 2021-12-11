@@ -11,42 +11,46 @@ enum NewsState {
 }
 
 class NewsProvider with ChangeNotifier {
-  NewsProvider(this.remoteDatasourceImpl);
+  NewsProvider(this._remoteDataSource);
 
-  final NewsRemoteDatasourceImpl remoteDatasourceImpl;
+  final NewsRemoteDatasourceImpl _remoteDataSource;
 
-  List<NewsModel>? data() => remoteDatasourceImpl.data;
+  List<NewsModel>? _data;
+
+  List<NewsModel>? get data => _data;
 
   NewsState state = NewsState.empty;
 
-  Future<List<NewsModel>?> getNews(BuildContext context) async {
+  Future<void> getNews(BuildContext context) async {
     _setStateAsLoading();
 
     /// Get connection state from NetWorkInfoImpl class
     final bool isConnected = await NetWorkInfoImpl.instance.isConnected;
+
+    Future<void> showOfflineWarning() {
+      return warframeErrorSnackBar(context, 'No internet connection found.');
+    }
 
     /// If no connection is detected, the method should not continue.
     if (!isConnected) {
       _setStateAsEmpty();
 
       /// TODO: load data from local data source
-      warframeErrorSnackBar(context, 'No internet connection found.');
-      return null;
+      showOfflineWarning();
+      return;
     }
 
-    if (isConnected) {
-      try {
-        final List<NewsModel>? _news =
-            await remoteDatasourceImpl.getRemoteNews();
-        if (_news != null) {
-          _setStateAsLoaded();
-          return _news;
-        }
-        _setStateAsEmpty();
-      } catch (_) {
-        _setStateAsEmpty();
-        rethrow;
+    try {
+      final List<NewsModel>? _news = await _remoteDataSource.getRemoteNews();
+      if (_news != null) {
+        _data = _news;
+        _setStateAsLoaded();
+        return;
       }
+      _setStateAsEmpty();
+    } catch (_) {
+      _setStateAsEmpty();
+      rethrow;
     }
   }
 

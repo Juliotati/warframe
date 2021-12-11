@@ -15,7 +15,7 @@ class ItemsColumn extends StatelessWidget {
                   label: item.label,
                   onTap: () {
                     Navigator.of(context).pop();
-                    return context.read<LayoutHelper>().updateScreen(
+                    return context.read<ScreenDelegate>().updateScreen(
                           item.screen,
                           item.label,
                         );

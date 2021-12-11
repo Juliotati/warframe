@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:warframe/core/helpers/datasource_helper.dart';
 import 'package:warframe/core/keys/apis.dart';
@@ -15,7 +14,7 @@ abstract class NewsRemoteDatasource {
   Future<void> refreshNews();
 }
 
-class NewsRemoteDatasourceImpl extends NewsRemoteDatasource with ChangeNotifier {
+class NewsRemoteDatasourceImpl extends NewsRemoteDatasource {
   List<NewsModel>? data;
 
   static int _retryCount = 0;
@@ -44,16 +43,15 @@ class NewsRemoteDatasourceImpl extends NewsRemoteDatasource with ChangeNotifier 
       /// If the there happens to be many tries after re-running, the method
       /// should exit to avoid an infinity loop.
       if (_decodedData.isEmpty) {
-        
         if (_timedOut()) return null;
-        
+
         _retryCount++;
         return getRemoteNews();
       }
 
       List<NewsModel>? _news = await _newsList(_decodedData);
 
-      if (data == null) return data = _news;
+      if (data == null || data!.isEmpty) return data = _news;
 
       if (data!.isNotEmpty) {
         await _addNewData(_news);

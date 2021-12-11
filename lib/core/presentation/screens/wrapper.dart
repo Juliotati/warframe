@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:warframe/core/helpers/layout_helper.dart';
+import 'package:warframe/core/helpers/screen_delegate.dart';
 import 'package:warframe/core/platform/network_info.dart';
 import 'package:warframe/core/presentation/presentation.dart';
-import 'package:warframe/features/warframe_news/data/datasources/news_remote_datasource.dart';
 import 'package:warframe/features/warframe_news/presentation/provider/news_provider.dart';
 
 class WarframeWrapper extends StatefulWidget {
@@ -30,11 +29,11 @@ class _WarframeWrapperState extends State<WarframeWrapper> {
 
   @override
   Widget build(BuildContext context) {
-    final LayoutHelper layout = context.watch<LayoutHelper>();
+    final ScreenDelegate layout = context.watch<ScreenDelegate>();
     final bool isNewsScreen = layout.screen == Screen.news;
 
     return WillPopScope(
-      key: const ValueKey<String>('warframe-wrapper'),
+      key: const Key('warframe-wrapper'),
       onWillPop: () {
         _openEndDrawer();
         return Future<bool>.value(false);
