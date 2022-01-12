@@ -72,7 +72,7 @@ class _WarframeWrapperState extends State<WarframeWrapper> {
               verticalPadding: 0.0,
               onTap: () {
                 if (isNewsScreen) {
-                  context.read<NewsProvider>().refreshNews(context);
+                  context.read<NewsProvider>().refreshNews();
                 }
               },
               child: Icon(isNewsScreen ? Icons.refresh : Icons.chat_bubble),

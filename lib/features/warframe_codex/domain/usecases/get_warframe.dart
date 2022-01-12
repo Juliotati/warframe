@@ -1,17 +1,17 @@
 import 'package:dartz/dartz.dart';
+import 'package:warframe/core/error/exceptions.dart';
 
-import '../../../../core/error/failures.dart';
-import '../../../../core/usecases/usecases.dart';
-import '../entities/warframe.dart';
-import '../repositories/warframe_repository.dart';
+import 'package:warframe/core/usecases/usecases.dart';
+import 'package:warframe/features/warframe_codex/data/models/warframe_model.dart';
+import 'package:warframe/features/warframe_codex/domain/repositories/warframe_repository.dart';
 
-class GetWarframe implements UseCase<Warframe, Params> {
-  const GetWarframe(this.repository);
+class GetWarframe implements UseCase<WarframeModel, Params> {
+  const GetWarframe(this._repository);
 
-  final WarframeRepository repository;
+  final WarframeRepository _repository;
 
   @override
-  Future<Either<Failure, Warframe>> call(Params params) async {
-    return repository.getWarframe(params.name);
+  Future<Either<WarframeException, WarframeModel>> call(Params params) async {
+    return _repository.getWarframe(params.name);
   }
 }

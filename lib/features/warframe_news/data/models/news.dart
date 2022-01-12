@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import '../../domain/entities/news.dart';
+import 'package:warframe/features/warframe_news/domain/entities/news.dart';
 
 part 'news.g.dart';
 

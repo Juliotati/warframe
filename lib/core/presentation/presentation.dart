@@ -1,9 +1,9 @@
 library presentation;
 
 import 'package:animations/animations.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:warframe/core/helpers/screen_delegate.dart';
 import 'package:warframe/core/models/drawer_items.dart';
 import 'package:warframe/core/utilities/dead_links.dart';
@@ -19,8 +19,8 @@ part 'widgets/drawer/drawer_items.dart';
 part 'widgets/drawer/drawer_items_list.dart';
 part 'widgets/drawer/items_column.dart';
 part 'widgets/drawer/warframe_drawer.dart';
-part 'widgets/state_indicators.dart';
 part 'widgets/stacked_container.dart';
+part 'widgets/state_indicators.dart';
 part 'widgets/stats_text.dart';
 part 'widgets/warframe_container.dart';
 part 'widgets/warframe_error.dart';

@@ -9,18 +9,19 @@ class ItemsColumn extends StatelessWidget {
       child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(
-          children: drawerItems
-              .map((DrawerItemModel item) => DrawerItemList(
-                  leadingIcon: item.leadingIcon,
-                  label: item.label,
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    return context.read<ScreenDelegate>().updateScreen(
-                          item.screen,
-                          item.label,
-                        );
-                  }))
-              .toList(),
+          children: drawerItems.map((DrawerItemModel item) {
+            return DrawerItemList(
+              leadingIcon: item.leadingIcon,
+              label: item.label,
+              onTap: () {
+                Navigator.of(context).pop();
+                return context.read<ScreenDelegate>().updateScreen(
+                      item.screen,
+                      item.label,
+                    );
+              },
+            );
+          }).toList(),
         ),
       ),
     );

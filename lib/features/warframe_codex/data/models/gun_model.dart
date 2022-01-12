@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import '../../domain/entities/gun.dart';
+import 'package:warframe/features/warframe_codex/domain/entities/gun.dart';
 
 part 'gun_model.g.dart';
 

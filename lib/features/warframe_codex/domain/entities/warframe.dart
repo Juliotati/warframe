@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'frame.dart';
+import 'package:warframe/features/warframe_codex/domain/entities/frame.dart';
 
-import 'warframe_abilities.dart';
+import 'package:warframe/features/warframe_codex/domain/entities/warframe_abilities.dart';
 
 abstract class Warframe extends Equatable implements Frame {
   const Warframe({

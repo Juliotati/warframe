@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'warframe.dart';
+import 'package:warframe/warframe.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

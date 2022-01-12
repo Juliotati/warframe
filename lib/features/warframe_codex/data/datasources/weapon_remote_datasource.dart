@@ -5,8 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:warframe/core/keys/apis.dart';
 import 'package:warframe/core/platform/network_info.dart';
 
-import '../models/gun_model.dart';
-import '../models/melee_weapon_model.dart';
+import 'package:warframe/features/warframe_codex/data/models/gun_model.dart';
+import 'package:warframe/features/warframe_codex/data/models/melee_weapon_model.dart';
 
 abstract class WeaponRemoteDatasource {
   /// Gets all Prime and non-prime weapons from the official warframe API on app launch
@@ -49,7 +49,7 @@ class WeaponNetwork extends WeaponRemoteDatasource with ChangeNotifier {
   Future<void> getRemoteWeapons() async {
     final bool isConnected = await NetWorkInfoImpl.instance.isConnected;
 
-    if (!isConnected)   return;
+    if (!isConnected) return;
     try {
       final http.Response response = await http.get(Uri.parse(API.weaponsAPI));
       if (response.statusCode != 200) {
@@ -61,9 +61,11 @@ class WeaponNetwork extends WeaponRemoteDatasource with ChangeNotifier {
           await json.decode(response.body) as List<dynamic>;
 
       if (_guns.isNotEmpty) {
-        debugPrint('''
+        debugPrint(
+          '''
         DISPOSING OF ${decodedWeapons.length} WEAPONS
-        ${_guns.length + _melee.length} ITEMS ALREADY EXIST''');
+        ${_guns.length + _melee.length} ITEMS ALREADY EXIST''',
+        );
         decodedWeapons = null;
         return;
       }
