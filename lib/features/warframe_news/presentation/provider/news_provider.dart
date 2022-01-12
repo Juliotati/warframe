@@ -13,19 +13,15 @@ enum NewsProviderState {
 }
 
 class NewsProvider with ChangeNotifier {
-  NewsProvider(
-    this._getNews,
-    this._refreshNews,
-  );
+  NewsProvider(this._getNews);
 
   final GetNews _getNews;
-  final RefreshNews _refreshNews;
 
   NewsProviderState state = NewsProviderState.idle;
   bool hasData = false;
   bool hasError = false;
 
-  List<NewsModel>? _news = [];
+  List<NewsModel>? _news = <NewsModel>[];
 
   List<NewsModel>? get news => _news;
 
