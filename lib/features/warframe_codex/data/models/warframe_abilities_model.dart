@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../domain/entities/warframe_abilities.dart';
+import 'package:warframe/features/warframe_codex/domain/entities/warframe_abilities.dart';
 
 part 'warframe_abilities_model.g.dart';
 

@@ -12,8 +12,10 @@ class WeaponProfile extends StatelessWidget {
     Key? key,
     this.gun,
     required this.melee,
-  })  : assert(gun == null,
-            'Use this constructor only for melee weapons category'),
+  })  : assert(
+          gun == null,
+          'Use this constructor only for melee weapons category',
+        ),
         super(key: key);
 
   final MeleeWeaponModel? melee;

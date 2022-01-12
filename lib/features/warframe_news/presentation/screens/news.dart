@@ -15,7 +15,7 @@ class NewsScreen extends StatelessWidget {
         width: screen.width,
         child: RefreshIndicator(
           onRefresh: () async {
-            await context.read<NewsProvider>().refreshNews(context);
+            await context.read<NewsProvider>().refreshNews();
           },
           child: const _NewsList(),
         ),

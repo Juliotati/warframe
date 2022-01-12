@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import '../../domain/entities/melee_weapon.dart';
+import 'package:warframe/features/warframe_codex/domain/entities/melee_weapon.dart';
 
 part 'melee_weapon_model.g.dart';
 
