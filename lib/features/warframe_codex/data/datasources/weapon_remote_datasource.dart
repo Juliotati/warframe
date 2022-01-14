@@ -91,7 +91,7 @@ class WeaponNetwork extends WeaponRemoteDatasource with ChangeNotifier {
         try {
           _guns.add(GunModel.fromJson(_jsonMap));
         } catch (e) {
-          debugPrint(e.toString());
+          debugPrint('$e');
           rethrow;
         }
       }

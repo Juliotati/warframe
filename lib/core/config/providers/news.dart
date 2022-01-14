@@ -33,9 +33,9 @@ List<SingleChildWidget> get _newsProviders {
     ),
 
     /// ============== NEWS PROVIDER DI ================
-    ProxyProvider2<GetNews, RefreshNews, NewsProvider>(
-      update: (_, GetNews _getNews, RefreshNews _refreshNews, __) {
-        return NewsProvider(_getNews, _refreshNews);
+    ListenableProxyProvider<GetNews, NewsProvider>(
+      update: (_, GetNews _getNews, __) {
+        return NewsProvider(_getNews);
       },
     ),
   ];

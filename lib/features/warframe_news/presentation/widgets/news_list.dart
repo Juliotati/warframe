@@ -31,17 +31,22 @@ class _NewsBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final NewsProvider _provider = context.read<NewsProvider>();
-    return FutureBuilder<List<NewsModel>?>(
-      future: _provider.getNews(),
-      builder: (_, AsyncSnapshot<List<NewsModel>?> snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
+    return Consumer<NewsProvider>(
+      builder: (_, NewsProvider _provider, __) {
+        if (_provider.state == NewsProviderState.loading) {
           return const LoadingIndicator();
         }
-        if (!snapshot.hasData || snapshot.data == null || snapshot.hasError) {
+        if (_provider.state == NewsProviderState.idle) {
+          return RetryButton(
+            message: 'Reload to update',
+            buttonLabel: 'Reload',
+            onTap: () => _provider.refreshNews(),
+          );
+        }
+        if (!_provider.hasData || _provider.hasError) {
           return RetryButton(onTap: () => _provider.refreshNews());
         } else {
-          final List<NewsModel> data = snapshot.data!.toList();
+          final List<NewsModel> data = _provider.news!;
           return builder(context, data);
         }
       },
