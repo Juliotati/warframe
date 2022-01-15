@@ -10,7 +10,7 @@ abstract class WarframeRemoteDatasource {
   /// list of warframes previously populated.
   WarframeModel getWarframe(String warframeName);
 
-  /// Gets all Prime and non-prime warframes from the official warframe API
+  /// Gets all Prime and non-prime warframes
   Future<void> getRemoteWarframes();
 
   /// Refresh warframes data in the app to get updated warframes if there

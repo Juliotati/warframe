@@ -3,7 +3,7 @@ import 'package:warframe/core/helpers/datasource_helper.dart';
 import 'package:warframe/core/keys/apis.dart';
 import 'package:warframe/core/platform/network_info.dart';
 
-import 'package:warframe/features/warframe_news/data/models/news.dart';
+import 'package:warframe/features/warframe_news/data/models/news_model.dart';
 
 abstract class NewsRemoteDatasource {
   /// Get the latest news from the API about the warframe game or community.

@@ -48,6 +48,21 @@ class WarframeModel extends Warframe {
     return _$WarframeModelFromJson(json);
   }
 
+  factory WarframeModel.empty() {
+    return const WarframeModel(
+      name: '',
+      abilities: <AbilitiesModel>[],
+      wikiaUrl: '',
+      wikiaThumbnail: '',
+      uniqueName: '',
+      armor: 0,
+      power: 0,
+      health: 0,
+      description: '',
+      shield: 0,
+    );
+  }
+
   final String uniqueName;
   final String name;
   final String description;

@@ -2,9 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:warframe/core/error/exceptions.dart';
-import 'package:warframe/core/error/failures.dart';
 import 'package:warframe/core/usecases/usecases.dart';
-import 'package:warframe/features/warframe_news/data/models/news.dart';
+import 'package:warframe/features/warframe_news/data/models/news_model.dart';
 import 'package:warframe/features/warframe_news/domain/repositories/news_repository.dart';
 import 'package:warframe/features/warframe_news/domain/usecases/get_news.dart';
 
