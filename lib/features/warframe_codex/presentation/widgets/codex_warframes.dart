@@ -39,16 +39,14 @@ class _WarframeConsumer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<WarframeRemoteDatasourceImpl>(
-      builder: (BuildContext ctx, WarframeRemoteDatasourceImpl snapshot, _) {
-        if (snapshot.state == WarframeState.loading) {
-          return const LoadingIndicator();
-        }
-        if (snapshot.state == WarframeState.empty) {
-          return RetryButton(onTap: () => snapshot.refresh());
+    return Consumer<WarframeCodexProvider>(
+      builder: (BuildContext ctx, WarframeCodexProvider _provider, _) {
+        if (_provider.warframes == null) return const LoadingIndicator();
+
+        if (_provider.warframes!.isEmpty) {
+          return RetryButton(onTap: _provider.getWarframes);
         } else {
-          final List<WarframeModel> data = snapshot.data!.toList();
-          return builder(ctx, data);
+          return builder(ctx, _provider.warframes!);
         }
       },
     );

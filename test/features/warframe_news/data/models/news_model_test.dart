@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:warframe/features/warframe_news/data/models/news.dart';
+import 'package:warframe/features/warframe_news/data/models/news_model.dart';
 import 'package:warframe/features/warframe_news/domain/entities/news.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
