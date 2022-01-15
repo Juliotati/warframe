@@ -12,9 +12,13 @@ class CodexMeleeWeapons extends StatelessWidget {
     return CodexDataScaffold(
       label: 'Melee',
       body: SafeArea(
-        child: Consumer<WeaponNetwork>(
-          builder: (BuildContext context, WeaponNetwork _network, _) {
-            final List<MeleeWeaponModel> data = _network.melee;
+        child: Consumer<WarframeCodexProvider>(
+          builder: (BuildContext context, WarframeCodexProvider _provider, _) {
+            final List<MeleeWeaponModel>? data =
+                _provider.weapons() as List<MeleeWeaponModel>?;
+            if (data == null) {
+              return RetryButton(onTap: _provider.getWeapons);
+            }
             if (data.isEmpty) return const LoadingIndicator();
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4.0),

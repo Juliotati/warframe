@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:warframe/core/error/failures.dart';
+import 'package:warframe/core/error/exceptions.dart';
 import 'package:warframe/core/usecases/usecases.dart';
+import 'package:warframe/features/warframe_news/data/models/news_model.dart';
 import 'package:warframe/features/warframe_news/domain/repositories/news_repository.dart';
 import 'package:warframe/features/warframe_news/domain/usecases/get_news.dart';
 
@@ -15,10 +16,11 @@ Future<void> main() async {
   test(
     'verify if getNews is actually called from the repository',
     () async {
-      when(() => mockNewsRepository.getNews())
-          .thenAnswer((_) async => const Right<Failure, void>(null));
+      when(() => mockNewsRepository.getNews()).thenAnswer((_) async {
+        return const Right<WarframeException, List<NewsModel>>(<NewsModel>[]);
+      });
 
-      final Either<Failure, void> result = await useCase(NoParams());
+      final Either<WarframeException, void> result = await useCase(NoParams());
 
       expect(result.isRight(), true);
       verify(() => mockNewsRepository.getNews());

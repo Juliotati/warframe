@@ -1,4 +1,4 @@
-import 'warframe_abilities.dart';
+import 'package:warframe/features/warframe_codex/domain/entities/warframe_abilities.dart';
 
 abstract class Frame {
   const Frame({

@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-
-import '../../../../core/error/failures.dart';
+import 'package:warframe/core/error/exceptions.dart';
+import 'package:warframe/features/warframe_news/data/models/news_model.dart';
 
 abstract class NewsRepository {
-  Future<Either<Failure, void>> getNews();
-  Future<Either<Failure, void>> refreshNews();
+  Future<Either<WarframeException, List<NewsModel>?>> getNews();
+  Future<Either<WarframeException, void>> refreshNews();
 }

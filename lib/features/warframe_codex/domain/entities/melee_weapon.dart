@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'weapon.dart';
+import 'package:warframe/features/warframe_codex/domain/entities/weapon.dart';
 
 abstract class MeleeWeapon extends Equatable implements Weapon {
   const MeleeWeapon(

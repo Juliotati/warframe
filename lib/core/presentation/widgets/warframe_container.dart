@@ -48,9 +48,10 @@ class _WarframeContainerState extends State<WarframeContainer> {
     );
     String? _backgroundImage() {
       if (widget.showImage &&
-          widget.backgroundImage!.startsWith(
-            DeadLink.baseUrl,
-          )) {
+          (DeadLink.links.contains(widget.backgroundImage) ||
+              widget.backgroundImage!.startsWith(
+                DeadLink.baseUrl,
+              ))) {
         return kImagePlaceholder;
       }
       return widget.backgroundImage;

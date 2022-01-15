@@ -1,18 +1,18 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:warframe/core/error/failures.dart';
+import 'package:warframe/core/error/exceptions.dart';
 import 'package:warframe/core/usecases/usecases.dart';
 import 'package:warframe/features/warframe_codex/data/models/warframe_abilities_model.dart';
 import 'package:warframe/features/warframe_codex/data/models/warframe_model.dart';
-import 'package:warframe/features/warframe_codex/domain/entities/warframe.dart';
-import 'package:warframe/features/warframe_codex/domain/repositories/warframe_repository.dart';
+import 'package:warframe/features/warframe_codex/domain/repositories/warframe_codex_repository.dart';
 import 'package:warframe/features/warframe_codex/domain/usecases/get_warframe.dart';
 
-class MockWarframeRepository extends Mock implements WarframeRepository {}
+class MockWarframeRepository extends Mock implements WarframeCodexRepository {}
 
 void main() {
-  final MockWarframeRepository mockWarframeRepository = MockWarframeRepository();
+  final MockWarframeRepository mockWarframeRepository =
+      MockWarframeRepository();
   final GetWarframe useCase = GetWarframe(mockWarframeRepository);
 
   const WarframeModel tWarframe = WarframeModel(
@@ -55,14 +55,16 @@ void main() {
   test(
     'should get a single warframe from the repository by name',
     () async {
-      when(() => mockWarframeRepository.getWarframe(tWarframeName))
-          .thenAnswer((_) async => const Right<Failure, Warframe>(tWarframe));
+      when(() => mockWarframeRepository.warframe(tWarframeName)).thenAnswer(
+        (_) => const Right<WarframeException, WarframeModel>(tWarframe),
+      );
 
-      final Either<Failure, Warframe> result = await useCase(Params(tWarframeName));
+      final Either<WarframeException, WarframeModel> result =
+          useCase.get(Params(name: tWarframeName));
 
-      expect(result, const Right<Failure, Warframe>(tWarframe));
+      expect(result, const Right<WarframeException, WarframeModel>(tWarframe));
 
-      verify(() => mockWarframeRepository.getWarframe(tWarframeName));
+      verify(() => mockWarframeRepository.warframe(tWarframeName));
       verifyNoMoreInteractions(mockWarframeRepository);
     },
   );

@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../../domain/entities/codex.dart';
+import 'package:warframe/features/warframe_codex/domain/entities/codex.dart';
 
 class CodexCategoryModel extends CodexCategory {
   const CodexCategoryModel({

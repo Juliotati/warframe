@@ -8,9 +8,9 @@ class CodexModsListView extends StatelessWidget {
     return CodexDataScaffold(
       label: 'Mods',
       body: SafeArea(
-        child: Consumer<ModsNetwork>(
-          builder: (BuildContext context, ModsNetwork _network, _) {
-            final List<ModModel> data = _network.data;
+        child: Consumer<WarframeCodexProvider>(
+          builder: (BuildContext context, WarframeCodexProvider _provider, _) {
+            final List<ModModel> data = _provider.mods;
             if (data.isEmpty) return const LoadingIndicator();
 
             return Padding(

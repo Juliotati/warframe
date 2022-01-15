@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
-import '../../domain/entities/news.dart';
+import 'package:warframe/features/warframe_news/domain/entities/news.dart';
 
-part 'news.g.dart';
+part 'news_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class NewsModel extends News {

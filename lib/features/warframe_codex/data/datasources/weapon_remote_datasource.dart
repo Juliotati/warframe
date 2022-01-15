@@ -5,16 +5,15 @@ import 'package:http/http.dart' as http;
 import 'package:warframe/core/keys/apis.dart';
 import 'package:warframe/core/platform/network_info.dart';
 
-import '../models/gun_model.dart';
-import '../models/melee_weapon_model.dart';
+import 'package:warframe/features/warframe_codex/data/models/gun_model.dart';
+import 'package:warframe/features/warframe_codex/data/models/melee_weapon_model.dart';
 
-abstract class WeaponRemoteDatasource {
-  /// Gets all Prime and non-prime weapons from the official warframe API on app launch
-  /// Rethrows an [Error] if something goes wrong
-  Future<void> getRemoteWeapons();
+abstract class WeaponsRemoteDatasource {
+  /// Gets all Prime and non-prime weapons
+  Future<void> getWeapons();
 }
 
-class WeaponNetwork extends WeaponRemoteDatasource with ChangeNotifier {
+class WeaponsRemoteDatasourceImpl extends WeaponsRemoteDatasource with ChangeNotifier {
   List<MeleeWeaponModel> get melee => _melee;
 
   final List<GunModel> _guns = <GunModel>[];
@@ -46,10 +45,10 @@ class WeaponNetwork extends WeaponRemoteDatasource with ChangeNotifier {
   }
 
   @override
-  Future<void> getRemoteWeapons() async {
+  Future<void> getWeapons() async {
     final bool isConnected = await NetWorkInfoImpl.instance.isConnected;
 
-    if (!isConnected)   return;
+    if (!isConnected) return;
     try {
       final http.Response response = await http.get(Uri.parse(API.weaponsAPI));
       if (response.statusCode != 200) {
@@ -61,9 +60,11 @@ class WeaponNetwork extends WeaponRemoteDatasource with ChangeNotifier {
           await json.decode(response.body) as List<dynamic>;
 
       if (_guns.isNotEmpty) {
-        debugPrint('''
+        debugPrint(
+          '''
         DISPOSING OF ${decodedWeapons.length} WEAPONS
-        ${_guns.length + _melee.length} ITEMS ALREADY EXIST''');
+        ${_guns.length + _melee.length} ITEMS ALREADY EXIST''',
+        );
         decodedWeapons = null;
         return;
       }
@@ -76,26 +77,27 @@ class WeaponNetwork extends WeaponRemoteDatasource with ChangeNotifier {
     }
   }
 
-  /// Adds weapons to their respective category
-  /// Rethrows an [Error] if something goes wrong
+  /// [API.weaponsAPI] returns all the weapons available without any filtering.
+  /// This internal methods is responsible for organizing the weapons by
+  /// their respective category namely, Primary, Secondary and Melee.
   Future<void> _sortWeapons(List<dynamic> decodedWeapons) async {
     for (int i = 0; i < decodedWeapons.length; i++) {
-      final Map<String, dynamic> _jsonMap =
+      final Map<String, dynamic> _weapon =
           decodedWeapons[i] as Map<String, dynamic>;
-      final String category = _jsonMap['category'] as String;
+      final String category = _weapon['category'] as String;
       final bool isGunType = category == 'Primary' || category == 'Secondary';
 
       if (isGunType) {
         try {
-          _guns.add(GunModel.fromJson(_jsonMap));
+          _guns.add(GunModel.fromJson(_weapon));
         } catch (e) {
-          debugPrint(e.toString());
+          debugPrint('$e');
           rethrow;
         }
       }
       if (category == 'Melee') {
         try {
-          _melee.add(MeleeWeaponModel.fromJson(_jsonMap));
+          _melee.add(MeleeWeaponModel.fromJson(_weapon));
         } catch (e) {
           debugPrint(e.toString());
           rethrow;

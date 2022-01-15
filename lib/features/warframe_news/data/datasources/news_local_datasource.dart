@@ -1,4 +1,4 @@
-import 'package:warframe/features/warframe_news/data/models/news.dart';
+import 'package:warframe/features/warframe_news/data/models/news_model.dart';
 import 'package:warframe/features/warframe_news/domain/entities/news.dart';
 
 abstract class NewsLocalDatasource {

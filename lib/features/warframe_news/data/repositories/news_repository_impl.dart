@@ -1,30 +1,36 @@
 import 'package:dartz/dartz.dart';
-import 'package:warframe/core/error/failures.dart';
+import 'package:warframe/core/error/exceptions.dart';
 import 'package:warframe/core/platform/network_info.dart';
-import 'package:warframe/features/warframe_news/data/datasources/news_local_datasource.dart';
 import 'package:warframe/features/warframe_news/data/datasources/news_remote_datasource.dart';
+import 'package:warframe/features/warframe_news/data/models/news_model.dart';
 import 'package:warframe/features/warframe_news/domain/repositories/news_repository.dart';
 
 class NewsRepositoryImpl implements NewsRepository {
-  const NewsRepositoryImpl({
-    required this.networkInfo,
-    required this.localDatasource,
-    required this.remoteDatasource,
-  });
+  const NewsRepositoryImpl(
+    this._networkInfo,
+    this._remoteDatasource,
+  );
 
-  final NewsRemoteDatasource remoteDatasource;
-  final NewsLocalDatasource localDatasource;
-  final NetworkInfo networkInfo;
+  final NewsRemoteDatasourceImpl _remoteDatasource;
+  final NetworkInfo _networkInfo;
 
   @override
-  Future<Either<Failure, void>> getNews() async {
-    networkInfo.isConnected;
-    return Right<Failure, void>(await remoteDatasource.getRemoteNews());
+  Future<Either<WarframeException, List<NewsModel>?>> getNews() async {
+    if (await _networkInfo.isConnected) {
+      return Right<WarframeException, List<NewsModel>?>(
+        await _remoteDatasource.getRemoteNews(),
+      );
+    }
+    return Left<WarframeException, List<NewsModel>?>(WarframeException());
   }
 
   @override
-  Future<Either<Failure, void>> refreshNews() async {
-    networkInfo.isConnected;
-    return Right<Failure, void>(await remoteDatasource.refreshNews());
+  Future<Either<WarframeException, void>> refreshNews() async {
+    if (await _networkInfo.isConnected) {
+      return Right<WarframeException, void>(
+        await _remoteDatasource.refreshNews(),
+      );
+    }
+    return Left<WarframeException, void>(WarframeException());
   }
 }

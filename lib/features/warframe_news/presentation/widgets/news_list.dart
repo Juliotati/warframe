@@ -32,14 +32,21 @@ class _NewsBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<NewsProvider>(
-      builder: (BuildContext context, NewsProvider snapshot, __) {
-        if (snapshot.state == NewsState.loading) {
+      builder: (_, NewsProvider _provider, __) {
+        if (_provider.state == NewsProviderState.loading) {
           return const LoadingIndicator();
         }
-        if (snapshot.state == NewsState.empty || snapshot.data == null) {
-          return RetryButton(onTap: () => snapshot.refreshNews(context));
+        if (_provider.state == NewsProviderState.idle) {
+          return RetryButton(
+            message: 'Reload to update',
+            buttonLabel: 'Reload',
+            onTap: () => _provider.refreshNews(),
+          );
+        }
+        if (!_provider.hasData || _provider.hasError) {
+          return RetryButton(onTap: () => _provider.refreshNews());
         } else {
-          final List<NewsModel> data = snapshot.data!.toList();
+          final List<NewsModel> data = _provider.news!;
           return builder(context, data);
         }
       },

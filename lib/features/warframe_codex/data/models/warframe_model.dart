@@ -1,7 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-
-import '../../domain/entities/warframe.dart';
-import 'warframe_abilities_model.dart';
+import 'package:warframe/features/warframe_codex/data/models/warframe_abilities_model.dart';
+import 'package:warframe/features/warframe_codex/domain/entities/warframe.dart';
 
 part 'warframe_model.g.dart';
 
@@ -47,6 +46,21 @@ class WarframeModel extends Warframe {
 
   factory WarframeModel.fromJson(Map<String, dynamic> json) {
     return _$WarframeModelFromJson(json);
+  }
+
+  factory WarframeModel.empty() {
+    return const WarframeModel(
+      name: '',
+      abilities: <AbilitiesModel>[],
+      wikiaUrl: '',
+      wikiaThumbnail: '',
+      uniqueName: '',
+      armor: 0,
+      power: 0,
+      health: 0,
+      description: '',
+      shield: 0,
+    );
   }
 
   final String uniqueName;
