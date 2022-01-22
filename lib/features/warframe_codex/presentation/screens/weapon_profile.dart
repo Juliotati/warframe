@@ -1,39 +1,23 @@
 part of warframe_codex;
 
 class WeaponProfile extends StatelessWidget {
-  const WeaponProfile.gun({
-    Key? key,
-    required this.gun,
-    this.melee,
-  })  : assert(melee == null, 'Use this constructor only for gun category'),
-        super(key: key);
+  const WeaponProfile._({required this.child});
 
-  const WeaponProfile.melee({
-    Key? key,
-    this.gun,
-    required this.melee,
-  })  : assert(
-          gun == null,
-          'Use this constructor only for melee weapons category',
-        ),
-        super(key: key);
+  factory WeaponProfile.gun(GunModel gun) {
+    return WeaponProfile._(child: GunProfile(gun));
+  }
 
-  final MeleeWeaponModel? melee;
-  final GunModel? gun;
+  factory WeaponProfile.melee(MeleeWeaponModel melee) {
+    return WeaponProfile._(child: MeleeWeaponProfile(melee));
+  }
 
-  static const String route = 'weapon-profile';
+  static const String route = '/weapon-profile';
+
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
-    if (gun != null) {
-      return GunProfile(gun!);
-    } else if (melee != null) {
-      return MeleeWeaponProfile(melee!);
-    } else {
-      return const Center(
-        child: Text('No Data'),
-      );
-    }
+    return child;
   }
 }
 
@@ -49,22 +33,20 @@ class WeaponStatsContainer extends StatelessWidget {
   final MeleeWeaponModel? melee;
   final bool isMeleeHeavyStats;
 
+  List<Widget> get weaponStats {
+    if (weapon != null) return gunStat(weapon!);
+
+    return isMeleeHeavyStats
+        ? meleeWeaponHeavyAttacksStat(melee!)
+        : meleeWeaponStat(melee!);
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<Widget> weaponStatsBody() {
-      if (weapon != null) {
-        return gunStat(weapon!);
-      } else {
-        return isMeleeHeavyStats
-            ? meleeWeaponHeavyAttacksStat(melee!)
-            : meleeWeaponStat(melee!);
-      }
-    }
-
     return WarframeContainer(
       verticalMargin: 0,
       child: Column(
-        children: weaponStatsBody(),
+        children: weaponStats,
       ),
     );
   }

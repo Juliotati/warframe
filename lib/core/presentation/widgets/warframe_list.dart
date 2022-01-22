@@ -20,6 +20,7 @@ class WarframeListViewBuilder extends StatelessWidget {
       key: key,
       physics: physics,
       scrollDirection: scrollDirection,
+      controller: ScrollController(debugLabel: '[WarframeListViewBuilder]'),
       itemCount: itemCount,
       itemBuilder: itemBuilder,
     );
@@ -57,6 +58,7 @@ class WarframeGridViewBuilder extends StatelessWidget {
       scrollDirection: scrollDirection,
       itemCount: itemCount,
       itemBuilder: itemBuilder,
+      controller: ScrollController(debugLabel: '[WarframeGridViewBuilder]'),
       gridDelegate: WarframePlatform.isMobile
           ? SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 400,
