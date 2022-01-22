@@ -3,7 +3,7 @@ part of warframe_codex;
 class CodexCategories extends StatelessWidget {
   const CodexCategories();
 
-  static const String route = '/codex-categories';
+  static const String route = 'codex';
 
   @override
   Widget build(BuildContext context) {

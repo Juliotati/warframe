@@ -6,23 +6,23 @@ class ItemsColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: SingleChildScrollView(
+      child: ListView.builder(
         physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: drawerItems.map((DrawerItemModel item) {
-            return DrawerItemList(
-              leadingIcon: item.leadingIcon,
-              label: item.label,
-              onTap: () {
-                Navigator.of(context).pop();
-                return context.read<ScreenDelegate>().updateScreen(
-                      item.screen,
-                      item.label,
-                    );
-              },
-            );
-          }).toList(),
-        ),
+        controller: ScrollController(debugLabel: '[DrawerItemColumn]'),
+        itemCount: drawerItems.length,
+        itemBuilder: (_, int index) {
+          return DrawerItemList(
+            leadingIcon: drawerItems[index].leadingIcon,
+            label: drawerItems[index].label,
+            onTap: () async {
+              Navigator.of(context).pop();
+              context.read<ScreenDelegate>().updateScreen(
+                    drawerItems[index].screen,
+                    drawerItems[index].label,
+                  );
+            },
+          );
+        },
       ),
     );
   }

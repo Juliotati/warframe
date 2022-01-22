@@ -3,11 +3,12 @@ part of warframe_codex;
 class WarframeProfile extends StatelessWidget {
   const WarframeProfile();
 
-  static const String route = 'warframe-profile';
+  static const String route = '/warframe-profile';
 
   @override
   Widget build(BuildContext context) {
-    final WarframeModel warframe = ModalRoute.of(context)!.settings.arguments! as WarframeModel;
+    final WarframeModel warframe =
+        ModalRoute.of(context)!.settings.arguments! as WarframeModel;
     return CodexDataScaffold(
       label: warframe.name,
       icon: Icons.cancel,

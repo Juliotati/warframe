@@ -8,13 +8,11 @@ class GunCard extends StatelessWidget {
 
   final GunModel gun;
 
-  Future<void> selectGun(BuildContext context) async {
+  Future<void> _selectGun(BuildContext context) async {
     Navigator.of(context).push(
       MaterialPageRoute<WeaponProfile>(
         builder: (BuildContext contetxt) {
-          return WeaponProfile.gun(
-            gun: gun,
-          );
+          return WeaponProfile.gun(gun);
         },
       ),
     );
@@ -23,7 +21,7 @@ class GunCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StackedContainer(
-      onTap: () => selectGun(context),
+      onTap: () => _selectGun(context),
       key: Key(gun.uniqueName),
       image: gun.wikiaThumbnail,
       label: gun.name.toUpperCase(),
@@ -41,11 +39,11 @@ class MeleeWeaponCard extends StatelessWidget {
 
   final MeleeWeaponModel melee;
 
-  Future<void> selectMelee(BuildContext context) async {
+  Future<void> _selectMelee(BuildContext context) async {
     Navigator.of(context).push(
       MaterialPageRoute<WeaponProfile>(
         builder: (BuildContext contetxt) {
-          return WeaponProfile.melee(melee: melee);
+          return WeaponProfile.melee(melee);
         },
       ),
     );
@@ -54,7 +52,7 @@ class MeleeWeaponCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StackedContainer(
-      onTap: () => selectMelee(context),
+      onTap: () => _selectMelee(context),
       key: Key(melee.uniqueName),
       image: melee.wikiaThumbnail,
       label: melee.name.toUpperCase(),
