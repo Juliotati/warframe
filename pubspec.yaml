@@ -41,8 +41,18 @@ dev_dependencies:
   lint: ^1.5.3
 
   mocktail: ^0.2.0
+  msix: ^2.8.15
 
 flutter:
   uses-material-design: true
   assets:
     - images/
+
+msix_config:
+  display_name: Warframe
+  publisher_display_name: juliotati.com
+  identity_name: JulioTati.dev.Warframe
+  architecture: x64 
+  msix_version: 0.0.3.0
+  logo_path: C:\Users\user\Desktop\Development\apps\warframe\images\app-icon.png
+  capabilities: "internetClient"
