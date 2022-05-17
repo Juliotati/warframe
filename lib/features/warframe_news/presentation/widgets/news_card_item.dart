@@ -18,8 +18,8 @@ class NewsCardItem extends StatelessWidget {
 
   Future<void> _openDefaultBrowser(BuildContext context) async {
     try {
-      if (await canLaunch(newsItem.link)) {
-        await launch(newsItem.link);
+      if (await canLaunchUrl(Uri.parse(newsItem.link))) {
+        await launchUrl(Uri.parse(newsItem.link));
         return;
       }
     } catch (_) {

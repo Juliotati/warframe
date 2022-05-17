@@ -15,14 +15,13 @@ import 'package:warframe/features/warframe_codex/domain/usecases/get_weapons.dar
 import 'package:warframe/features/warframe_codex/presentation/provider/warframe_codex_provider.dart';
 import 'package:warframe/features/warframe_news/data/datasources/news_remote_datasource.dart';
 import 'package:warframe/features/warframe_news/data/repositories/news_repository_impl.dart';
-import 'package:warframe/features/warframe_news/domain/repositories/news_repository.dart';
 import 'package:warframe/features/warframe_news/domain/usecases/get_news.dart';
-import 'package:warframe/features/warframe_news/domain/usecases/refresh_news.dart';
 import 'package:warframe/features/warframe_news/presentation/provider/news_provider.dart';
 
 part 'core.dart';
 part 'news.dart';
 part 'warframe_codex.dart';
+part 'provider_state.dart';
 
 List<SingleChildWidget> get warframeProviders {
   return <SingleChildWidget>[

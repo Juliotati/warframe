@@ -43,7 +43,7 @@ class _AppState extends State<_App> {
 
   @override
   void initState() {
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _loadAppData();
     });
     super.initState();

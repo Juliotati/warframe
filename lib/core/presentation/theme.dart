@@ -14,7 +14,6 @@ final ThemeData warframeTheme = ThemeData(
     behavior: SnackBarBehavior.floating,
   ),
   scrollbarTheme: ScrollbarThemeData(
-    showTrackOnHover: true,
     radius: const Radius.circular(6),
     thumbColor: MaterialStateProperty.resolveWith((Set<MaterialState> states) {
       if (states.contains(MaterialState.hovered)) {
