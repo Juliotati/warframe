@@ -14,8 +14,7 @@ class CodexMeleeWeapons extends StatelessWidget {
       body: SafeArea(
         child: Consumer<WarframeCodexProvider>(
           builder: (BuildContext context, WarframeCodexProvider _provider, _) {
-            final List<MeleeWeaponModel>? data =
-                _provider.weapons() as List<MeleeWeaponModel>?;
+            final List<MeleeWeaponModel> data = _provider.melee;
             if (data == null) {
               return RetryButton(onTap: _provider.getWeapons);
             }
