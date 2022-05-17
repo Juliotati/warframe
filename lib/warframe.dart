@@ -32,18 +32,16 @@ class _App extends StatefulWidget {
 }
 
 class _AppState extends State<_App> {
+
   Future<void> _loadAppData() async {
     await context.read<NewsProvider>().getNews().whenComplete(() async {
-      context.read<WarframeCodexProvider>()
-        ..getWarframes()
-        ..getWeapons()
-        ..getMods();
+      context.read<WarframeCodexProvider>().initializeCodex();
     });
   }
 
   @override
   void initState() {
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _loadAppData();
     });
     super.initState();

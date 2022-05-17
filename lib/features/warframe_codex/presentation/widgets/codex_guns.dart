@@ -16,8 +16,7 @@ class CodexGuns extends StatelessWidget {
       body: SafeArea(
         child: Consumer<WarframeCodexProvider>(
           builder: (_, WarframeCodexProvider _provider, __) {
-            final List<GunModel>? data =
-                _provider.weapons(category) as List<GunModel>?;
+            final List<GunModel> data = _provider.guns(category);
             if (data == null) return NoData('$category are not available 😬');
             if (data.isEmpty) return const LoadingIndicator();
             return WarframeGridViewBuilder(

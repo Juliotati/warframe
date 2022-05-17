@@ -1,24 +1,17 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:warframe/core/config/providers/providers.dart';
 import 'package:warframe/core/error/exceptions.dart';
 import 'package:warframe/core/usecases/usecases.dart';
 import 'package:warframe/features/warframe_news/data/models/news_model.dart';
 import 'package:warframe/features/warframe_news/domain/usecases/get_news.dart';
-
-enum NewsProviderState {
-  idle,
-  loaded,
-  loading,
-}
 
 class NewsProvider with ChangeNotifier {
   NewsProvider(this._getNews);
 
   final GetNews _getNews;
 
-  NewsProviderState state = NewsProviderState.idle;
-  bool hasData = false;
-  bool hasError = false;
+  ProviderState state = ProviderState.idle;
 
   List<NewsModel>? _news = <NewsModel>[];
 
@@ -26,33 +19,44 @@ class NewsProvider with ChangeNotifier {
 
   Future<void> getNews() async {
     _setStateAsLoading();
-    _news = await _getNews.call(NoParams()).then(
-      (Either<WarframeException, List<NewsModel>?> result) {
-        if (result.isLeft()) {
-          hasData = true;
-          hasError = true;
-          return _news;
-        }
-        return result.getOrElse(() => <NewsModel>[]);
-      },
-    );
-    if (_news != null || _news!.isNotEmpty) hasData = true;
+    await _getNews.call(NoParams()).then(_updateNews);
+  }
+
+  void _updateNews(Either<WarframeException, List<NewsModel>?> result) {
+    if (result.isLeft()) {
+      _setStateAsHasError();
+      return;
+    }
+    if (result.isRight() && result.getOrElse(() => null) == null) {
+      _setStateAsEmpty();
+      return;
+    }
+
+    _news = result.getOrElse(() => <NewsModel>[]);
     _setStateAsLoaded();
   }
 
   Future<void> refreshNews() async {
-    getNews();
+    return getNews();
   }
 
   void _setStateAsLoading() {
-    hasData = false;
-    hasError = false;
-    state = NewsProviderState.loading;
+    state = ProviderState.loading;
+    notifyListeners();
+  }
+
+  void _setStateAsHasError() {
+    state = ProviderState.hasError;
+    notifyListeners();
+  }
+
+  void _setStateAsEmpty() {
+    state = ProviderState.empty;
     notifyListeners();
   }
 
   void _setStateAsLoaded() {
-    state = NewsProviderState.loaded;
+    state = ProviderState.loaded;
     notifyListeners();
   }
 }

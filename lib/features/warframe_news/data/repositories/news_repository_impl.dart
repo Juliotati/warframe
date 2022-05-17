@@ -18,19 +18,9 @@ class NewsRepositoryImpl implements NewsRepository {
   Future<Either<WarframeException, List<NewsModel>?>> getNews() async {
     if (await _networkInfo.isConnected) {
       return Right<WarframeException, List<NewsModel>?>(
-        await _remoteDatasource.getRemoteNews(),
+        await _remoteDatasource.news(),
       );
     }
     return Left<WarframeException, List<NewsModel>?>(WarframeException());
-  }
-
-  @override
-  Future<Either<WarframeException, void>> refreshNews() async {
-    if (await _networkInfo.isConnected) {
-      return Right<WarframeException, void>(
-        await _remoteDatasource.refreshNews(),
-      );
-    }
-    return Left<WarframeException, void>(WarframeException());
   }
 }

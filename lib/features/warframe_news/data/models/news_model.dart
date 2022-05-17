@@ -20,11 +20,11 @@ class NewsModel extends News {
         );
 
   factory NewsModel.fromJson(Map<String, dynamic> json) {
-    return _$WarframeNewsModelFromJson(json);
+    return _$NewsModelFromJson(json);
   }
 
   Map<String, dynamic> toJson() {
-    return _$WarframeNewsModelToJson(this);
+    return _$NewsModelToJson(this);
   }
 
   final String id;
