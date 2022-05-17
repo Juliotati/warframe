@@ -24,24 +24,24 @@ class WarframeCodexRepositoryImpl implements WarframeCodexRepository {
   final WeaponsRemoteDatasourceImpl _weaponsRemoteDatasourceImpl;
 
   @override
-  Future<Either<WarframeException, void>> getMods() async {
+  Future<Either<WarframeException, List<ModModel>?>> mods() async {
     if (await _netWorkInfoImpl.isConnected) {
-      return Right<WarframeException, void>(
-        _modsRemoteDatasourceImpl.getRemoteMods(),
+      return Right<WarframeException, List<ModModel>?>(
+        await _modsRemoteDatasourceImpl.mods(),
       );
     }
-    return Left<WarframeException, WarframeModel>(WarframeException());
+    return Left<WarframeException, List<ModModel>?>(WarframeException());
   }
 
   @override
-  Future<Either<WarframeException, void>> getWarframes() async {
+  Future<Either<WarframeException, List<WarframeModel>?>> warframes() async {
     if (await _netWorkInfoImpl.isConnected) {
-      return Right<WarframeException, void>(
-        _warframeRemoteDatasourceImpl.getRemoteWarframes(),
+      return Right<WarframeException, List<WarframeModel>?>(
+        await _warframeRemoteDatasourceImpl.warframes(),
       );
     }
 
-    return Left<WarframeException, void>(WarframeException());
+    return Left<WarframeException, List<WarframeModel>?>(WarframeException());
   }
 
   @override
@@ -53,28 +53,6 @@ class WarframeCodexRepositoryImpl implements WarframeCodexRepository {
     }
 
     return Left<WarframeException, void>(WarframeException());
-  }
-
-  @override
-  Either<WarframeException, WarframeModel> warframe(String name) {
-    try {
-      return Right<WarframeException, WarframeModel>(
-        _warframeRemoteDatasourceImpl.getWarframe(name),
-      );
-    } catch (_) {
-      return Left<WarframeException, WarframeModel>(WarframeException());
-    }
-  }
-
-  @override
-  Either<WarframeException, List<WarframeModel>?> warframes() {
-    try {
-      return Right<WarframeException, List<WarframeModel>?>(
-        _warframeRemoteDatasourceImpl.data,
-      );
-    } catch (_) {
-      return Left<WarframeException, List<WarframeModel>?>(WarframeException());
-    }
   }
 
   @override
@@ -98,17 +76,6 @@ class WarframeCodexRepositoryImpl implements WarframeCodexRepository {
       return Left<WarframeException, List<MeleeWeaponModel>>(
         WarframeException(),
       );
-    }
-  }
-
-  @override
-  Either<WarframeException, List<ModModel>> mods() {
-    try {
-      return Right<WarframeException, List<ModModel>>(
-        _modsRemoteDatasourceImpl.mods,
-      );
-    } catch (_) {
-      return Left<WarframeException, List<ModModel>>(WarframeException());
     }
   }
 }

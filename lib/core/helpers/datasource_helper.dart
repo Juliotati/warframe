@@ -56,32 +56,4 @@ class DatasourceHelper {
       return false;
     }
   }
-
-  static bool uniqueNameExists(
-    List<dynamic> source,
-    dynamic element, {
-    bool showLog = false,
-  }) {
-    try {
-      dynamic existingElement = source.firstWhere((dynamic _element) {
-        return _element.uniqueName == element.uniqueName;
-      });
-      if (existingElement.uniqueName == element.uniqueName) {
-        if (showLog) {
-          debugPrint(
-            'uniqueName: ${element.uniqueName} MATCHES EXISTING uniqueName: ${existingElement.uniqueName}',
-          );
-        }
-        existingElement = null;
-        return true;
-      }
-
-      return false;
-    } catch (_) {
-      if (showLog) {
-        debugPrint('uniqueName: ${element.uniqueName} HAS NO MATCH');
-      }
-      return false;
-    }
-  }
 }

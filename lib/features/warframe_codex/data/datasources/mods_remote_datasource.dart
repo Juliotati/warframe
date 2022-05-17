@@ -9,51 +9,42 @@ import 'package:warframe/features/warframe_codex/data/models/mod_model.dart';
 abstract class ModsRemoteDatasource {
   /// Gets all Prime and non-prime mods from the official warframe API on app launch
   /// Rethrows an [Error] if something goes wrong
-  Future<void> getRemoteMods();
+  Future<void> mods();
 }
 
-class ModsRemoteDatasourceImpl extends ModsRemoteDatasource
-    with ChangeNotifier {
-  List<ModModel> get mods => _mods;
-
-  final List<ModModel> _mods = <ModModel>[];
-
+class ModsRemoteDatasourceImpl extends ModsRemoteDatasource {
   @override
-  Future<void> getRemoteMods() async {
-    final bool isConnected = await NetWorkInfoImpl.instance.isConnected;
-
-    if (!isConnected) return;
-
+  Future<List<ModModel>?> mods() async {
     final http.Response response = await http.get(Uri.parse(API.modsAPI));
 
-    if (response.statusCode != 200) return;
+    if (response.statusCode != 200) return null;
 
-    List<dynamic>? decodedMods =
+    final List<dynamic> decodedMods =
         await jsonDecode(response.body) as List<dynamic>;
 
-    if (_mods.isNotEmpty) {
-      decodedMods = null;
-      return;
-    }
-    await _addNonDuplicateMods(decodedMods);
+    return _nonDuplicateMods(decodedMods);
   }
 
-  Future<void> _addNonDuplicateMods(List<dynamic> decodedMods) async {
+  Future<List<ModModel>> _nonDuplicateMods(List<dynamic> decodedMods) async {
+    final List<ModModel> _mods = <ModModel>[];
     for (int i = 0; i < decodedMods.length; i++) {
       final Map<String, dynamic> _mod = decodedMods[i] as Map<String, dynamic>;
       try {
+        final String currentModName = _mod['name'] as String;
+
         final int _nextMod = i + 1;
 
         // ignore: avoid_dynamic_calls
-        if (_mod['name'] != decodedMods[_nextMod]['name']) {
-          _mods.add(ModModel.fromJson(_mod));
-        }
+        final String nextModName = decodedMods[_nextMod]['name'] as String;
+
+        // ignore: avoid_dynamic_calls
+        if (currentModName != nextModName) _mods.add(ModModel.fromJson(_mod));
 
         // ignore: avoid_catching_errors
       } on RangeError {
-        return;
+        return _mods;
       }
-      notifyListeners();
     }
+    return _mods;
   }
 }

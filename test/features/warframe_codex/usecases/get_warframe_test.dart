@@ -13,7 +13,7 @@ class MockWarframeRepository extends Mock implements WarframeCodexRepository {}
 void main() {
   final MockWarframeRepository mockWarframeRepository =
       MockWarframeRepository();
-  final GetWarframe useCase = GetWarframe(mockWarframeRepository);
+  final GetWarframes useCase = GetWarframes(mockWarframeRepository);
 
   const WarframeModel tWarframe = WarframeModel(
     uniqueName: '/Lotus/Powersuits/Ninja/Ninja',
@@ -55,16 +55,18 @@ void main() {
   test(
     'should get a single warframe from the repository by name',
     () async {
-      when(() => mockWarframeRepository.warframe(tWarframeName)).thenAnswer(
-        (_) => const Right<WarframeException, WarframeModel>(tWarframe),
+      when(() => mockWarframeRepository.warframes()).thenAnswer(
+        (_) async => const Right<WarframeException, List<WarframeModel>?>(
+          <WarframeModel>[tWarframe],
+        ),
       );
 
-      final Either<WarframeException, WarframeModel> result =
-          useCase.get(Params(name: tWarframeName));
+      final Future<Either<WarframeException, List<WarframeModel>?>> result =
+          useCase(NoParams());
 
       expect(result, const Right<WarframeException, WarframeModel>(tWarframe));
 
-      verify(() => mockWarframeRepository.warframe(tWarframeName));
+      verify(() => mockWarframeRepository.warframes());
       verifyNoMoreInteractions(mockWarframeRepository);
     },
   );

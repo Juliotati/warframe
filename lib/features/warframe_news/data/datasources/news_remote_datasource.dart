@@ -8,10 +8,6 @@ import 'package:warframe/features/warframe_news/data/models/news_model.dart';
 abstract class NewsRemoteDatasource {
   /// Get the latest news from the API about the warframe game or community.
   Future<List<NewsModel>?> getRemoteNews();
-
-  /// Refresh news data in the app to get updated news if there happens to be
-  /// any fresh ones available.
-  Future<void> refreshNews();
 }
 
 class NewsRemoteDatasourceImpl extends NewsRemoteDatasource {
@@ -43,7 +39,7 @@ class NewsRemoteDatasourceImpl extends NewsRemoteDatasource {
       /// If the there happens to be many tries after re-running, the method
       /// should exit to avoid an infinity loop.
       if (_decodedData.isEmpty) {
-        if (_timedOut()) return null;
+        if (_timedOut) return null;
 
         _retryCount++;
         return getRemoteNews();
@@ -70,7 +66,7 @@ class NewsRemoteDatasourceImpl extends NewsRemoteDatasource {
   /// Everytime [getRemoteNews] re-runs, [_retryCount] increments, if
   /// [_retryCount] happens to be equal to or, exceed [_thresholdLimit] the
   /// method call should exit to avoid infinity loops.
-  bool _timedOut() {
+  bool get _timedOut {
     return _retryCount >= _thresholdLimit;
   }
 
@@ -89,11 +85,5 @@ class NewsRemoteDatasourceImpl extends NewsRemoteDatasource {
         data!.insert(0, _item);
       }
     }
-  }
-
-  @override
-  Future<void> refreshNews() async {
-    _retryCount = 0;
-    await getRemoteNews();
   }
 }

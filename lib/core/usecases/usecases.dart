@@ -11,12 +11,6 @@ abstract class CodexUseCase<Type, NoParams> {
   Either<WarframeException, Type> get(Params params);
 }
 
-abstract class CodexUseCases<Type, NoParams> {
-  Future<Either<WarframeException, Type>> call(Params params);
-  Either<WarframeException, Type> get(Params params);
-  Either<WarframeException, Type> getData(Params params);
-}
-
 class Params extends Equatable {
   const Params({
     this.name,

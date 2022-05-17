@@ -43,10 +43,10 @@ class _WarframeConsumer extends StatelessWidget {
       builder: (BuildContext ctx, WarframeCodexProvider _provider, _) {
         if (_provider.warframes == null) return const LoadingIndicator();
 
-        if (_provider.warframes!.isEmpty) {
+        if (_provider.warframes.isEmpty) {
           return RetryButton(onTap: _provider.getWarframes);
         } else {
-          return builder(ctx, _provider.warframes!);
+          return builder(ctx, _provider.warframes);
         }
       },
     );
